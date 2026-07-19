@@ -1,3 +1,4 @@
+import Link from "next/link";
 import TippedLogo from "./TippedLogo";
 import { CONTACT_EMAIL, INSTAGRAM_HANDLE, INSTAGRAM_URL } from "@/lib/brand";
 
@@ -61,10 +62,15 @@ export default function Footer() {
             </div>
           ) : (
             <p className="font-sans font-medium text-[13px] leading-relaxed text-cream/60 m-0 max-w-[380px]">
-              Rescuer credits go up here as each group confirms. If you rescue in
-              the UAE and want in, write to us.
+              Rescuer credits go up here as each group confirms.
             </p>
           )}
+          <Link
+            href="/rescuers"
+            className="inline-block font-sans font-bold text-[13px] text-cream no-underline hover:text-sunset mt-3"
+          >
+            Rescue in the UAE? List your animals →
+          </Link>
           <div className="font-sans font-semibold text-xs text-cream/35 mt-6">
             United Arab Emirates · every animal here is sterilised, vaccinated and known by name
           </div>
