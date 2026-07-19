@@ -219,7 +219,7 @@ export const seedShopLedger: ShopLedgerRow[] = [
     item: "The ear-tipped tote",
     qty: 3,
     amount_aed: 285,
-    benefit: "→ food runs for rescuers",
+    benefit: "→ vet bills",
     note: null,
   },
   {
@@ -237,7 +237,7 @@ export const seedShopLedger: ShopLedgerRow[] = [
     item: "Street graduate wet bag",
     qty: 1,
     amount_aed: 120,
-    benefit: "→ medicine & supplies",
+    benefit: "→ vet bills",
     note: null,
   },
 ];
@@ -248,7 +248,7 @@ export const products: Product[] = [
     slug: "ear-tipped-tote",
     name: "The ear-tipped tote",
     price_aed: 95,
-    benefit: "→ food runs for rescuers",
+    benefit: "→ 100% of profit to vet bills",
     description:
       "Heavy cotton, the two ears on the front. Carries 8kg of dry food, which is exactly what it will be used for.",
   },
@@ -256,7 +256,7 @@ export const products: Product[] = [
     slug: "street-graduate-wet-bag",
     name: "Street graduate wet bag",
     price_aed: 120,
-    benefit: "→ medicine & supplies",
+    benefit: "→ 100% of profit to vet bills",
     description:
       "Waterproof, wipeable, roomy enough for a clinic run. Made for rescuers, useful for everyone.",
   },
@@ -264,7 +264,7 @@ export const products: Product[] = [
     slug: "street-graduate-collar-tag",
     name: '"Street graduate" collar tag',
     price_aed: 45,
-    benefit: "→ vet bills",
+    benefit: "→ 100% of profit to vet bills",
     description:
       "Engraved brass tag for a cat or dog that earned it. Every one sold goes straight at the open bills.",
   },

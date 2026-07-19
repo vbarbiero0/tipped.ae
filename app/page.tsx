@@ -182,8 +182,8 @@ export default async function HomePage() {
             </Link>
           </div>
           <p className="font-sans font-medium text-[15px] text-cocoa/65 m-0 mb-7">
-            Every purchase buys what rescuers actually need — food, medicine,
-            supplies — and helps pay down vet bills.
+            100% of the shop&rsquo;s profit pays vet bills — tracked dirham by
+            dirham, updated weekly on the transparency page.
           </p>
           <div className="grid md:grid-cols-3 gap-6">
             {products.map((p) => (

@@ -8,7 +8,7 @@ import { CONTACT_EMAIL, INSTAGRAM_URL } from "@/lib/brand";
 export const metadata: Metadata = {
   title: "The shop",
   description:
-    "Every purchase buys what rescuers actually need — food, medicine, supplies — and helps pay down vet bills. Order via Instagram or email.",
+    "100% of the shop's profit pays vet bills — updated weekly, in public. Order via Instagram or email.",
 };
 
 // v1 is a catalog, not a checkout (Selling model in CLAUDE.md). Orders happen
@@ -26,9 +26,8 @@ export default function ShopPage() {
         Buy a thing, feed a street.
       </h1>
       <p className="font-sans font-medium text-[16px] leading-[1.65] text-cocoa/75 m-0 mb-10 max-w-[560px]">
-        Every purchase buys what rescuers actually need — food, medicine,
-        supplies — and helps pay down vet bills. Where the money goes is public,
-        line by line, on the{" "}
+        100% of the shop&rsquo;s profit pays vet bills. Every sale in, every
+        bill out — public and updated weekly on the{" "}
         <Link href="/transparency">transparency page</Link>.
       </p>
 

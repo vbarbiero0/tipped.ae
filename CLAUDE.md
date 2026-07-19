@@ -4,11 +4,11 @@ Source of truth for the **tipped** website build. If anything in the codebase co
 
 ## What this is
 
-**tipped** is a platform for Dubai's street cats. Rescuers list cats with stories and photos. Adopters anywhere in the world browse and contact rescuers **directly by email**. Helping with a cat's vet bill means **paying the vet clinic directly** — money never passes through the platform or rescuers. A shop sells products; purchases buy what rescuers actually need (food, medicine, supplies) and help pay down vet bills, evidenced on a public Bills Paid page.
+**tipped** is a platform for Dubai's street cats. Rescuers list cats with stories and photos. Adopters anywhere in the world browse and contact rescuers **directly by email**. Helping with a cat's vet bill means **paying the vet clinic directly** — money never passes through the platform or rescuers. A shop sells products; **100% of the shop's profit pays vet bills** (Vanessa, 2026-07-19 — supersedes the earlier food/medicine/supplies framing), evidenced on the public transparency page, **updated weekly**.
 
 The name and mark reference the **ear-tip**: the clipped ear marking a rescued/TNR'd street cat.
 
-Contact address: **hello@tipped.ae**. Domain: **tipped.ae** (Vanessa's decision, 2026-07-19 — supersedes the earlier `.cat` direction). Instagram: **@tipped.ae** (handle secured).
+Contact address: **hello@tipped.ae**. Domain: **tipped.ae** (Vanessa's decision, 2026-07-19 — supersedes the earlier `.cat` direction). Instagram: **@tipped.ae** (handle secured). **Domain purchase is deliberately deferred** until Vanessa calls the site ready — don't push DNS/domain steps; `https://tippedae.netlify.app` is the working URL (and the `NEXT_PUBLIC_SITE_URL` env value on Netlify) until then.
 
 ## Hard rules (never violate)
 
@@ -17,7 +17,7 @@ Contact address: **hello@tipped.ae**. Domain: **tipped.ae** (Vanessa's decision,
 3. **The ears never recolor.** Plain ear = Sunset `#F0955B`. Tipped ear = Tip pink `#F58B93`. On every surface, light or dark, product or pixel.
 4. **Voice: honest, no sob stories.** Cats have names, histories and opinions — write them the way the rescuer talks about them. Trust stated plainly, not shouted. Say: "Bin-diver, reformed." / "You pay the vet, not us." Not: "Give a furbaby its forever home 🥺".
 5. **Real rescuers appear only with their consent.** Until confirmed, use placeholder profiles clearly marked as examples.
-6. **Shop is not pinned to individual cats.** Products fund rescuer needs (food, medicine, supplies) and help pay down vet bills generally — never "buy this mug to fix Batata's leg." Each product may carry a plain benefit line (e.g. "→ food runs for rescuers").
+6. **Shop is not pinned to individual animals.** 100% of the shop's profit pays vet bills generally — never "buy this mug to fix Batata's leg." Every product carries the same benefit line: "→ 100% of profit to vet bills". The transparency page is the proof, updated weekly — the weekly cadence is a public promise; keep the copy honest to it.
 
 ## Brand tokens
 
@@ -200,7 +200,7 @@ Shop products (homepage): "The ear-tipped tote" AED 95 → food runs for rescuer
 
 The site does **not** process payments at launch. Taking money in the UAE requires a trade license (Dubai eTrader is the light path); until that + a hosted store are in place, products are sold manually — order via Instagram DM (@tipped.ae) or `hello@tipped.ae`, invoiced by payment link / bank transfer. `/shop` is a catalog with an "order via Instagram/email" CTA, not a checkout.
 
-Critically, the **transparency page is decoupled from selling**: it just displays two hand-maintained tables (`shop_ledger` in, `bills_paid` out). This works identically whether sales happen by DM today or through Shopify later — so full transparency ships in Phase 1 regardless of how checkout evolves. When a hosted store arrives, `shop_ledger` rows can be auto-populated from it, but nothing about the page needs to change.
+Critically, the **transparency page is decoupled from selling**: it just displays two hand-maintained tables (`shop_ledger` in, `bills_paid` out), refreshed **weekly** (the site promises this cadence — hold to it). This works identically whether sales happen by DM today or through Shopify later — so full transparency ships in Phase 1 regardless of how checkout evolves. When a hosted store arrives, `shop_ledger` rows can be auto-populated from it, but nothing about the page needs to change.
 
 ## Phase plan
 

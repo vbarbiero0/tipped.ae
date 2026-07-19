@@ -131,8 +131,8 @@ export default async function RescuersPage() {
               </div>
               <p className="font-sans font-medium text-[14.5px] leading-[1.6] text-cocoa/75 m-0">
                 Post a vet bill and supporters pay your clinic directly — we
-                never touch the money. The shop buys food, medicine and supplies
-                for rescuers.
+                never touch the money. And 100% of the shop&rsquo;s profit goes
+                at the open bills, updated weekly in public.
               </p>
             </div>
           </div>

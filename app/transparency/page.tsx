@@ -5,7 +5,7 @@ import { getBillsPaid, getShopLedger } from "@/lib/data";
 export const metadata: Metadata = {
   title: "Transparency",
   description:
-    "The two-ledger glass box: what the shop sold, and what it paid for. Every bill with its receipt, in public.",
+    "The two-ledger glass box: what the shop sold, and the vet bills its profit paid. Every bill with its receipt, updated weekly.",
 };
 
 function formatDate(iso: string) {
@@ -29,9 +29,10 @@ export default async function TransparencyPage() {
         Every dirham, in public.
       </h1>
       <p className="font-sans font-medium text-[16px] leading-[1.65] text-cocoa/75 m-0 mb-8 max-w-[600px]">
-        Money for care never passes through tipped — clinics get paid directly.
-        What the shop earns and what it pays for lives here, receipt by receipt.
-        Listed animals and the ones still on the street alike.
+        Money for care never passes through tipped — clinics get paid directly,
+        and 100% of the shop&rsquo;s profit goes to vet bills. What comes in and
+        what gets paid lives here, receipt by receipt, updated weekly. Listed
+        animals and the ones still on the street alike.
       </p>
 
       {/* Totals + honesty line */}
@@ -50,7 +51,7 @@ export default async function TransparencyPage() {
               AED {totalOut}
             </div>
             <div className="font-sans font-bold text-[11px] tracking-[.1em] text-cocoa/50 mt-1">
-              OUT — BILLS &amp; SUPPLIES
+              OUT — VET BILLS
             </div>
           </div>
           <div>
@@ -75,7 +76,7 @@ export default async function TransparencyPage() {
             Money in
           </h2>
           <p className="font-sans font-medium text-[13.5px] text-cocoa/60 m-0 mb-5">
-            What the shop sold. Hand-entered for now, updated with every order.
+            What the shop sold. Updated weekly, sale by sale.
           </p>
           {ledger.length === 0 ? (
             <p className="font-sans font-medium text-[14px] text-cocoa/60">
