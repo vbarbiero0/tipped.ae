@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  background: #fbf7f0; /* paper */
+}
+
+a {
+  color: #b5643a;
+}
+a:hover {
+  color: #8f4c2b;
+}
+
+@layer components {
+  .eyebrow {
+    @apply font-sans font-bold text-[12.5px] tracking-[.16em] text-link;
+  }
+}

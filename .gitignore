@@ -1,0 +1,10 @@
+node_modules/
+.next/
+out/
+.netlify/
+.env*
+!.env.example
+.DS_Store
+*.zip
+*.tsbuildinfo
+next-env.d.ts

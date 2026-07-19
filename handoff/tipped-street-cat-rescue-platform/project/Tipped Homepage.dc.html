@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics="">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400..900&amp;family=Quicksand:wght@400..700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FBF7F0}
+a{color:#B5643A}a:hover{color:#8F4C2B}
+</style>
+</helmet>
+
+<div data-screen-label="Nav" style="max-width:1160px;margin:0 auto;padding:22px 32px;display:flex;align-items:center;justify-content:space-between;gap:24px">
+<div style="position:relative;font-family:Nunito,sans-serif;font-weight:800;font-size:26px;color:#3A2A22;line-height:1">tip<span style="position:relative;display:inline-block">p<span style="position:absolute;left:50%;top:-5px;transform:translateX(-50%);display:flex;gap:2px"><svg width="9" height="13" viewBox="0 0 36 52" style="transform:rotate(-12deg)"><path d="M8,44 L18,12 L28,44 Z" fill="#F0955B" stroke="#F0955B" stroke-width="9" stroke-linejoin="round"></path></svg><svg width="9" height="13" viewBox="0 0 36 52" style="transform:rotate(12deg)"><path d="M8,44 L12,24 L24,20 L28,44 Z" fill="#F58B93" stroke="#F58B93" stroke-width="9" stroke-linejoin="round"></path></svg></span></span>ed</div>
+<div style="display:flex;align-items:center;gap:28px;font-family:Quicksand,sans-serif;font-weight:600;font-size:14px">
+<a href="#cats" style="color:#3A2A22;text-decoration:none">Adopt</a>
+<a href="#bills" style="color:#3A2A22;text-decoration:none">Vet bills</a>
+<a href="#shop" style="color:#3A2A22;text-decoration:none">Shop</a>
+<a href="#rescuers" style="color:#3A2A22;text-decoration:none">For rescuers</a>
+<a href="#cats" style="background:#3A2A22;color:#FFF3E4;text-decoration:none;padding:10px 20px;border-radius:999px;font-weight:700" style-hover="background:#241A14">Meet the cats</a>
+</div>
+</div>
+
+<div data-screen-label="Hero" style="max-width:1160px;margin:0 auto;padding:56px 32px 84px;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,0.95fr);gap:64px;align-items:center">
+<div>
+<div style="font-family:Quicksand,sans-serif;font-weight:700;font-size:12.5px;letter-spacing:.16em;color:#B5643A;margin-bottom:18px">DUBAI'S STREET CATS</div>
+<h1 style="font-family:Nunito,sans-serif;font-weight:800;font-size:54px;line-height:1.08;color:#3A2A22;margin:0 0 22px;text-wrap:pretty">The streets raised them. You take it from here.</h1>
+
+<p style="font-family:Quicksand,sans-serif;font-weight:500;font-size:17px;line-height:1.65;color:rgba(58,42,34,.75);margin:0 0 32px;max-width:480px">Rescuers across Dubai list their street cats here. Browse from anywhere in the world, email the rescuer directly, and adopt. When a cat needs care, the vet gets paid — not us.</p><div style="display:flex;gap:14px;align-items:center">
+<a href="#cats" style="background:#3A2A22;color:#FFF3E4;text-decoration:none;font-family:Quicksand,sans-serif;font-weight:700;font-size:15px;padding:15px 28px;border-radius:999px" style-hover="background:#241A14">Browse the cats</a>
+<a href="#how" style="color:#3A2A22;text-decoration:none;font-family:Quicksand,sans-serif;font-weight:700;font-size:15px;padding:15px 24px;border-radius:999px;border:1.5px solid rgba(58,42,34,.3)" style-hover="border-color:#3A2A22">How it works</a>
+</div>
+</div>
+<div style="position:relative;padding-top:44px">
+<sc-if value="{{ showHeroEars }}" hint-placeholder-val="{{ true }}">
+<span style="position:absolute;left:50%;top:-8px;transform:translateX(-50%);display:flex;gap:26px;z-index:0"><svg width="58" height="84" viewBox="0 0 36 52" style="transform:rotate(-16deg)"><path d="M8,44 L18,12 L28,44 Z" fill="#F0955B" stroke="#F0955B" stroke-width="9" stroke-linejoin="round"></path></svg><svg width="58" height="84" viewBox="0 0 36 52" style="transform:rotate(16deg)"><path d="M8,44 L12,24 L24,20 L28,44 Z" fill="#F58B93" stroke="#F58B93" stroke-width="9" stroke-linejoin="round"></path></svg></span>
+</sc-if>
+<div style="position:relative;z-index:1;width:100%;height:440px">
+<x-import component-from-global-scope="image-slot" from="./image-slot.js" id="hero-cat" mask="inset(0 round 240px 240px 28px 28px)" placeholder="Drop a street cat photo — the tortie?" hint-size="100%,440px"></x-import>
+</div>
+</div>
+</div>
+
+<div data-screen-label="Cats" id="cats" style="max-width:1160px;margin:0 auto;padding:0 32px 84px">
+<div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:26px">
+<h2 style="font-family:Nunito,sans-serif;font-weight:800;font-size:34px;color:#3A2A22;margin:0">Ready to leave the street</h2>
+<a href="#cats" style="font-family:Quicksand,sans-serif;font-weight:700;font-size:14px">All cats →</a>
+</div>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px">
+
+<div style="background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 1px 3px rgba(58,42,34,.08)">
+<div style="height:240px"><x-import component-from-global-scope="image-slot" from="./image-slot.js" id="cat-karak" shape="rect" placeholder="Karak's photo" hint-size="100%,240px"></x-import></div>
+<div style="padding:18px 20px 20px">
+<div style="display:flex;align-items:center;gap:10px;margin-bottom:4px"><span style="font-family:Nunito,sans-serif;font-weight:800;font-size:22px;color:#3A2A22">Karak</span><span style="display:inline-flex;align-items:center;gap:5px;background:rgba(245,139,147,.16);color:#C4525C;font-family:Quicksand,sans-serif;font-weight:700;font-size:11px;padding:4px 10px;border-radius:999px"><svg width="9" height="13" viewBox="0 0 36 52"><path d="M8,44 L12,24 L24,20 L28,44 Z" fill="#F58B93" stroke="#F58B93" stroke-width="9" stroke-linejoin="round"></path></svg>ear-tipped</span></div>
+<div style="font-family:Quicksand,sans-serif;font-weight:600;font-size:12.5px;color:rgba(58,42,34,.5);margin-bottom:10px">male · 2 yrs · Deira</div>
+<p style="font-family:Quicksand,sans-serif;font-weight:500;font-size:14px;line-height:1.6;color:rgba(58,42,34,.8);margin:0 0 16px">Lived behind a cafeteria in Deira. Knows his name and yells it back. Fine with kids, firm about breakfast.</p>
+<div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+<span style="font-family:Quicksand,sans-serif;font-weight:600;font-size:12px;color:rgba(58,42,34,.55)">with Silvana · @straycatdubai</span>
+<a href="mailto:silvana@tipped.cat" style="font-family:Quicksand,sans-serif;font-weight:700;font-size:12.5px;color:#3A2A22;text-decoration:none;border:1.5px solid rgba(58,42,34,.3);padding:8px 14px;border-radius:999px;white-space:nowrap" style-hover="background:#3A2A22;color:#FFF3E4">Email Silvana</a>
+</div>
+</div>
+</div>
+
+<div style="background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 1px 3px rgba(58,42,34,.08)">
+<div style="height:240px"><x-import component-from-global-scope="image-slot" from="./image-slot.js" id="cat-mango" shape="rect" placeholder="Mango's photo" hint-size="100%,240px"></x-import></div>
+<div style="padding:18px 20px 20px">
+<div style="display:flex;align-items:center;gap:10px;margin-bottom:4px"><span style="font-family:Nunito,sans-serif;font-weight:800;font-size:22px;color:#3A2A22">Mango</span><span style="display:inline-flex;align-items:center;gap:5px;background:rgba(245,139,147,.16);color:#C4525C;font-family:Quicksand,sans-serif;font-weight:700;font-size:11px;padding:4px 10px;border-radius:999px"><svg width="9" height="13" viewBox="0 0 36 52"><path d="M8,44 L12,24 L24,20 L28,44 Z" fill="#F58B93" stroke="#F58B93" stroke-width="9" stroke-linejoin="round"></path></svg>ear-tipped</span></div>
+<div style="font-family:Quicksand,sans-serif;font-weight:600;font-size:12.5px;color:rgba(58,42,34,.5);margin-bottom:10px">female · 3 yrs · Al Quoz</div>
+<p style="font-family:Quicksand,sans-serif;font-weight:500;font-size:14px;line-height:1.6;color:rgba(58,42,34,.8);margin:0 0 16px">Raised three kittens under a parked truck. The kittens are homed. It's her turn now, and she knows it.</p>
+<div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+<span style="font-family:Quicksand,sans-serif;font-weight:600;font-size:12px;color:rgba(58,42,34,.55)">with Kwagga · @kevinofdxb</span>
+<a href="mailto:kwagga@tipped.cat" style="font-family:Quicksand,sans-serif;font-weight:700;font-size:12.5px;color:#3A2A22;text-decoration:none;border:1.5px solid rgba(58,42,34,.3);padding:8px 14px;border-radius:999px;white-space:nowrap" style-hover="background:#3A2A22;color:#FFF3E4">Email Kwagga</a>
+</div>
+</div>
+</div>
+
+<div style="background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 1px 3px rgba(58,42,34,.08)">
+<div style="height:240px"><x-import component-from-global-scope="image-slot" from="./image-slot.js" id="cat-batata" shape="rect" placeholder="Batata's photo" hint-size="100%,240px"></x-import></div>
+<div style="padding:18px 20px 20px">
+<div style="display:flex;align-items:center;gap:10px;margin-bottom:4px"><span style="font-family:Nunito,sans-serif;font-weight:800;font-size:22px;color:#3A2A22">Batata</span><span style="display:inline-flex;align-items:center;gap:5px;background:rgba(245,139,147,.16);color:#C4525C;font-family:Quicksand,sans-serif;font-weight:700;font-size:11px;padding:4px 10px;border-radius:999px"><svg width="9" height="13" viewBox="0 0 36 52"><path d="M8,44 L12,24 L24,20 L28,44 Z" fill="#F58B93" stroke="#F58B93" stroke-width="9" stroke-linejoin="round"></path></svg>ear-tipped</span></div>
+<div style="font-family:Quicksand,sans-serif;font-weight:600;font-size:12.5px;color:rgba(58,42,34,.5);margin-bottom:10px">male · 4 yrs · Satwa</div>
+<p style="font-family:Quicksand,sans-serif;font-weight:500;font-size:14px;line-height:1.6;color:rgba(58,42,34,.8);margin:0 0 16px">Bin-diver, reformed. Lost half a tail out there and none of the appetite. Wants a warm lap and a routine.</p>
+<div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+<span style="font-family:Quicksand,sans-serif;font-weight:600;font-size:12px;color:rgba(58,42,34,.55)">with Fawaz · Save Dubai Stray Cats</span>
+<a href="mailto:fawaz@tipped.cat" style="font-family:Quicksand,sans-serif;font-weight:700;font-size:12.5px;color:#3A2A22;text-decoration:none;border:1.5px solid rgba(58,42,34,.3);padding:8px 14px;border-radius:999px;white-space:nowrap" style-hover="background:#3A2A22;color:#FFF3E4">Email Fawaz</a>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div data-screen-label="How it works" id="how" style="background:#FFF3E4">
+<div style="max-width:1160px;margin:0 auto;padding:72px 32px">
+<h2 style="font-family:Nunito,sans-serif;font-weight:800;font-size:34px;color:#3A2A22;margin:0 0 40px">Adopting, plainly</h2>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px">
+<div><div style="font-family:Nunito,sans-serif;font-weight:800;font-size:40px;color:#F0955B;line-height:1;margin-bottom:12px">1</div><div style="font-family:Nunito,sans-serif;font-weight:800;font-size:19px;color:#3A2A22;margin-bottom:8px">Find your cat</div><p style="font-family:Quicksand,sans-serif;font-weight:500;font-size:14.5px;line-height:1.6;color:rgba(58,42,34,.75);margin:0">Every listing is written by the rescuer who actually feeds this cat. No shelter-speak.</p></div>
+<div><div style="font-family:Nunito,sans-serif;font-weight:800;font-size:40px;color:#F0955B;line-height:1;margin-bottom:12px">2</div><div style="font-family:Nunito,sans-serif;font-weight:800;font-size:19px;color:#3A2A22;margin-bottom:8px">Email the rescuer</div><p style="font-family:Quicksand,sans-serif;font-weight:500;font-size:14.5px;line-height:1.6;color:rgba(58,42,34,.75);margin:0">Straight to their inbox — no forms, no gatekeeping. Ask the awkward questions.</p></div>
+<div><div style="font-family:Nunito,sans-serif;font-weight:800;font-size:40px;color:#F0955B;line-height:1;margin-bottom:12px">3</div><div style="font-family:Nunito,sans-serif;font-weight:800;font-size:19px;color:#3A2A22;margin-bottom:8px">Adopt, near or far</div><p style="font-family:Quicksand,sans-serif;font-weight:500;font-size:14.5px;line-height:1.6;color:rgba(58,42,34,.75);margin:0">Dubai cats fly well. You and the rescuer arrange vetting, paperwork and travel together.</p></div>
+</div>
+</div>
+</div>
+
+<div data-screen-label="Vet bills" id="bills" style="background:#3A2A22">
+<div style="max-width:1160px;margin:0 auto;padding:80px 32px;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,0.9fr);gap:64px;align-items:center">
+<div>
+<h2 style="font-family:Nunito,sans-serif;font-weight:800;font-size:38px;line-height:1.15;color:#FFF3E4;margin:0 0 20px;text-wrap:pretty">Vet bills get paid to the vet.</h2>
+<p style="font-family:Quicksand,sans-serif;font-weight:500;font-size:16px;line-height:1.7;color:rgba(255,243,228,.72);margin:0 0 14px;max-width:460px">When a cat needs treatment, the rescuer posts the clinic's bill here. You pay the clinic directly — we never hold the money, and the receipt goes up for everyone to see.</p>
+<p style="font-family:Quicksand,sans-serif;font-weight:600;font-size:14px;color:rgba(255,243,228,.5);margin:0">Works for listed cats and for cats still on the street.</p>
+</div>
+<div style="background:#FFFDF8;border-radius:18px;padding:26px 28px;box-shadow:0 12px 40px rgba(0,0,0,.25);transform:rotate(-1deg)">
+<div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:16px"><span style="font-family:Quicksand,sans-serif;font-weight:700;font-size:13px;color:#3A2A22">Modern Vet · Umm Suqeim</span><span style="font-family:ui-monospace,Menlo,monospace;font-size:11px;color:rgba(58,42,34,.45)">BILL #04211</span></div>
+<div style="display:flex;justify-content:space-between;align-items:baseline;padding:14px 0;border-top:1.5px dashed rgba(58,42,34,.18);border-bottom:1.5px dashed rgba(58,42,34,.18)"><span style="font-family:Quicksand,sans-serif;font-weight:600;font-size:14.5px;color:#3A2A22">Batata — dental extraction</span><span style="font-family:ui-monospace,Menlo,monospace;font-weight:600;font-size:15px;color:#3A2A22">AED 840</span></div>
+<div style="margin:16px 0 6px;height:10px;border-radius:999px;background:#FFF3E4;overflow:hidden"><div style="width:62%;height:100%;border-radius:999px;background:#F0955B"></div></div>
+<div style="display:flex;justify-content:space-between;font-family:ui-monospace,Menlo,monospace;font-size:11.5px;color:rgba(58,42,34,.55);margin-bottom:18px"><span>AED 520 covered</span><span>AED 320 to go</span></div>
+<a href="#bills" style="display:block;text-align:center;background:#F0955B;color:#3A2A22;text-decoration:none;font-family:Quicksand,sans-serif;font-weight:700;font-size:15px;padding:14px;border-radius:12px" style-hover="background:#E8874C">Pay the clinic directly</a>
+<div style="font-family:Quicksand,sans-serif;font-weight:600;font-size:11.5px;color:rgba(58,42,34,.5);text-align:center;margin-top:10px">Goes to the clinic's own account. tipped never touches it.</div>
+</div>
+</div>
+</div>
+
+<sc-if value="{{ showShop }}" hint-placeholder-val="{{ true }}">
+<div data-screen-label="Shop" id="shop" style="max-width:1160px;margin:0 auto;padding:84px 32px">
+<div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px">
+<h2 style="font-family:Nunito,sans-serif;font-weight:800;font-size:34px;color:#3A2A22;margin:0">The shop pays bills too</h2>
+<a href="#shop" style="font-family:Quicksand,sans-serif;font-weight:700;font-size:14px">Visit the shop →</a>
+</div>
+<p style="font-family:Quicksand,sans-serif;font-weight:500;font-size:15px;color:rgba(58,42,34,.65);margin:0 0 28px">Every purchase buys what rescuers actually need — food, medicine, supplies — and helps pay down vet bills.</p>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px">
+<div style="display:flex;flex-direction:column;gap:12px"><div style="height:280px"><x-import component-from-global-scope="image-slot" from="./image-slot.js" id="prod-tote" radius="18" placeholder="Tote product shot" hint-size="100%,280px"></x-import></div><div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-family:Quicksand,sans-serif;font-weight:700;font-size:15px;color:#3A2A22">The ear-tipped tote</span><span style="font-family:ui-monospace,Menlo,monospace;font-size:13px;color:rgba(58,42,34,.6)">AED 95</span></div><span style="font-family:Quicksand,sans-serif;font-weight:600;font-size:12.5px;color:#C4525C">→ food runs for rescuers</span></div>
+<div style="display:flex;flex-direction:column;gap:12px"><div style="height:280px"><x-import component-from-global-scope="image-slot" from="./image-slot.js" id="prod-wetbag" radius="18" placeholder="Wet bag product shot" hint-size="100%,280px"></x-import></div><div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-family:Quicksand,sans-serif;font-weight:700;font-size:15px;color:#3A2A22">Street graduate wet bag</span><span style="font-family:ui-monospace,Menlo,monospace;font-size:13px;color:rgba(58,42,34,.6)">AED 120</span></div><span style="font-family:Quicksand,sans-serif;font-weight:600;font-size:12.5px;color:#C4525C">→ medicine &amp; supplies</span></div>
+<div style="display:flex;flex-direction:column;gap:12px"><div style="height:280px"><x-import component-from-global-scope="image-slot" from="./image-slot.js" id="prod-tag" radius="18" placeholder="Collar tag product shot" hint-size="100%,280px"></x-import></div><div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-family:Quicksand,sans-serif;font-weight:700;font-size:15px;color:#3A2A22">"Street graduate" collar tag</span><span style="font-family:ui-monospace,Menlo,monospace;font-size:13px;color:rgba(58,42,34,.6)">AED 45</span></div><span style="font-family:Quicksand,sans-serif;font-weight:600;font-size:12.5px;color:#C4525C">→ vet bills</span></div>
+</div>
+</div>
+</sc-if>
+
+<div data-screen-label="Footer" id="rescuers" style="background:#3A2A22">
+<div style="max-width:1160px;margin:0 auto;padding:64px 32px 48px;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:56px">
+<div>
+<div style="position:relative;font-family:Nunito,sans-serif;font-weight:800;font-size:30px;color:#FFF3E4;line-height:1;margin-bottom:14px">tip<span style="position:relative;display:inline-block">p<span style="position:absolute;left:50%;top:-6px;transform:translateX(-50%);display:flex;gap:2px"><svg width="10" height="14" viewBox="0 0 36 52" style="transform:rotate(-12deg)"><path d="M8,44 L18,12 L28,44 Z" fill="#F0955B" stroke="#F0955B" stroke-width="9" stroke-linejoin="round"></path></svg><svg width="10" height="14" viewBox="0 0 36 52" style="transform:rotate(12deg)"><path d="M8,44 L12,24 L24,20 L28,44 Z" fill="#F58B93" stroke="#F58B93" stroke-width="9" stroke-linejoin="round"></path></svg></span></span>ed</div>
+<p style="font-family:Quicksand,sans-serif;font-weight:500;font-size:14px;line-height:1.6;color:rgba(255,243,228,.6);margin:0 0 18px;max-width:340px">For the cats of Dubai's streets. Rescuers list, you adopt, clinics get paid.</p>
+<a href="mailto:hello@tipped.cat" style="font-family:Quicksand,sans-serif;font-weight:700;font-size:14px;color:#FFF3E4">hello@tipped.cat</a>
+</div>
+<div>
+<div style="font-family:Quicksand,sans-serif;font-weight:700;font-size:12px;letter-spacing:.14em;color:rgba(255,243,228,.45);margin-bottom:14px">BUILT WITH DUBAI'S RESCUE COMMUNITY</div>
+<div style="display:flex;flex-wrap:wrap;gap:8px 18px;font-family:Quicksand,sans-serif;font-weight:600;font-size:13px">
+<a href="#rescuers" style="color:rgba(255,243,228,.75);text-decoration:none" style-hover="color:#FFF3E4">Dubai Street Kitties</a>
+<a href="#rescuers" style="color:rgba(255,243,228,.75);text-decoration:none" style-hover="color:#FFF3E4">@straycatdubai</a>
+<a href="#rescuers" style="color:rgba(255,243,228,.75);text-decoration:none" style-hover="color:#FFF3E4">@kevinofdxb</a>
+<a href="#rescuers" style="color:rgba(255,243,228,.75);text-decoration:none" style-hover="color:#FFF3E4">Save Dubai Stray Cats</a>
+<a href="#rescuers" style="color:rgba(255,243,228,.75);text-decoration:none" style-hover="color:#FFF3E4">@straycatsdxb</a>
+<a href="#rescuers" style="color:rgba(255,243,228,.75);text-decoration:none" style-hover="color:#FFF3E4">@furrballs_cats</a>
+<a href="#rescuers" style="color:rgba(255,243,228,.75);text-decoration:none" style-hover="color:#FFF3E4">Nine Lives</a>
+<a href="#rescuers" style="color:rgba(255,243,228,.75);text-decoration:none" style-hover="color:#FFF3E4">Meow Meow Rescue</a>
+<a href="#rescuers" style="color:rgba(255,243,228,.75);text-decoration:none" style-hover="color:#FFF3E4">Bin Kitty Collective</a>
+<a href="#rescuers" style="color:rgba(255,243,228,.75);text-decoration:none" style-hover="color:#FFF3E4">@bubbles.petsrescue</a>
+</div>
+<div style="font-family:Quicksand,sans-serif;font-weight:600;font-size:12px;color:rgba(255,243,228,.35);margin-top:24px">Dubai, UAE · every cat here is ear-tipped, fixed and vetted</div>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showHeroEars&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Hero&quot;},&quot;showShop&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Sections&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      showShop: this.props.showShop ?? true,
+      showHeroEars: this.props.showHeroEars ?? true,
+    };
+  }
+}
+</script>
+</body>
+</html>
