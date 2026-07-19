@@ -1,8 +1,9 @@
 import Link from "next/link";
 import TippedLogo from "./TippedLogo";
 
+// /adopt gets one nav element only — the button. "Find your animal" covers
+// both adopting and fostering and echoes step 1 of How-it-works.
 const nav = [
-  { href: "/adopt", label: "Adopt & foster" },
   { href: "/transparency", label: "Transparency" },
   { href: "/shop", label: "Shop" },
   { href: "/rescuers", label: "For rescuers" },
@@ -29,7 +30,7 @@ export default function Header() {
             href="/adopt"
             className="bg-cocoa text-cream no-underline px-5 py-[10px] rounded-[10px] font-bold hover:bg-[#241A14]"
           >
-            Meet the animals
+            Find your animal
           </Link>
         </nav>
       </div>
