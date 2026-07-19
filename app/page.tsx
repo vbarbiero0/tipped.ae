@@ -2,14 +2,13 @@
 import Link from "next/link";
 import AnimalCard from "@/components/AnimalCard";
 import ReceiptCard from "@/components/ReceiptCard";
-import { EarPair } from "@/components/Ears";
+import { EarPair, TippedEar } from "@/components/Ears";
 import { getAnimals, getBillsPaid } from "@/lib/data";
 import { heroImage, products } from "@/lib/seed";
 import { TAGLINE } from "@/lib/brand";
 
-// Section toggles from the design handoff (prop toggles on the prototype).
+// Section toggle from the design handoff (prop toggle on the prototype).
 const SHOW_SHOP = true;
-const SHOW_HERO_EARS = true;
 
 export default async function HomePage() {
   const [animals, bills] = await Promise.all([getAnimals(), getBillsPaid()]);
@@ -57,18 +56,32 @@ export default async function HomePage() {
             </Link>
           </div>
         </div>
-        <div className="relative pt-11">
-          {SHOW_HERO_EARS && (
-            <span className="absolute left-1/2 -top-2 -translate-x-1/2 z-0">
-              <EarPair earWidth={58} gap={26} rotation={16} />
-            </span>
-          )}
-          <div className="relative z-10 w-full h-[340px] md:h-[440px] overflow-hidden rounded-[20px]">
-            <img
-              src={heroImage}
-              alt="A tortie street cat, comfortably off the street"
-              className="w-full h-full object-cover"
-            />
+        {/* Static print collage — neutral #FFFDF8 mats, color comes from the
+            photos and the sticker. Fixed 528×540 composition, scaled on
+            small screens. */}
+        <div className="relative h-[380px] sm:h-[540px]">
+          <div className="absolute top-0 left-0 w-[528px] h-[540px] scale-[.68] sm:scale-100 origin-top-left">
+            {/* Portrait print */}
+            <div className="absolute top-0 left-0 w-[360px] -rotate-[2.5deg] bg-receipt rounded-[16px] border border-cocoa/[.08] shadow-[0_14px_34px_rgba(58,42,34,.14)] p-[10px] pb-[14px] z-10">
+              <img
+                src={heroImage}
+                alt="A tortie street cat, comfortably off the street"
+                className="w-full h-[445px] object-cover rounded-[8px]"
+              />
+            </div>
+            {/* Square print, overlapping lower-right */}
+            <div className="absolute left-[255px] top-[214px] w-[273px] rotate-[3deg] bg-receipt rounded-[14px] border border-cocoa/[.08] shadow-[0_16px_36px_rgba(58,42,34,.2)] p-[9px] pb-[12px] z-20">
+              <img
+                src="/animals/batata.jpg"
+                alt="Batata asleep, half off an ottoman"
+                className="w-full h-[255px] object-cover rounded-[6px]"
+              />
+              {/* ear-tipped sticker straddling the print's top edge */}
+              <span className="absolute -top-3 left-5 rotate-[3deg] z-30 inline-flex items-center gap-[6px] bg-cocoa text-cream font-sans font-bold text-[12px] px-3 py-[6px] rounded-[8px]">
+                <TippedEar width={10} />
+                ear-tipped
+              </span>
+            </div>
           </div>
         </div>
       </section>
