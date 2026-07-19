@@ -18,7 +18,9 @@ const quicksand = Quicksand({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
+  // Fallback is the production domain — localhost must never leak into
+  // deployed metadata (share previews are the distribution model).
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://tipped.ae"),
   title: {
     default: "tipped — the UAE's street cats & dogs",
     template: "%s · tipped",

@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { getAnimals } from "@/lib/data";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const base = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+  const base = process.env.NEXT_PUBLIC_SITE_URL ?? "https://tipped.ae";
   const animals = await getAnimals();
   return [
     { url: base, priority: 1 },
