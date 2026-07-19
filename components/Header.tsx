@@ -6,7 +6,7 @@ import TippedLogo from "./TippedLogo";
 const nav = [
   { href: "/transparency", label: "Transparency" },
   { href: "/shop", label: "Shop" },
-  { href: "/rescuers", label: "For rescuers" },
+  { href: "/rescuers", label: "Meet our rescuers" },
 ];
 
 export default function Header() {
