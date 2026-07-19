@@ -66,7 +66,7 @@ export default function Footer() {
             </p>
           )}
           <Link
-            href="/rescuers"
+            href="/rescuers#join"
             className="inline-block font-sans font-bold text-[13px] text-cream no-underline hover:text-sunset mt-3"
           >
             Rescue in the UAE? List your animals →
