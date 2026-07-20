@@ -21,3 +21,7 @@ Implemented `Tipped Rescuer Dashboard.dc.html` (imported via the claude_design M
 ## Verified
 
 Browser-checked all three screens against the design: table + chips + Mango's real photo, delete dialog copy, status cycling, empty state path, form segments/checkboxes/photo slots, profile cards. tsc clean.
+
+## Addendum — Supabase backend live (2026-07-20)
+
+Vanessa created project `dnhcjfaariprtntxuowp` and provided an access token. Applied migration 0001 (with all six schema deltas reconciled) + idempotent `seed.sql` via the Management API query endpoint; fetched keys into git-ignored `.env.local`. Verified end-to-end: DB edit to Karak's story appeared on /adopt/DUBAI-001, then reverted. Local dev now reads the real database; production flips when the three env vars are added to Netlify. Rescuer auth users: created by hand per supabase/README.md (vetted rescuers only). Token used for provisioning — recommended revocation after Netlify wiring.
