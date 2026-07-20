@@ -47,6 +47,24 @@ export default function Footer() {
               @{INSTAGRAM_HANDLE}
             </a>
           </div>
+          {/* Quiet site links — About/Contact live here now that the top bar
+              is minimal */}
+          <div className="flex flex-wrap gap-x-4 gap-y-1 mt-4 font-sans font-semibold text-[13px]">
+            {[
+              { href: "/about", label: "About tipped" },
+              { href: "/contact", label: "Contact" },
+              { href: "/transparency", label: "Open books" },
+              { href: "/how-it-works", label: "How it works" },
+            ].map((n) => (
+              <Link
+                key={n.href}
+                href={n.href}
+                className="text-cream/60 no-underline hover:text-cream"
+              >
+                {n.label}
+              </Link>
+            ))}
+          </div>
         </div>
         <div>
           <div className="font-sans font-bold text-xs tracking-[.14em] text-cream/45 mb-[14px]">

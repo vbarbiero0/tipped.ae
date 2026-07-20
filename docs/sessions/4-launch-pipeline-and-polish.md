@@ -14,6 +14,10 @@ The deploy pipeline is live end-to-end: git → github.com/vbarbiero0/tipped.ae 
 - **Recruiting section**: the small card on /rescuers became a full-width Cream band above the footer — "You feed them. Let's home them." + three value props + "List your animals" mailto CTA with join template (name, group/independent, emirate, IG, animal count).
 - **Shop model sharpened (Vanessa)**: **100% of the shop's profit pays vet bills; transparency updated weekly.** Copy carried through homepage teaser, /shop, /transparency (labels now "OUT — VET BILLS", "Updated weekly, sale by sale"), rescuers join section, all product benefit lines ("→ 100% of profit to vet bills"), CLAUDE.md hard rule 6 + What-this-is + Selling model. The weekly cadence is a public promise — the ledgers must actually be refreshed weekly once real.
 
+## Addendum — floating nav (Solidroad-style, tipped skin)
+
+Design handoff implemented: sticky floating white bar (top 14px, 1060px max, 18px radius, grid 1fr/auto/1fr) — left "Adopt & foster ▾" dropdown + Shop + Rescuers, centered wordmark, right "Open books" quiet link + CTA with Sunset arrow tile. Dropdown: 300px panel, overshoot entrance (navPanelIn keyframes in globals.css), three staggered rows with Cream icon tiles (monogram-silhouette / list / open-book icons). Deviations, both flagged: About/Contact moved to quiet footer links (spec dropped them from the bar), and on phones the bar compresses — button reads "Menu", its dropdown gains Shop/Rescuers/About/Contact below a divider, CTA collapses to the arrow tile. "Transparency" label is now **Open books** (Vanessa's pick).
+
 ## Still on the perfect-the-site list
 
 1. **Mobile nav menu** — nav links hidden on phones; only the button shows. Top priority.
