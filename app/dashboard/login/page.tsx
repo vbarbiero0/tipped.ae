@@ -1,25 +1,61 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import TippedLogo from "@/components/TippedLogo";
 import { MonogramHead } from "@/components/TippedMonogram";
 import { CONTACT_EMAIL } from "@/lib/brand";
+import { supabaseBrowser } from "@/lib/supabase-browser";
 
-// Rescuer sign-in per design spec. No self-signup, no social logins —
-// rescuers are added by hand after vetting. Demo: submit → /dashboard.
-// (Spec said hello@tipped.cat; domain decision 2026-07-19 is tipped.ae.)
+// Rescuer sign-in: username → auth email via get_rescuer_email() RPC, then
+// password auth. No self-signup, no social logins — rescuers are hand-vetted.
 
 const inputCls =
   "w-full box-border font-sans font-semibold text-[15px] text-cocoa bg-white border-[1.5px] border-cocoa/[.15] rounded-[11px] px-[15px] py-[14px] outline-none focus:border-cocoa";
 
-const labelCls = "block font-sans font-bold text-[13.5px] text-cocoa mb-[7px]";
-
 export default function RescuerLoginPage() {
   const router = useRouter();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  // Already signed in? Straight to the dashboard.
+  useEffect(() => {
+    supabaseBrowser()
+      .auth.getSession()
+      .then(({ data: { session } }) => {
+        if (session) router.replace("/dashboard");
+      });
+  }, [router]);
+
+  const signIn = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setBusy(true);
+    setError(null);
+    const supabase = supabaseBrowser();
+    const { data: email } = await supabase.rpc("get_rescuer_email", {
+      p_username: username.trim().toLowerCase(),
+    });
+    if (!email) {
+      setError("That didn't work. Check the username and password.");
+      setBusy(false);
+      return;
+    }
+    const { error: authError } = await supabase.auth.signInWithPassword({
+      email: email as string,
+      password,
+    });
+    if (authError) {
+      setError("That didn't work. Check the username and password.");
+      setBusy(false);
+      return;
+    }
+    router.replace("/dashboard");
+  };
 
   return (
     <div className="relative min-h-screen bg-paper font-sans overflow-hidden flex items-center justify-center px-6 py-10">
-      {/* Watermark: giant monogram head bleeding off bottom-right */}
       <div
         className="absolute -bottom-[140px] -right-[120px] opacity-5 pointer-events-none select-none"
         aria-hidden
@@ -38,15 +74,9 @@ export default function RescuerLoginPage() {
           The dashboard for your animals and profile.
         </p>
 
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            router.push("/dashboard");
-          }}
-          className="flex flex-col gap-[18px]"
-        >
+        <form onSubmit={signIn} className="flex flex-col gap-[18px]">
           <div>
-            <label htmlFor="username" className={labelCls}>
+            <label htmlFor="username" className="block font-sans font-bold text-[13.5px] text-cocoa mb-[7px]">
               Username
             </label>
             <input
@@ -54,6 +84,8 @@ export default function RescuerLoginPage() {
               name="username"
               placeholder="straycatdubai"
               autoComplete="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
               className={inputCls}
             />
           </div>
@@ -75,15 +107,24 @@ export default function RescuerLoginPage() {
               name="password"
               type="password"
               autoComplete="current-password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               className={inputCls}
             />
           </div>
 
+          {error && (
+            <p className="font-sans font-semibold text-[13px] text-badge-text m-0">
+              {error}
+            </p>
+          )}
+
           <button
             type="submit"
-            className="w-full bg-cocoa text-cream font-sans font-bold text-[15px] py-[15px] rounded-[12px] cursor-pointer border-0 hover:bg-[#241A14] transition-colors"
+            disabled={busy}
+            className="w-full bg-cocoa text-cream font-sans font-bold text-[15px] py-[15px] rounded-[12px] cursor-pointer border-0 hover:bg-[#241A14] transition-colors disabled:opacity-60"
           >
-            Sign in
+            {busy ? "Signing in…" : "Sign in"}
           </button>
         </form>
 

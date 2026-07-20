@@ -55,7 +55,21 @@ const items = [
   { href: "/dashboard/profile", label: "My profile", icon: PersonIcon },
 ];
 
-export default function Sidebar({ showRescuerCard = false }: { showRescuerCard?: boolean }) {
+export interface SidebarRescuer {
+  name: string;
+  username: string | null;
+  emirate: string | null;
+}
+
+export default function Sidebar({
+  showRescuerCard = false,
+  rescuer,
+  onSignOut,
+}: {
+  showRescuerCard?: boolean;
+  rescuer?: SidebarRescuer | null;
+  onSignOut?: () => void;
+}) {
   const pathname = usePathname();
   return (
     <aside className="w-[230px] shrink-0 bg-white border-r border-cocoa/[.08] flex flex-col px-[14px] pt-[22px] pb-[18px] min-h-screen">
@@ -83,15 +97,24 @@ export default function Sidebar({ showRescuerCard = false }: { showRescuerCard?:
           );
         })}
       </nav>
-      {showRescuerCard && (
+      {showRescuerCard && rescuer && (
         <div className="mt-auto bg-paper border border-cocoa/[.08] rounded-[12px] p-3">
-          <div className="font-sans font-bold text-[13px] text-cocoa">Silvana</div>
+          <div className="font-sans font-bold text-[13px] text-cocoa">{rescuer.name}</div>
           <div className="font-sans font-semibold text-[11.5px] text-cocoa/55 mt-[2px]">
-            @straycatdubai · Dubai
+            {rescuer.username ? `@${rescuer.username} · ` : ""}
+            {rescuer.emirate}
           </div>
           <div className="font-sans font-semibold text-[11px] text-cocoa/40 mt-2">
             Posts go live immediately — no review step.
           </div>
+          {onSignOut && (
+            <button
+              onClick={onSignOut}
+              className="font-sans font-bold text-[11.5px] text-cocoa/60 hover:text-cocoa cursor-pointer bg-transparent border-0 p-0 mt-2"
+            >
+              Sign out
+            </button>
+          )}
         </div>
       )}
     </aside>
