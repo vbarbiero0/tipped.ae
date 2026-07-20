@@ -13,7 +13,7 @@ const primary = [
 
 const secondary = [
   { href: "/how-it-works", label: "How it works" },
-  { href: "/transparency", label: "Where the money goes" },
+  { href: "/transparency", label: "Open books" },
   { href: "/about", label: "About tipped" },
   { href: "/contact", label: "Contact" },
 ];
