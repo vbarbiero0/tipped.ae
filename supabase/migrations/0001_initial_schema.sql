@@ -5,13 +5,16 @@
 create table rescuers (
   id uuid primary key default gen_random_uuid(),
   auth_user_id uuid unique references auth.users, -- null until claimed
+  username text unique,          -- dashboard sign-in handle (design: 'straycatdubai')
+  avatar_url text,               -- Supabase Storage
   name text not null,
   emirate text check (emirate in ('Abu Dhabi','Dubai','Sharjah','Ajman','Umm Al Quwain','Ras Al Khaimah','Fujairah')),
   blurb text,
   email text not null,          -- adoption inquiries go here
   instagram text,
   cats_saved int default 0,     -- total animals rehomed (name kept for continuity)
-  clinics jsonb default '[]',   -- [{name, url, ref}]
+  clinics jsonb default '[]',   -- [{name, url, ref}] — supporter pays the clinic directly
+  wishlists jsonb default '[]', -- [{name, url}] — goods to the rescuer, never money
   is_placeholder boolean default true, -- true until the real rescuer consents
   created_at timestamptz default now()
 );
@@ -20,7 +23,7 @@ create table animals (
   id uuid primary key default gen_random_uuid(),
   ref text unique not null default '',
   rescuer_id uuid references rescuers not null,
-  species text not null default 'cat' check (species in ('cat','dog')),
+  species text not null default 'cat' check (species in ('cat','dog','other')),
   name text not null,
   sex text check (sex in ('Male','Female')),
   age text,                     -- freeform: '~2 yrs'
@@ -34,8 +37,17 @@ create table animals (
   microchipped boolean not null default false,
   tested text[] not null default '{}',      -- 'fiv_felv' | 'heartworm'
   conditions text[] not null default '{}',  -- 'fiv','felv','heartworm','heartworm_treatment','special_needs','chronic'
+  -- Dashboard medical checklist (session 5) — controlled slugs:
+  -- dewormed, flea_treated, fiv_tested, felv_tested, blood_panel_done,
+  -- dental_done, ear_tipped, passport_ready, fit_to_fly
+  medical_checks text[] not null default '{}',
+  microchip_number text,        -- required by the dashboard form at listing time
+  vet_certificate_url text,     -- private bucket; required at listing time
+  adopted_at timestamptz,       -- set by trigger; drives the public Adopted page
   status text not null default 'available'
     check (status in ('available','pending','adopted')),
+  -- Dashboard status selector maps: 'available'→(status available, in_foster f),
+  -- 'in foster'→(status available, in_foster t), 'adopted'→(status adopted).
   -- What the rescuer is open to — any combination; foster-to-adopt is normal.
   for_adoption boolean not null default true,
   for_foster boolean not null default false,
@@ -80,6 +92,29 @@ end $$;
 create trigger animals_touch_updated_at
   before update on animals
   for each row execute function touch_updated_at();
+
+-- Track when an animal is marked adopted (public Adopted page ordering)
+create or replace function touch_adopted_at()
+returns trigger language plpgsql as $$
+begin
+  if new.status = 'adopted' and old.status is distinct from 'adopted' then
+    new.adopted_at := now();
+  elsif new.status <> 'adopted' then
+    new.adopted_at := null;
+  end if;
+  return new;
+end $$;
+
+create trigger animals_touch_adopted_at
+  before update on animals
+  for each row execute function touch_adopted_at();
+
+-- Dashboard sign-in is by username; Supabase auth wants an email.
+-- SECURITY DEFINER lookup (rescuer emails are public on the site anyway).
+create or replace function get_rescuer_email(p_username text)
+returns text language sql security definer stable as $$
+  select email from rescuers where username = lower(p_username);
+$$;
 
 -- MONEY OUT: what the shop's profits (and direct supporters) paid for
 create table bills_paid (
@@ -144,7 +179,8 @@ create policy animals_write_own on animals
 -- Storage ------------------------------------------------------------------
 insert into storage.buckets (id, name, public) values
   ('animal-photos', 'animal-photos', true),
-  ('receipts', 'receipts', true)
+  ('receipts', 'receipts', true),
+  ('vet-certificates', 'vet-certificates', false)  -- PRIVATE — medical documents
 on conflict (id) do nothing;
 
 create policy animal_photos_read on storage.objects
@@ -153,4 +189,14 @@ create policy animal_photos_read on storage.objects
 create policy animal_photos_insert_own on storage.objects
   for insert with check (
     bucket_id = 'animal-photos' and auth.role() = 'authenticated'
+  );
+
+-- Vet certificates: rescuer reads/writes only their own folder ({auth_uid}/...)
+create policy vet_certs_own on storage.objects
+  for all using (
+    bucket_id = 'vet-certificates'
+    and (storage.foldername(name))[1] = auth.uid()::text
+  ) with check (
+    bucket_id = 'vet-certificates'
+    and (storage.foldername(name))[1] = auth.uid()::text
   );

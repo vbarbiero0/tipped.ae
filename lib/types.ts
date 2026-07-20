@@ -14,6 +14,10 @@ export interface Rescuer {
   cats_saved: number; // total animals rehomed — column name kept for schema continuity
   clinics: { name: string; url?: string; ref?: string }[];
   is_placeholder: boolean;
+  // Dashboard-era fields (optional until wired):
+  username?: string | null;
+  avatar_url?: string | null;
+  wishlists?: { name: string; url?: string }[];
 }
 
 export interface Animal {
@@ -35,6 +39,11 @@ export interface Animal {
   tested: TestedSlug[];
   conditions: ConditionSlug[];
   status: AnimalStatus;
+  // Dashboard-era fields (optional until wired):
+  medical_checks?: string[];
+  microchip_number?: string | null;
+  vet_certificate_url?: string | null;
+  adopted_at?: string | null;
   // What the rescuer is open to — any combination. Foster-to-adopt is normal.
   for_adoption: boolean;
   for_foster: boolean;
