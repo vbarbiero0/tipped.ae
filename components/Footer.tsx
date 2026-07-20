@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import TippedLogo from "./TippedLogo";
 import { CONTACT_EMAIL, INSTAGRAM_HANDLE, INSTAGRAM_URL } from "@/lib/brand";
 
@@ -20,6 +23,8 @@ const rescuerCredits = [
 ];
 
 export default function Footer() {
+  const pathname = usePathname();
+  if (pathname?.startsWith("/dashboard")) return null;
   return (
     <footer className="bg-cocoa">
       <div className="max-w-[1160px] mx-auto px-6 md:px-8 pt-16 pb-12 grid md:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] gap-14">

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import TippedLogo from "./TippedLogo";
 import { COCOA, EAR_PINK, EAR_SUNSET } from "@/lib/brand";
 
@@ -86,10 +87,13 @@ const mobileOnly = [
 ];
 
 export default function Header() {
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [showTop, setShowTop] = useState(false);
   const wrapRef = useRef<HTMLDivElement>(null);
+  // The rescuer dashboard has its own sidebar chrome
+  const inDashboard = pathname?.startsWith("/dashboard");
 
   // Hide the bar while scrolling down, bring it back on any scroll up.
   // The back-to-top tile appears once the visitor is deep in the page.
@@ -130,6 +134,8 @@ export default function Header() {
 
   const navItem =
     "font-sans font-semibold text-[14.5px] text-cocoa no-underline px-3 py-[9px] rounded-[9px] hover:bg-cocoa/[.06] transition-colors";
+
+  if (inDashboard) return null;
 
   return (
     <>
