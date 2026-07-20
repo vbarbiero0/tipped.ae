@@ -2,7 +2,7 @@
 import Link from "next/link";
 import AnimalCard from "@/components/AnimalCard";
 import ReceiptCard from "@/components/ReceiptCard";
-import { EarPair, TippedEar } from "@/components/Ears";
+import { EarPair } from "@/components/Ears";
 import { getAnimals, getBillsPaid } from "@/lib/data";
 import { products } from "@/lib/seed";
 import { TAGLINE } from "@/lib/brand";
@@ -105,11 +105,6 @@ export default async function HomePage() {
                   <span className="font-sans font-semibold text-[12px] uppercase tracking-[.06em] text-cocoa/45">
                     {printSquare.emirate}
                   </span>
-                </span>
-                {/* ear-tipped sticker above the print's top edge */}
-                <span className="absolute -top-8 left-5 rotate-[3deg] z-30 inline-flex items-center gap-[6px] bg-cocoa text-cream font-sans font-bold text-[12px] px-3 py-[6px] rounded-[8px]">
-                  <TippedEar width={10} />
-                  ear-tipped
                 </span>
               </Link>
             )}
