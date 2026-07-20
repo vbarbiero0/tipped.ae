@@ -60,6 +60,7 @@ export default function Footer() {
               { href: "/contact", label: "Contact" },
               { href: "/transparency", label: "Open books" },
               { href: "/how-it-works", label: "How it works" },
+              { href: "/dashboard/login", label: "Rescuer sign in" },
             ].map((n) => (
               <Link
                 key={n.href}

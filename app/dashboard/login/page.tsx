@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import TippedLogo from "@/components/TippedLogo";
 import { MonogramHead } from "@/components/TippedMonogram";
-import { CONTACT_EMAIL } from "@/lib/brand";
+import { RESCUER_CONTACT_EMAIL } from "@/lib/brand";
 import { supabaseBrowser } from "@/lib/supabase-browser";
 
 // Rescuer sign-in: username → auth email via get_rescuer_email() RPC, then
@@ -96,7 +96,7 @@ export default function RescuerLoginPage() {
                 Password
               </label>
               <a
-                href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent("Forgot my password")}`}
+                href={`mailto:${RESCUER_CONTACT_EMAIL}?subject=${encodeURIComponent("Forgot my password")}`}
                 className="font-sans font-semibold text-[12.5px] no-underline"
               >
                 Forgot it?
@@ -131,7 +131,7 @@ export default function RescuerLoginPage() {
         <p className="font-sans font-medium text-[12.5px] text-cocoa/55 text-center m-0 mt-5">
           New rescuer?{" "}
           <a
-            href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent("Listing my animals on tipped")}`}
+            href={`mailto:${RESCUER_CONTACT_EMAIL}?subject=${encodeURIComponent("Listing my animals on tipped")}`}
             className="font-bold"
           >
             Email us

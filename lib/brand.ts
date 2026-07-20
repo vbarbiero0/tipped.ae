@@ -9,6 +9,9 @@ export const TAGLINE = "The streets raised them. You take it from here.";
 export const MARK_TAGLINE = "Every tipped ear is a cat someone saved.";
 // Domain decision (2026-07-19): tipped.ae. Instagram handle @tipped.ae (secured).
 export const CONTACT_EMAIL = "hello@tipped.ae";
+// Interim: rescuers joining tipped write to Vanessa directly until the
+// hello@tipped.ae mailbox exists (domain purchase deferred).
+export const RESCUER_CONTACT_EMAIL = "vbarbiero0@gmail.com";
 export const INSTAGRAM_HANDLE = "tipped.ae";
 export const INSTAGRAM_URL = `https://instagram.com/${INSTAGRAM_HANDLE}`;
 

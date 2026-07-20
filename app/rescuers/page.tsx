@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import TippedMonogram from "@/components/TippedMonogram";
 import { getRescuers } from "@/lib/data";
-import { CONTACT_EMAIL } from "@/lib/brand";
+import { RESCUER_CONTACT_EMAIL } from "@/lib/brand";
 
 export const metadata: Metadata = {
   title: "The rescuers",
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     "The people who feed, fix and rehome the UAE's street cats and dogs. Adoption inquiries go straight to their inboxes — and listing is free for rescuers, always.",
 };
 
-const joinMailto = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
+const joinMailto = `mailto:${RESCUER_CONTACT_EMAIL}?subject=${encodeURIComponent(
   "Listing my animals on tipped"
 )}&body=${encodeURIComponent(
   [
