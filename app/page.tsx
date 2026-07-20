@@ -61,16 +61,16 @@ export default async function HomePage() {
             small screens. */}
         <div className="relative h-[380px] sm:h-[540px]">
           <div className="absolute top-0 left-0 w-[528px] h-[540px] scale-[.68] sm:scale-100 origin-top-left">
-            {/* Portrait print */}
-            <div className="absolute top-0 left-0 w-[360px] -rotate-[2.5deg] bg-receipt rounded-[16px] border border-cocoa/[.08] shadow-[0_14px_34px_rgba(58,42,34,.14)] p-[10px] pb-[14px] z-10">
+            {/* Portrait print — lifts forward on hover */}
+            <div className="absolute top-0 left-0 w-[360px] -rotate-[2.5deg] bg-receipt rounded-[16px] border border-cocoa/[.08] shadow-[0_14px_34px_rgba(58,42,34,.14)] p-[10px] pb-[14px] z-10 transition-[transform,box-shadow] duration-300 ease-out hover:-rotate-[1deg] hover:scale-[1.03] hover:-translate-y-1 hover:z-30 hover:shadow-[0_24px_48px_rgba(58,42,34,.22)]">
               <img
                 src={heroImage}
                 alt="A tortie street cat, comfortably off the street"
                 className="w-full h-[445px] object-cover rounded-[8px]"
               />
             </div>
-            {/* Square print, overlapping lower-right */}
-            <div className="absolute left-[255px] top-[214px] w-[273px] rotate-[3deg] bg-receipt rounded-[14px] border border-cocoa/[.08] shadow-[0_16px_36px_rgba(58,42,34,.2)] p-[9px] pb-[12px] z-20">
+            {/* Square print, overlapping lower-right — lifts forward on hover */}
+            <div className="absolute left-[255px] top-[214px] w-[273px] rotate-[3deg] bg-receipt rounded-[14px] border border-cocoa/[.08] shadow-[0_16px_36px_rgba(58,42,34,.2)] p-[9px] pb-[12px] z-20 transition-[transform,box-shadow] duration-300 ease-out hover:rotate-[1.5deg] hover:scale-[1.04] hover:-translate-y-1 hover:z-30 hover:shadow-[0_26px_52px_rgba(58,42,34,.28)]">
               <img
                 src="/animals/batata.jpg"
                 alt="Batata asleep, half off an ottoman"
