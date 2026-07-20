@@ -60,7 +60,6 @@ export default function Footer() {
               { href: "/contact", label: "Contact" },
               { href: "/transparency", label: "Open books" },
               { href: "/how-it-works", label: "How it works" },
-              { href: "/dashboard/login", label: "Rescuer sign in" },
             ].map((n) => (
               <Link
                 key={n.href}
@@ -89,12 +88,20 @@ export default function Footer() {
               Rescuer credits go up here as each group confirms.
             </p>
           )}
-          <Link
-            href="/rescuers#join"
-            className="inline-block font-sans font-bold text-[13px] text-cream no-underline hover:text-sunset mt-3"
-          >
-            Rescue in the UAE? List your animals →
-          </Link>
+          <div className="flex flex-col items-start gap-[6px] mt-3">
+            <Link
+              href="/dashboard/login"
+              className="font-sans font-bold text-[13px] text-cream no-underline hover:text-sunset"
+            >
+              Rescuer sign in →
+            </Link>
+            <Link
+              href="/rescuers#join"
+              className="font-sans font-bold text-[13px] text-cream no-underline hover:text-sunset"
+            >
+              Rescue in the UAE? Sign up here →
+            </Link>
+          </div>
           <div className="font-sans font-semibold text-xs text-cream/35 mt-6">
             United Arab Emirates · every animal here is sterilised, vaccinated and known by name
           </div>
