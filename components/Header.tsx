@@ -87,7 +87,30 @@ const mobileOnly = [
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const [showTop, setShowTop] = useState(false);
   const wrapRef = useRef<HTMLDivElement>(null);
+
+  // Hide the bar while scrolling down, bring it back on any scroll up.
+  // The back-to-top tile appears once the visitor is deep in the page.
+  useEffect(() => {
+    let lastY = window.scrollY;
+    const onScroll = () => {
+      const y = window.scrollY;
+      setShowTop(y > 600);
+      if (y < 80) {
+        setHidden(false);
+      } else if (y > lastY + 4) {
+        setHidden(true);
+        setOpen(false);
+      } else if (y < lastY - 4) {
+        setHidden(false);
+      }
+      lastY = y;
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     if (!open) return;
@@ -109,7 +132,12 @@ export default function Header() {
     "font-sans font-semibold text-[14.5px] text-cocoa no-underline px-3 py-[9px] rounded-[9px] hover:bg-cocoa/[.06] transition-colors";
 
   return (
-    <header className="sticky top-[14px] z-[60] mt-[14px] px-6">
+    <>
+    <header
+      className={`sticky top-[14px] z-[60] mt-[14px] px-6 transition-transform duration-300 ease-out ${
+        hidden ? "-translate-y-[130%]" : "translate-y-0"
+      }`}
+    >
       <div className="max-w-[1060px] mx-auto bg-white border border-cocoa/[.07] rounded-[18px] shadow-[0_12px_34px_rgba(58,42,34,.12)] pl-[14px] pr-3 py-[10px] grid grid-cols-[1fr_auto_1fr] items-center gap-4">
         {/* Left group */}
         <div className="flex items-center justify-start gap-1" ref={wrapRef}>
@@ -211,5 +239,20 @@ export default function Header() {
         </div>
       </div>
     </header>
+
+      {/* Back to top — lives outside the header: a CSS transform on an
+          ancestor would hijack position:fixed */}
+      <button
+        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        aria-label="Back to top"
+        className={`fixed bottom-6 right-6 z-[60] w-11 h-11 rounded-[12px] bg-cocoa text-cream shadow-[0_10px_28px_rgba(58,42,34,.28)] flex items-center justify-center font-sans font-bold text-[16px] cursor-pointer hover:bg-[#241A14] transition-all duration-300 ${
+          showTop
+            ? "opacity-100 translate-y-0"
+            : "opacity-0 translate-y-3 pointer-events-none"
+        }`}
+      >
+        ↑
+      </button>
+    </>
   );
 }
