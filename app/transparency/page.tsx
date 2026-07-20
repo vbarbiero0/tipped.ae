@@ -3,7 +3,7 @@ import Link from "next/link";
 import { getBillsPaid, getShopLedger } from "@/lib/data";
 
 export const metadata: Metadata = {
-  title: "Transparency",
+  title: "Where the money goes",
   description:
     "The two-ledger glass box: what the shop sold, and the vet bills its profit paid. Every bill with its receipt, updated weekly.",
 };
