@@ -68,34 +68,46 @@ export default async function HomePage() {
             {printPortrait && (
               <Link
                 href={`/adopt/${printPortrait.ref}`}
-                className="absolute top-0 left-0 block w-[360px] -rotate-[2.5deg] bg-receipt rounded-[16px] border border-cocoa/[.08] shadow-[0_14px_34px_rgba(58,42,34,.14)] p-[10px] pb-[6px] z-10 no-underline transition-[transform,box-shadow] duration-300 ease-out hover:-rotate-[1deg] hover:scale-[1.03] hover:-translate-y-1 hover:z-30 hover:shadow-[0_24px_48px_rgba(58,42,34,.22)]"
+                className="absolute top-0 left-0 block w-[360px] -rotate-[2.5deg] bg-receipt rounded-[16px] border border-cocoa/[.08] shadow-[0_14px_34px_rgba(58,42,34,.14)] p-[10px] pb-[56px] z-10 no-underline transition-[transform,box-shadow] duration-300 ease-out hover:-rotate-[1deg] hover:scale-[1.03] hover:-translate-y-1 hover:z-30 hover:shadow-[0_24px_48px_rgba(58,42,34,.22)]"
               >
                 <img
                   src={printPortrait.photos[0]}
                   alt={`${printPortrait.name}, ${printPortrait.emirate ?? "UAE"}`}
-                  className="w-full h-[430px] object-cover rounded-[8px]"
+                  className="w-full h-[445px] object-cover rounded-[8px]"
                 />
-                <span className="block text-center font-display font-extrabold text-[16px] text-cocoa pt-[7px] pb-[3px]">
-                  {printPortrait.name}
+                {/* Caption row in the mat band: name left, emirate right */}
+                <span className="absolute left-4 right-4 bottom-4 flex items-center justify-between">
+                  <span className="font-display font-extrabold text-[24px] leading-none text-cocoa">
+                    {printPortrait.name}
+                  </span>
+                  <span className="font-sans font-semibold text-[12.5px] uppercase tracking-[.06em] text-cocoa/45">
+                    {printPortrait.emirate}
+                  </span>
                 </span>
               </Link>
             )}
-            {/* Square print, overlapping lower-right — same treatment */}
+            {/* Square print, overlapping lower-right — same treatment, moved
+                up so it never covers the portrait's caption band */}
             {printSquare && (
               <Link
                 href={`/adopt/${printSquare.ref}`}
-                className="absolute left-[255px] top-[214px] block w-[273px] rotate-[3deg] bg-receipt rounded-[14px] border border-cocoa/[.08] shadow-[0_16px_36px_rgba(58,42,34,.2)] p-[9px] pb-[5px] z-20 no-underline transition-[transform,box-shadow] duration-300 ease-out hover:rotate-[1.5deg] hover:scale-[1.04] hover:-translate-y-1 hover:z-30 hover:shadow-[0_26px_52px_rgba(58,42,34,.28)]"
+                className="absolute left-[255px] top-[148px] block w-[273px] rotate-[3deg] bg-receipt rounded-[14px] border border-cocoa/[.08] shadow-[0_16px_36px_rgba(58,42,34,.2)] p-[9px] pb-[48px] z-20 no-underline transition-[transform,box-shadow] duration-300 ease-out hover:rotate-[1.5deg] hover:scale-[1.04] hover:-translate-y-1 hover:z-30 hover:shadow-[0_26px_52px_rgba(58,42,34,.28)]"
               >
                 <img
                   src={printSquare.photos[0]}
                   alt={`${printSquare.name}, ${printSquare.emirate ?? "UAE"}`}
-                  className="w-full h-[242px] object-cover rounded-[6px]"
+                  className="w-full h-[255px] object-cover rounded-[6px]"
                 />
-                <span className="block text-center font-display font-extrabold text-[15px] text-cocoa pt-[6px] pb-[2px]">
-                  {printSquare.name}
+                <span className="absolute left-[14px] right-[14px] bottom-[13px] flex items-center justify-between">
+                  <span className="font-display font-extrabold text-[21px] leading-none text-cocoa">
+                    {printSquare.name}
+                  </span>
+                  <span className="font-sans font-semibold text-[12px] uppercase tracking-[.06em] text-cocoa/45">
+                    {printSquare.emirate}
+                  </span>
                 </span>
-                {/* ear-tipped sticker straddling the print's top edge */}
-                <span className="absolute -top-3 left-5 rotate-[3deg] z-30 inline-flex items-center gap-[6px] bg-cocoa text-cream font-sans font-bold text-[12px] px-3 py-[6px] rounded-[8px]">
+                {/* ear-tipped sticker above the print's top edge */}
+                <span className="absolute -top-8 left-5 rotate-[3deg] z-30 inline-flex items-center gap-[6px] bg-cocoa text-cream font-sans font-bold text-[12px] px-3 py-[6px] rounded-[8px]">
                   <TippedEar width={10} />
                   ear-tipped
                 </span>
