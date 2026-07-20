@@ -4,7 +4,7 @@ import AnimalCard from "@/components/AnimalCard";
 import ReceiptCard from "@/components/ReceiptCard";
 import { EarPair, TippedEar } from "@/components/Ears";
 import { getAnimals, getBillsPaid } from "@/lib/data";
-import { heroImage, products } from "@/lib/seed";
+import { products } from "@/lib/seed";
 import { TAGLINE } from "@/lib/brand";
 
 // Section toggle from the design handoff (prop toggle on the prototype).
@@ -26,6 +26,8 @@ export default async function HomePage() {
   const openBill = bills.find(
     (b) => b.amount_covered_aed !== null && b.amount_covered_aed! < b.amount_aed
   );
+  // Hero prints show real listings: first two animals with photos.
+  const [printPortrait, printSquare] = animals.filter((a) => a.photos.length > 0);
 
   return (
     <>
@@ -61,27 +63,44 @@ export default async function HomePage() {
             small screens. */}
         <div className="relative h-[380px] sm:h-[540px]">
           <div className="absolute top-0 left-0 w-[528px] h-[540px] scale-[.68] sm:scale-100 origin-top-left">
-            {/* Portrait print — lifts forward on hover */}
-            <div className="absolute top-0 left-0 w-[360px] -rotate-[2.5deg] bg-receipt rounded-[16px] border border-cocoa/[.08] shadow-[0_14px_34px_rgba(58,42,34,.14)] p-[10px] pb-[14px] z-10 transition-[transform,box-shadow] duration-300 ease-out hover:-rotate-[1deg] hover:scale-[1.03] hover:-translate-y-1 hover:z-30 hover:shadow-[0_24px_48px_rgba(58,42,34,.22)]">
-              <img
-                src={heroImage}
-                alt="A tortie street cat, comfortably off the street"
-                className="w-full h-[445px] object-cover rounded-[8px]"
-              />
-            </div>
-            {/* Square print, overlapping lower-right — lifts forward on hover */}
-            <div className="absolute left-[255px] top-[214px] w-[273px] rotate-[3deg] bg-receipt rounded-[14px] border border-cocoa/[.08] shadow-[0_16px_36px_rgba(58,42,34,.2)] p-[9px] pb-[12px] z-20 transition-[transform,box-shadow] duration-300 ease-out hover:rotate-[1.5deg] hover:scale-[1.04] hover:-translate-y-1 hover:z-30 hover:shadow-[0_26px_52px_rgba(58,42,34,.28)]">
-              <img
-                src="/animals/batata.jpg"
-                alt="Batata asleep, half off an ottoman"
-                className="w-full h-[255px] object-cover rounded-[6px]"
-              />
-              {/* ear-tipped sticker straddling the print's top edge */}
-              <span className="absolute -top-3 left-5 rotate-[3deg] z-30 inline-flex items-center gap-[6px] bg-cocoa text-cream font-sans font-bold text-[12px] px-3 py-[6px] rounded-[8px]">
-                <TippedEar width={10} />
-                ear-tipped
-              </span>
-            </div>
+            {/* Portrait print — polaroid caption, links to the profile,
+                lifts forward on hover */}
+            {printPortrait && (
+              <Link
+                href={`/adopt/${printPortrait.ref}`}
+                className="absolute top-0 left-0 block w-[360px] -rotate-[2.5deg] bg-receipt rounded-[16px] border border-cocoa/[.08] shadow-[0_14px_34px_rgba(58,42,34,.14)] p-[10px] pb-[6px] z-10 no-underline transition-[transform,box-shadow] duration-300 ease-out hover:-rotate-[1deg] hover:scale-[1.03] hover:-translate-y-1 hover:z-30 hover:shadow-[0_24px_48px_rgba(58,42,34,.22)]"
+              >
+                <img
+                  src={printPortrait.photos[0]}
+                  alt={`${printPortrait.name}, ${printPortrait.emirate ?? "UAE"}`}
+                  className="w-full h-[430px] object-cover rounded-[8px]"
+                />
+                <span className="block text-center font-display font-extrabold text-[16px] text-cocoa pt-[7px] pb-[3px]">
+                  {printPortrait.name}
+                </span>
+              </Link>
+            )}
+            {/* Square print, overlapping lower-right — same treatment */}
+            {printSquare && (
+              <Link
+                href={`/adopt/${printSquare.ref}`}
+                className="absolute left-[255px] top-[214px] block w-[273px] rotate-[3deg] bg-receipt rounded-[14px] border border-cocoa/[.08] shadow-[0_16px_36px_rgba(58,42,34,.2)] p-[9px] pb-[5px] z-20 no-underline transition-[transform,box-shadow] duration-300 ease-out hover:rotate-[1.5deg] hover:scale-[1.04] hover:-translate-y-1 hover:z-30 hover:shadow-[0_26px_52px_rgba(58,42,34,.28)]"
+              >
+                <img
+                  src={printSquare.photos[0]}
+                  alt={`${printSquare.name}, ${printSquare.emirate ?? "UAE"}`}
+                  className="w-full h-[242px] object-cover rounded-[6px]"
+                />
+                <span className="block text-center font-display font-extrabold text-[15px] text-cocoa pt-[6px] pb-[2px]">
+                  {printSquare.name}
+                </span>
+                {/* ear-tipped sticker straddling the print's top edge */}
+                <span className="absolute -top-3 left-5 rotate-[3deg] z-30 inline-flex items-center gap-[6px] bg-cocoa text-cream font-sans font-bold text-[12px] px-3 py-[6px] rounded-[8px]">
+                  <TippedEar width={10} />
+                  ear-tipped
+                </span>
+              </Link>
+            )}
           </div>
         </div>
       </section>

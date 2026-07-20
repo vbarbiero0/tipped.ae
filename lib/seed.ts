@@ -99,7 +99,7 @@ export const seedAnimals: Animal[] = [
     for_adoption: true,
     for_foster: false,
     in_foster: true,
-    photos: [],
+    photos: ["/animals/hero-tortie.jpg"],
   },
   {
     id: "a-batata",
@@ -270,4 +270,3 @@ export const products: Product[] = [
   },
 ];
 
-export const heroImage = "/animals/hero-tortie.jpg";
