@@ -8,10 +8,11 @@ export const CREAM = "#FFF3E4";
 export const TAGLINE = "The streets raised them. You take it from here.";
 export const MARK_TAGLINE = "Every tipped ear is a cat someone saved.";
 // Domain decision (2026-07-19): tipped.ae. Instagram handle @tipped.ae (secured).
-export const CONTACT_EMAIL = "hello@tipped.ae";
-// Interim: rescuers joining tipped write to Vanessa directly until the
-// hello@tipped.ae mailbox exists (domain purchase deferred).
-export const RESCUER_CONTACT_EMAIL = "vbarbiero0@gmail.com";
+// INTERIM (2026-07-20): every contact point routes to Vanessa's personal email
+// until the hello@tipped.ae mailbox exists. The full switch-back list lives in
+// docs/LAUNCH-SWITCHES.md — update it if you add new contact surfaces.
+export const CONTACT_EMAIL = "vbarbiero0@gmail.com"; // future: hello@tipped.ae
+export const RESCUER_CONTACT_EMAIL = CONTACT_EMAIL;
 export const INSTAGRAM_HANDLE = "tipped.ae";
 export const INSTAGRAM_URL = `https://instagram.com/${INSTAGRAM_HANDLE}`;
 

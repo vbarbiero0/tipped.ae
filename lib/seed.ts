@@ -9,7 +9,7 @@ export const seedRescuers: Rescuer[] = [
     emirate: "Dubai",
     blurb:
       "Feeds the cafeteria block in Deira every night. Knows every cat by name and most by opinion.",
-    email: "silvana@tipped.ae",
+    email: "vbarbiero0@gmail.com",
     instagram: "straycatdubai",
     cats_saved: 34,
     clinics: [{ name: "Modern Vet, Umm Suqeim" }],
@@ -21,7 +21,7 @@ export const seedRescuers: Rescuer[] = [
     emirate: "Dubai",
     blurb:
       "TNR runs around the Al Quoz warehouses. If a cat is under a truck, Kwagga has already met it.",
-    email: "kwagga@tipped.ae",
+    email: "vbarbiero0@gmail.com",
     instagram: "kevinofdxb",
     cats_saved: 21,
     clinics: [{ name: "Modern Vet, Umm Suqeim" }],
@@ -33,7 +33,7 @@ export const seedRescuers: Rescuer[] = [
     emirate: "Dubai",
     blurb:
       "Runs Save Dubai Stray Cats out of Satwa. Specialises in the ones everyone else gave up on.",
-    email: "fawaz@tipped.ae",
+    email: "vbarbiero0@gmail.com",
     instagram: null,
     cats_saved: 47,
     clinics: [{ name: "Modern Vet, Umm Suqeim" }],
@@ -45,7 +45,7 @@ export const seedRescuers: Rescuer[] = [
     emirate: "Sharjah",
     blurb:
       "Works the desert edge where the dogs are. Runs feeding rounds at dawn before the heat, and knows every saluki mix between Sharjah and Mirdif.",
-    email: "noor@tipped.ae",
+    email: "vbarbiero0@gmail.com",
     instagram: null,
     cats_saved: 18,
     clinics: [{ name: "Modern Vet, Umm Suqeim" }],

@@ -8,7 +8,7 @@ Source of truth for the **tipped** website build. If anything in the codebase co
 
 The name and mark reference the **ear-tip**: the clipped ear marking a rescued/TNR'd street cat.
 
-Contact address: **hello@tipped.ae**. Domain: **tipped.ae** (Vanessa's decision, 2026-07-19 — supersedes the earlier `.cat` direction). Instagram: **@tipped.ae** (handle secured). **Domain purchase is deliberately deferred** until Vanessa calls the site ready — don't push DNS/domain steps; `https://tippedae.netlify.app` is the working URL (and the `NEXT_PUBLIC_SITE_URL` env value on Netlify) until then.
+Contact address: **hello@tipped.ae** — NOT live yet; **every contact point currently routes to vbarbiero0@gmail.com** (interim, 2026-07-20). The switch-back checklist is `docs/LAUNCH-SWITCHES.md` — read it before launch, keep it current. Domain: **tipped.ae** (Vanessa's decision, 2026-07-19 — supersedes the earlier `.cat` direction). Instagram: **@tipped.ae** (handle secured). **Domain purchase is deliberately deferred** until Vanessa calls the site ready — don't push DNS/domain steps; `https://tippedae.netlify.app` is the working URL (and the `NEXT_PUBLIC_SITE_URL` env value on Netlify) until then.
 
 ## Hard rules (never violate)
 
