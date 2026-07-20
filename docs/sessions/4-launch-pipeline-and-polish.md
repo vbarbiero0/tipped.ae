@@ -20,7 +20,7 @@ Design handoff implemented: sticky floating white bar (top 14px, 1060px max, 18p
 
 ## Still on the perfect-the-site list
 
-1. **Mobile nav menu** — nav links hidden on phones; only the button shows. Top priority.
+1. ~~Mobile nav menu~~ — solved by the floating bar (mobile dropdown carries everything).
 2. Real photos per animal (only Batata + hero tortie are real).
 3. General mobile polish pass.
 4. Shop product photos (tiles are ear-pair placeholders).
