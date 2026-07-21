@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { CONTACT_EMAIL, INSTAGRAM_HANDLE, INSTAGRAM_URL } from "@/lib/brand";
+import ContactForm from "@/components/ContactForm";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -17,10 +18,17 @@ export default function ContactPage() {
       </h1>
       <p className="font-sans font-medium text-[16px] leading-[1.65] text-cocoa/75 m-0 mb-10 max-w-[560px]">
         Adopting, fostering, listing your pets, shop orders, a question
-        about the books — it all lands in the same inbox, and a person reads
-        it. No forms here either.
+        about the books — write it below and it lands straight on
+        Vanessa&rsquo;s phone. A person reads it, usually within the hour.
       </p>
 
+      <div className="mb-6">
+        <ContactForm />
+      </div>
+
+      <div className="font-sans font-bold text-[12px] tracking-[.1em] text-cocoa/45 mb-3">
+        PREFER EMAIL OR INSTAGRAM?
+      </div>
       <div className="flex flex-col gap-4 max-w-[560px]">
         <a
           href={`mailto:${CONTACT_EMAIL}`}
