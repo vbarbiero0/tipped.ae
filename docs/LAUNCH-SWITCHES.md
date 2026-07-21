@@ -43,6 +43,11 @@ you add new interim wiring anywhere.
 
 ## 5. Housekeeping
 
+- [ ] Auth emails (password resets) currently go via Supabase's built-in
+      mailer — rate-limited (a few per hour) and sent from a generic
+      supabase.io address. Before onboarding real rescuers, configure custom
+      SMTP (Supabase → Auth → SMTP) with a tipped.ae sender.
+
 - [ ] Vanessa: change the test login password (`TIPPED_LOGIN_PASSWORD` in
       `.env.local`) in Supabase → Authentication.
 - [ ] Revoke any outstanding Supabase access tokens and the Netlify CLI
