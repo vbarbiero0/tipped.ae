@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import Sidebar from "@/components/dashboard/Sidebar";
 import { useRescuer } from "@/components/dashboard/useRescuer";
 import { supabaseBrowser } from "@/lib/supabase-browser";
+import { SOCIAL_PLATFORMS, Social } from "@/lib/socials";
 import { EAR_PINK } from "@/lib/brand";
 import { EMIRATES } from "@/lib/emirates";
 
@@ -113,7 +114,8 @@ export default function RescuerProfilePage() {
   const [emirate, setEmirate] = useState("Dubai");
   const [blurb, setBlurb] = useState("");
   const [email, setEmail] = useState("");
-  const [instagram, setInstagram] = useState("");
+  const [socials, setSocials] = useState<Social[]>([]);
+  const [phone, setPhone] = useState("");
   const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
   const [avatarFile, setAvatarFile] = useState<File | null>(null);
   const [clinics, setClinics] = useState<LinkItem[]>([]);
@@ -128,7 +130,8 @@ export default function RescuerProfilePage() {
     setEmirate(rescuer.emirate ?? "Dubai");
     setBlurb(rescuer.blurb ?? "");
     setEmail(rescuer.email);
-    setInstagram(rescuer.instagram ? `@${rescuer.instagram}` : "");
+    setSocials(rescuer.socials ?? []);
+    setPhone(rescuer.phone ?? "");
     setAvatarUrl(rescuer.avatar_url);
     setClinics((rescuer.clinics ?? []).map((c) => ({ label: c.name, url: c.url })));
     setWishlists(rescuer.wishlist_links ?? []);
@@ -156,7 +159,10 @@ export default function RescuerProfilePage() {
           emirate,
           blurb: blurb.trim() || null,
           email: email.trim(),
-          instagram: instagram.trim().replace(/^@/, "") || null,
+          socials: socials
+            .map((x) => ({ platform: x.platform, handle: x.handle.trim().replace(/^@/, "") }))
+            .filter((x) => x.handle),
+          phone: phone.trim() || null,
           avatar_url: avatar,
           clinics: clinics.map((c) => ({ name: c.label, url: c.url })),
           wishlist_links: wishlists,
@@ -251,11 +257,71 @@ export default function RescuerProfilePage() {
                 </div>
 
                 <div>
-                  <label className={labelCls}>Instagram</label>
+                  <label className={labelCls}>
+                    Socials{" "}
+                    <span className="font-semibold text-cocoa/50">
+                      — shown on your public page
+                    </span>
+                  </label>
+                  <div className="flex flex-col gap-2">
+                    {socials.map((x, i) => (
+                      <div key={i} className="flex gap-2">
+                        <select
+                          value={x.platform}
+                          onChange={(e) =>
+                            setSocials((prev) =>
+                              prev.map((p, j) =>
+                                j === i ? { ...p, platform: e.target.value as Social["platform"] } : p
+                              )
+                            )
+                          }
+                          className={`${inputCls} text-[14px] py-[10px] w-[130px] shrink-0`}
+                        >
+                          {SOCIAL_PLATFORMS.map((p) => (
+                            <option key={p.value} value={p.value}>{p.label}</option>
+                          ))}
+                        </select>
+                        <input
+                          value={x.handle}
+                          onChange={(e) =>
+                            setSocials((prev) =>
+                              prev.map((p, j) => (j === i ? { ...p, handle: e.target.value } : p))
+                            )
+                          }
+                          placeholder={x.platform === "other" ? "https://…" : "@handle"}
+                          className={`${inputCls} text-[14px] py-[10px]`}
+                        />
+                        <button
+                          onClick={() => setSocials((prev) => prev.filter((_, j) => j !== i))}
+                          aria-label="Remove"
+                          className="shrink-0 w-[38px] rounded-[10px] border-[1.5px] border-cocoa/[.15] bg-transparent cursor-pointer text-cocoa/50 hover:text-cocoa"
+                        >
+                          ×
+                        </button>
+                      </div>
+                    ))}
+                    {socials.length < 4 && (
+                      <button
+                        onClick={() => setSocials((prev) => [...prev, { platform: "instagram", handle: "" }])}
+                        className="self-start font-sans font-bold text-[13px] text-cocoa/60 bg-transparent border-0 p-0 cursor-pointer hover:text-cocoa"
+                      >
+                        + Add a social
+                      </button>
+                    )}
+                  </div>
+                </div>
+
+                <div>
+                  <label className={labelCls}>
+                    Phone{" "}
+                    <span className="font-semibold text-cocoa/50">
+                      — private, only Vanessa sees it
+                    </span>
+                  </label>
                   <input
-                    value={instagram}
-                    onChange={(e) => setInstagram(e.target.value)}
-                    placeholder="@straycatdubai"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    placeholder="+971 50 000 0000"
                     className={inputCls}
                   />
                 </div>

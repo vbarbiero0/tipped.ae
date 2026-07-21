@@ -3,6 +3,7 @@ import PetPhoto from "./PetPhoto";
 import { CardBadges } from "./HealthTags";
 import EmailRescuerButton from "./EmailRescuerButton";
 import FosterPill from "./FosterPill";
+import { socialLabel } from "@/lib/socials";
 import type { Pet } from "@/lib/types";
 
 export default function PetCard({ pet }: { pet: Pet }) {
@@ -41,7 +42,7 @@ export default function PetCard({ pet }: { pet: Pet }) {
           <div className="flex items-center justify-between gap-[10px]">
             <span className="font-sans font-semibold text-xs text-cocoa/55">
               with {rescuer.name}
-              {rescuer.instagram ? ` · @${rescuer.instagram}` : ""}
+              {rescuer.socials?.[0]?.handle ? ` · ${socialLabel(rescuer.socials[0])}` : ""}
             </span>
             <EmailRescuerButton pet={pet} rescuer={rescuer} />
           </div>

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import PetCard from "@/components/PetCard";
+import SocialLinks from "@/components/SocialLinks";
 import TippedMonogram from "@/components/TippedMonogram";
 import { getPets, getRescuers } from "@/lib/data";
 
@@ -44,18 +45,7 @@ export default async function RescuerProfilePage({ params }: Props) {
           </h1>
           <div className="font-sans font-semibold text-[14px] text-cocoa/55 mt-1">
             {rescuer.emirate} · {rescuer.pets_saved} pets saved
-            {rescuer.instagram && (
-              <>
-                {" · "}
-                <a
-                  href={`https://instagram.com/${rescuer.instagram}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  @{rescuer.instagram}
-                </a>
-              </>
-            )}
+            <SocialLinks socials={rescuer.socials} prefix=" · " />
           </div>
         </div>
       </div>

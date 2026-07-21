@@ -16,7 +16,8 @@ interface AdminRescuer {
   username: string | null;
   email: string;
   emirate: string | null;
-  instagram: string | null;
+  socials: { platform: string; handle: string }[] | null;
+  phone: string | null;
   trust_level: "trusted" | "review";
   role: string;
   active: boolean;
@@ -32,7 +33,9 @@ interface RescuerApplication {
   name: string;
   email: string;
   emirate: string | null;
-  instagram: string | null;
+  phone: string | null;
+  vets: string | null;
+  socials: { platform: string; handle: string }[] | null;
   note: string | null;
   created_at: string;
 }
@@ -53,7 +56,7 @@ export default function AdminRescuersPage() {
     const supabase = supabaseBrowser();
     const { data } = await supabase
       .from("rescuers")
-      .select("id,name,username,email,emirate,instagram,trust_level,role,active,is_placeholder,created_at")
+      .select("id,name,username,email,emirate,socials,phone,trust_level,role,active,is_placeholder,created_at")
       .order("created_at", { ascending: true });
     setRows((data as AdminRescuer[]) ?? []);
     const { data: pets } = await supabase.from("pets").select("rescuer_id");
@@ -63,7 +66,7 @@ export default function AdminRescuersPage() {
     setCounts(c);
     const { data: apps } = await supabase
       .from("rescuer_applications")
-      .select("id,name,email,emirate,instagram,note,created_at")
+      .select("id,name,email,emirate,phone,vets,socials,note,created_at")
       .is("handled_at", null)
       .order("created_at", { ascending: true });
     setApplications((apps as RescuerApplication[]) ?? []);
@@ -87,7 +90,7 @@ export default function AdminRescuersPage() {
       username: editing.username,
       email: editing.email,
       emirate: editing.emirate,
-      instagram: editing.instagram,
+      phone: editing.phone,
     });
     setEditing(null);
   };
@@ -117,8 +120,10 @@ export default function AdminRescuersPage() {
     </span>
   );
 
-  const inviteMailto = (link: string) =>
-    `mailto:${invite.email}?subject=${encodeURIComponent("Your tipped rescuer account")}&body=${encodeURIComponent(
+  // Gmail web compose (not mailto:) so it opens gmail.com in the browser
+  // regardless of the device's default mail app — this button is admin-only.
+  const inviteGmail = (link: string) =>
+    `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(invite.email)}&su=${encodeURIComponent("Your tipped rescuer account")}&body=${encodeURIComponent(
       `Hi ${invite.name} —\n\nYour tipped rescuer account is ready. Set your password here (one-time link):\n\n${link}\n\nYour username is: ${invite.username}\nSign in afterwards at https://tippedae.netlify.app/dashboard/login\n\nWelcome aboard.`
     )}`;
 
@@ -159,11 +164,21 @@ export default function AdminRescuersPage() {
                   <div className="min-w-0">
                     <div className="font-sans font-bold text-[14px] text-cocoa">
                       {a.name}
-                      <span className="font-semibold text-[12px] text-cocoa/50 ml-2">
-                        {[a.emirate, a.instagram && `@${a.instagram}`].filter(Boolean).join(" · ")}
-                      </span>
+                      <span className="font-semibold text-[12px] text-cocoa/50 ml-2">{a.emirate}</span>
                     </div>
-                    <div className="font-sans font-semibold text-[12.5px] text-cocoa/60">{a.email}</div>
+                    <div className="font-sans font-semibold text-[12.5px] text-cocoa/60">
+                      {[a.email, a.phone].filter(Boolean).join(" · ")}
+                    </div>
+                    {a.vets && (
+                      <div className="font-sans font-semibold text-[12px] text-cocoa/60 mt-[2px]">
+                        Vets: <span className="font-medium">{a.vets}</span>
+                      </div>
+                    )}
+                    {(a.socials ?? []).length > 0 && (
+                      <div className="font-sans font-semibold text-[12px] text-cocoa/55 mt-[2px]">
+                        {(a.socials ?? []).map((x) => `${x.platform}: ${x.handle}`).join(" · ")}
+                      </div>
+                    )}
                     {a.note && (
                       <div className="font-sans font-medium text-[13px] text-cocoa/70 mt-1">&ldquo;{a.note}&rdquo;</div>
                     )}
@@ -233,9 +248,9 @@ export default function AdminRescuersPage() {
                     Account created. Send them this one-time link (sets their password):
                   </div>
                   <div className="font-mono text-[11px] text-cocoa/70 break-all mb-2">{inviteResult.link}</div>
-                  <a href={inviteMailto(inviteResult.link)}
+                  <a href={inviteGmail(inviteResult.link)} target="_blank" rel="noopener noreferrer"
                     className="inline-block bg-cocoa text-cream no-underline font-sans font-bold text-[12.5px] px-4 py-2 rounded-[9px] hover:bg-[#241A14]">
-                    Email it to {invite.email || "them"}
+                    Email it via Gmail
                   </a>
                 </div>
               )}
@@ -317,8 +332,8 @@ export default function AdminRescuersPage() {
                     placeholder="Username" className={inputCls} />
                   <input value={editing.email} onChange={(e) => setEditing({ ...editing, email: e.target.value })}
                     placeholder="Contact email" className={inputCls} />
-                  <input value={editing.instagram ?? ""} onChange={(e) => setEditing({ ...editing, instagram: e.target.value || null })}
-                    placeholder="Instagram (no @)" className={inputCls} />
+                  <input value={editing.phone ?? ""} onChange={(e) => setEditing({ ...editing, phone: e.target.value || null })}
+                    placeholder="Phone (private)" className={inputCls} />
                   <select value={editing.emirate ?? "Dubai"} onChange={(e) => setEditing({ ...editing, emirate: e.target.value })}
                     className={inputCls}>
                     {EMIRATES.map((e) => (

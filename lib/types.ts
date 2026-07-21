@@ -10,7 +10,8 @@ export interface Rescuer {
   emirate: Emirate | null;
   blurb: string | null;
   email: string;
-  instagram: string | null; // handle without @
+  socials: { platform: "instagram" | "facebook" | "tiktok" | "other"; handle: string }[];
+  phone?: string | null; // identity data — never rendered publicly
   pets_saved: number; // total pets rehomed — column name kept for schema continuity
   clinics: { name: string; url?: string; ref?: string }[];
   is_placeholder: boolean;

@@ -21,7 +21,7 @@ export async function getRescuers(): Promise<Rescuer[]> {
   if (!hasSupabase) return seedRescuers;
   const { data, error } = await client()
     .from("rescuers")
-    .select("id,name,username,emirate,blurb,email,instagram,pets_saved,clinics,wishlist_links,is_placeholder")
+    .select("id,name,username,emirate,blurb,email,socials,pets_saved,clinics,wishlist_links,is_placeholder")
     .order("pets_saved", { ascending: false });
   if (error || !data) return seedRescuers;
   return data as Rescuer[];
@@ -31,7 +31,7 @@ export async function getPets(): Promise<Pet[]> {
   if (!hasSupabase) return withRescuers(seedPets, seedRescuers);
   const { data, error } = await client()
     .from("pets")
-    .select("*, rescuer:rescuers(id,name,emirate,blurb,email,instagram,pets_saved,clinics,is_placeholder)")
+    .select("*, rescuer:rescuers(id,name,emirate,blurb,email,socials,pets_saved,clinics,is_placeholder)")
     .order("created_at", { ascending: false });
   if (error || !data) return withRescuers(seedPets, seedRescuers);
   return data as unknown as Pet[];

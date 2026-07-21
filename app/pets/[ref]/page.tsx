@@ -7,6 +7,7 @@ import FosterPill from "@/components/FosterPill";
 import { CardBadges, ConditionNotes, HealthTagRow } from "@/components/HealthTags";
 import EmailRescuerButton from "@/components/EmailRescuerButton";
 import ReceiptCard from "@/components/ReceiptCard";
+import SocialLinks from "@/components/SocialLinks";
 import StatusPill from "@/components/StatusPill";
 import TippedMonogram from "@/components/TippedMonogram";
 import { getPet, getBillsPaid, getOpenBillFor } from "@/lib/data";
@@ -111,18 +112,7 @@ export default async function PetPage({ params }: Props) {
                   </div>
                   <div className="font-sans font-semibold text-[12.5px] text-cocoa/55">
                     {rescuer.emirate}
-                    {rescuer.instagram ? (
-                      <>
-                        {" · "}
-                        <a
-                          href={`https://instagram.com/${rescuer.instagram}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          @{rescuer.instagram}
-                        </a>
-                      </>
-                    ) : null}
+                    <SocialLinks socials={rescuer.socials} prefix=" · " />
                   </div>
                 </div>
               </div>

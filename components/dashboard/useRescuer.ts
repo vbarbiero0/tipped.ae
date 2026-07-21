@@ -11,7 +11,8 @@ export interface DashRescuer {
   emirate: string | null;
   blurb: string | null;
   email: string;
-  instagram: string | null;
+  socials: { platform: "instagram" | "facebook" | "tiktok" | "other"; handle: string }[];
+  phone: string | null;
   avatar_url: string | null;
   clinics: { name: string; url?: string }[];
   wishlist_links: { label: string; url?: string }[];
@@ -41,7 +42,7 @@ export function useRescuer() {
       const { data, error } = await supabase
         .from("rescuers")
         .select(
-          "id,username,name,emirate,blurb,email,instagram,avatar_url,clinics,wishlist_links,trust_level,role,active,auth_user_id"
+          "id,username,name,emirate,blurb,email,socials,phone,avatar_url,clinics,wishlist_links,trust_level,role,active,auth_user_id"
         )
         .eq("auth_user_id", session.user.id)
         .maybeSingle();

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import SocialLinks from "@/components/SocialLinks";
 import TippedMonogram from "@/components/TippedMonogram";
 import JoinForm from "@/components/JoinForm";
 import { getRescuers } from "@/lib/data";
@@ -76,15 +77,9 @@ export default async function RescuersPage() {
                   </Link>
                 )}
                 <a href={`mailto:${r.email}`}>{r.email}</a>
-                {r.instagram && (
-                  <a
-                    href={`https://instagram.com/${r.instagram}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    @{r.instagram}
-                  </a>
-                )}
+                <div className="flex flex-wrap gap-x-3">
+                  <SocialLinks socials={r.socials} />
+                </div>
                 {r.clinics.map((c) =>
                   c.url ? (
                     <a key={c.name} href={c.url} target="_blank" rel="noopener noreferrer">

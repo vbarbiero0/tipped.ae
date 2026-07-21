@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { applyAsRescuer } from "@/app/rescuers/actions";
+import { SOCIAL_PLATFORMS, Social } from "@/lib/socials";
 import { EMIRATES } from "@/lib/emirates";
 
 // The join box on /rescuers#join — one short message, same-day listing.
@@ -15,16 +16,24 @@ export default function JoinForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [emirate, setEmirate] = useState("Dubai");
-  const [instagram, setInstagram] = useState("");
+  const [phone, setPhone] = useState("");
+  const [vets, setVets] = useState("");
+  const [socials, setSocials] = useState<Social[]>([{ platform: "instagram", handle: "" }]);
   const [note, setNote] = useState("");
   const [website, setWebsite] = useState(""); // honeypot
   const [busy, setBusy] = useState(false);
   const [state, setState] = useState<"idle" | "done" | "error">("idle");
 
+  const canSend =
+    name.trim() && email.includes("@") && phone.trim() && vets.trim();
+
   const submit = async () => {
-    if (!name.trim() || !email.includes("@") || busy) return;
+    if (!canSend || busy) return;
     setBusy(true);
-    const { ok } = await applyAsRescuer({ name, email, emirate, instagram, note, website });
+    const { ok } = await applyAsRescuer({
+      name, email, emirate, phone, vets, note, website,
+      socials: socials.filter((x) => x.handle.trim()),
+    });
     setState(ok ? "done" : "error");
     setBusy(false);
   };
@@ -53,7 +62,48 @@ export default function JoinForm() {
             <option key={e} value={e}>{e}</option>
           ))}
         </select>
-        <input value={instagram} onChange={(e) => setInstagram(e.target.value)} placeholder="Instagram (optional)" className={field} />
+        <input value={phone} onChange={(e) => setPhone(e.target.value)} type="tel" placeholder="Phone (WhatsApp is fine)" className={field} />
+      </div>
+      <input
+        value={vets}
+        onChange={(e) => setVets(e.target.value)}
+        placeholder="Vet clinic(s) you usually work with — they help us confirm it's you"
+        className={`${field} mb-3`}
+      />
+      <div className="flex flex-col gap-2 mb-3">
+        {socials.map((x, i) => (
+          <div key={i} className="flex gap-2">
+            <select
+              value={x.platform}
+              onChange={(e) =>
+                setSocials((prev) =>
+                  prev.map((p, j) => (j === i ? { ...p, platform: e.target.value as Social["platform"] } : p))
+                )
+              }
+              className={`${field} w-[120px] shrink-0`}
+            >
+              {SOCIAL_PLATFORMS.map((p) => (
+                <option key={p.value} value={p.value}>{p.label}</option>
+              ))}
+            </select>
+            <input
+              value={x.handle}
+              onChange={(e) =>
+                setSocials((prev) => prev.map((p, j) => (j === i ? { ...p, handle: e.target.value } : p)))
+              }
+              placeholder={x.platform === "other" ? "https://…" : "@handle (optional)"}
+              className={field}
+            />
+          </div>
+        ))}
+        {socials.length < 3 && (
+          <button
+            onClick={() => setSocials((prev) => [...prev, { platform: "facebook", handle: "" }])}
+            className="self-start font-sans font-bold text-[13px] text-cocoa/60 bg-transparent border-0 p-0 cursor-pointer hover:text-cocoa"
+          >
+            + Add another social
+          </button>
+        )}
       </div>
       <textarea
         value={note}
@@ -79,7 +129,7 @@ export default function JoinForm() {
       )}
       <button
         onClick={submit}
-        disabled={busy || !name.trim() || !email.includes("@")}
+        disabled={busy || !canSend}
         className="bg-cocoa text-cream font-sans font-bold text-[15px] px-7 py-[14px] rounded-[12px] cursor-pointer border-0 hover:bg-[#241A14] disabled:opacity-40 disabled:cursor-default"
       >
         {busy ? "Sending…" : "Send it"}
