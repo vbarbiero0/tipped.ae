@@ -30,14 +30,22 @@ export default function RescuerLoginPage() {
       });
   }, [router]);
 
+  // Accept a username or an email in the same field — people type either.
+  const resolveEmail = async (): Promise<string | null> => {
+    const input = username.trim();
+    if (input.includes("@")) return input.toLowerCase();
+    const { data } = await supabaseBrowser().rpc("get_rescuer_email", {
+      p_username: input.toLowerCase(),
+    });
+    return (data as string) ?? null;
+  };
+
   const signIn = async (e: React.FormEvent) => {
     e.preventDefault();
     setBusy(true);
     setError(null);
     const supabase = supabaseBrowser();
-    const { data: email } = await supabase.rpc("get_rescuer_email", {
-      p_username: username.trim().toLowerCase(),
-    });
+    const email = await resolveEmail();
     if (!email) {
       setError("That didn't work. Check the username and password.");
       setBusy(false);
@@ -62,9 +70,7 @@ export default function RescuerLoginPage() {
     setBusy(true);
     setError(null);
     const supabase = supabaseBrowser();
-    const { data: email } = await supabase.rpc("get_rescuer_email", {
-      p_username: username.trim().toLowerCase(),
-    });
+    const email = await resolveEmail();
     if (!email) {
       setError("No rescuer with that username.");
       setBusy(false);
@@ -103,7 +109,7 @@ export default function RescuerLoginPage() {
           {mode === "signin"
             ? "The dashboard for your animals and profile."
             : mode === "forgot"
-              ? "Tell us your username — we'll email you a reset link."
+              ? "Tell us your username or email — we'll send a reset link."
               : "Check your email — the reset link is on its way."}
         </p>
 
@@ -120,7 +126,7 @@ export default function RescuerLoginPage() {
           <form onSubmit={sendReset} className="flex flex-col gap-[18px]">
             <div>
               <label htmlFor="username-reset" className="block font-sans font-bold text-[13.5px] text-cocoa mb-[7px]">
-                Username
+                Username or email
               </label>
               <input
                 id="username-reset"
@@ -158,7 +164,7 @@ export default function RescuerLoginPage() {
         <form onSubmit={signIn} className="flex flex-col gap-[18px]">
           <div>
             <label htmlFor="username" className="block font-sans font-bold text-[13.5px] text-cocoa mb-[7px]">
-              Username
+              Username or email
             </label>
             <input
               id="username"
