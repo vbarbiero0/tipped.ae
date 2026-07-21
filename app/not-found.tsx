@@ -15,7 +15,7 @@ export default function NotFound() {
         this way.
       </p>
       <Link
-        href="/adopt"
+        href="/pets"
         className="inline-block bg-cocoa text-cream no-underline font-sans font-bold text-[14px] px-6 py-3 rounded-[10px] hover:bg-[#241A14]"
       >
         Browse the cats &amp; dogs

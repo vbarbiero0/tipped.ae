@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import AnimalCard from "@/components/AnimalCard";
+import PetCard from "@/components/PetCard";
 import { EMIRATES } from "@/lib/emirates";
-import type { Animal, AnimalStatus, Species } from "@/lib/types";
+import type { Pet, AnimalStatus, Species } from "@/lib/types";
 
 const speciesFilters: { value: Species | "all"; label: string }[] = [
   { value: "all", label: "All" },
@@ -26,10 +26,10 @@ const intentFilters: { value: Intent; label: string }[] = [
 ];
 
 export default function AdoptGrid({
-  animals,
+  pets,
   initialIntent = "all",
 }: {
-  animals: Animal[];
+  pets: Pet[];
   initialIntent?: Intent;
 }) {
   const [species, setSpecies] = useState<Species | "all">("all");
@@ -37,7 +37,7 @@ export default function AdoptGrid({
   const [intent, setIntent] = useState<Intent>(initialIntent);
   const [emirate, setEmirate] = useState<string>("all");
 
-  const filtered = animals.filter(
+  const filtered = pets.filter(
     (a) =>
       (species === "all" || a.species === species) &&
       (status === "all" || a.status === status) &&
@@ -98,8 +98,8 @@ export default function AdoptGrid({
         </p>
       ) : (
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {filtered.map((animal) => (
-            <AnimalCard key={animal.id} animal={animal} />
+          {filtered.map((pet) => (
+            <PetCard key={pet.id} pet={pet} />
           ))}
         </div>
       )}

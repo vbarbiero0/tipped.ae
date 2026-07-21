@@ -58,8 +58,8 @@ function BookIcon() {
 
 const rows = [
   {
-    href: "/adopt",
-    title: "Browse animals",
+    href: "/pets",
+    title: "Browse pets",
     desc: "Every listing written by the rescuer",
     icon: <HeadIcon />,
   },
@@ -234,10 +234,10 @@ export default function Header() {
             Open books
           </Link>
           <Link
-            href="/adopt"
+            href="/pets"
             className="inline-flex items-center gap-3 bg-cocoa text-cream no-underline font-sans font-bold text-[14px] rounded-[12px] p-2 sm:pl-5 hover:bg-[#241A14]"
           >
-            <span className="hidden sm:inline">Find your animal</span>
+            <span className="hidden sm:inline">Find your pet</span>
             <span className="w-[26px] h-[26px] bg-sunset rounded-[8px] flex items-center justify-center text-cocoa font-bold text-[14px] leading-none">
               →
             </span>

@@ -1,9 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
-import AnimalCard from "@/components/AnimalCard";
+import PetCard from "@/components/PetCard";
 import ReceiptCard from "@/components/ReceiptCard";
 import { EarPair } from "@/components/Ears";
-import { getAnimals, getBillsPaid } from "@/lib/data";
+import { getPets, getBillsPaid } from "@/lib/data";
 import { products } from "@/lib/seed";
 import { TAGLINE } from "@/lib/brand";
 
@@ -11,9 +11,9 @@ import { TAGLINE } from "@/lib/brand";
 const SHOW_SHOP = true;
 
 export default async function HomePage() {
-  const [animals, bills] = await Promise.all([getAnimals(), getBillsPaid()]);
-  // Admin-featured animals lead; the species mix fills any empty slots.
-  const available = animals.filter((a) => a.status !== "adopted");
+  const [pets, bills] = await Promise.all([getPets(), getBillsPaid()]);
+  // Admin-featured pets lead; the species mix fills any empty slots.
+  const available = pets.filter((a) => a.status !== "adopted");
   const featured = available.filter((a) => a.featured).slice(0, 3);
   for (const pick of [
     ...available.filter((a) => a.species === "cat"),
@@ -29,8 +29,8 @@ export default async function HomePage() {
     bills.find(
       (b) => b.amount_covered_aed !== null && b.amount_covered_aed! < b.amount_aed
     );
-  // Hero prints show real listings: first two animals with photos.
-  const [printPortrait, printSquare] = animals.filter((a) => a.photos.length > 0);
+  // Hero prints show real listings: first two pets with photos.
+  const [printPortrait, printSquare] = pets.filter((a) => a.photos.length > 0);
 
   return (
     <>
@@ -44,11 +44,11 @@ export default async function HomePage() {
           <p className="font-sans font-medium text-[17px] leading-[1.65] text-cocoa/75 m-0 mb-8 max-w-[480px]">
             Rescuers across the UAE list their street cats and dogs here. Browse
             from anywhere in the world, email the rescuer directly, and adopt.
-            When an animal needs care, the vet gets paid — not us.
+            When a pet needs care, the vet gets paid — not us.
           </p>
           <div className="flex gap-[14px] items-center flex-wrap">
             <Link
-              href="/adopt"
+              href="/pets"
               className="bg-cocoa text-cream no-underline font-sans font-bold text-[15px] px-7 py-[15px] rounded-[12px] hover:bg-[#241A14]"
             >
               Browse the cats &amp; dogs
@@ -70,7 +70,7 @@ export default async function HomePage() {
                 lifts forward on hover */}
             {printPortrait && (
               <Link
-                href={`/adopt/${printPortrait.ref}`}
+                href={`/pets/${printPortrait.ref}`}
                 className="absolute top-0 left-0 block w-[360px] -rotate-[2.5deg] bg-receipt rounded-[16px] border border-cocoa/[.08] shadow-[0_14px_34px_rgba(58,42,34,.14)] p-[10px] pb-[56px] z-10 no-underline transition-[transform,box-shadow] duration-300 ease-out hover:-rotate-[1deg] hover:scale-[1.03] hover:-translate-y-1 hover:z-30 hover:shadow-[0_24px_48px_rgba(58,42,34,.22)]"
               >
                 <img
@@ -93,7 +93,7 @@ export default async function HomePage() {
                 up so it never covers the portrait's caption band */}
             {printSquare && (
               <Link
-                href={`/adopt/${printSquare.ref}`}
+                href={`/pets/${printSquare.ref}`}
                 className="absolute left-[255px] top-[148px] block w-[273px] rotate-[3deg] bg-receipt rounded-[14px] border border-cocoa/[.08] shadow-[0_16px_36px_rgba(58,42,34,.2)] p-[9px] pb-[48px] z-20 no-underline transition-[transform,box-shadow] duration-300 ease-out hover:rotate-[1.5deg] hover:scale-[1.04] hover:-translate-y-1 hover:z-30 hover:shadow-[0_26px_52px_rgba(58,42,34,.28)]"
               >
                 <img
@@ -121,18 +121,18 @@ export default async function HomePage() {
           <h2 className="font-display font-extrabold text-[28px] md:text-[34px] text-cocoa m-0">
             Ready to leave the street
           </h2>
-          <Link href="/adopt" className="font-sans font-bold text-sm whitespace-nowrap">
+          <Link href="/pets" className="font-sans font-bold text-sm whitespace-nowrap">
             All cats &amp; dogs →
           </Link>
         </div>
         <div className="grid md:grid-cols-3 gap-6">
-          {featured.map((animal) => (
-            <AnimalCard key={animal.id} animal={animal} />
+          {featured.map((pet) => (
+            <PetCard key={pet.id} pet={pet} />
           ))}
         </div>
         <p className="font-sans font-medium text-[15px] text-cocoa/70 text-center m-0 mt-9">
           Can&rsquo;t adopt? Foster. Two weeks of your sofa changes everything.{" "}
-          <Link href="/adopt?intent=foster" className="font-bold">
+          <Link href="/pets?intent=foster" className="font-bold">
             See who needs a foster →
           </Link>
         </p>
@@ -148,7 +148,7 @@ export default async function HomePage() {
             {[
               {
                 n: "1",
-                title: "Find your animal",
+                title: "Find your pet",
                 body: "Every listing is written by the rescuer who actually feeds this cat or dog. No shelter-speak.",
               },
               {
@@ -191,7 +191,7 @@ export default async function HomePage() {
               hold the money, and the receipt goes up for everyone to see.
             </p>
             <p className="font-sans font-semibold text-sm text-cream/50 m-0">
-              Works for listed animals and for the ones still on the street.
+              Works for listed pets and for the ones still on the street.
             </p>
           </div>
           {openBill ? (
@@ -204,7 +204,7 @@ export default async function HomePage() {
             />
           ) : (
             <div className="bg-receipt rounded-[18px] px-7 py-[26px] shadow-receipt -rotate-1 font-sans font-medium text-[14.5px] leading-[1.6] text-cocoa/70">
-              No open bills right now. When an animal needs treatment, the
+              No open bills right now. When a pet needs treatment, the
               clinic&rsquo;s bill goes up here — and comes down when it&rsquo;s
               paid.
             </div>

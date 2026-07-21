@@ -1,19 +1,20 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import AdoptGrid, { type Intent } from "./AdoptGrid";
-import { getAnimals } from "@/lib/data";
+import { getPets } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "Adopt & foster",
   description:
-    "Every animal here is sterilised, vaccinated and listed by the rescuer who feeds it. Browse the UAE's street cats and dogs, adopt from anywhere, foster from the UAE — email the rescuer directly.",
+    "Every pet here is sterilised, vaccinated and listed by the rescuer who feeds it. Browse the UAE's street cats and dogs, adopt from anywhere, foster from the UAE — email the rescuer directly.",
 };
 
-export default async function AdoptPage({
+export default async function PetsPage({
   searchParams,
 }: {
   searchParams: Promise<{ intent?: string }>;
 }) {
-  const [animals, params] = await Promise.all([getAnimals(), searchParams]);
+  const [pets, params] = await Promise.all([getPets(), searchParams]);
   const initialIntent: Intent =
     params.intent === "foster" ? "foster" : params.intent === "adopt" ? "adopt" : "all";
   return (
@@ -23,12 +24,17 @@ export default async function AdoptPage({
         Ready to leave the street
       </h1>
       <p className="font-sans font-medium text-[16px] leading-[1.65] text-cocoa/75 m-0 mb-8 max-w-[560px]">
-        Every animal here is sterilised, vaccinated and known by name — the
+        Every pet here is sterilised, vaccinated and known by name — the
         tags on each profile say exactly what&rsquo;s been done. Every listing
         is written by the rescuer who feeds them. Adopt from anywhere in the
-        world; foster if you&rsquo;re in the UAE.
+        world; foster if you&rsquo;re in the UAE. The success stories live on
+        the{" "}
+        <Link href="/adopted" className="font-bold">
+          Already home page
+        </Link>
+        .
       </p>
-      <AdoptGrid animals={animals} initialIntent={initialIntent} />
+      <AdoptGrid pets={pets} initialIntent={initialIntent} />
     </div>
   );
 }

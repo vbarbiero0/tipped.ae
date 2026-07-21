@@ -5,7 +5,7 @@ import { CONTACT_EMAIL, INSTAGRAM_HANDLE, INSTAGRAM_URL } from "@/lib/brand";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Say hello — adopting, fostering, listing your animals, shop orders, anything. hello@tipped.ae or @tipped.ae on Instagram.",
+    "Say hello — adopting, fostering, listing your pets, shop orders, anything. hello@tipped.ae or @tipped.ae on Instagram.",
 };
 
 export default function ContactPage() {
@@ -16,7 +16,7 @@ export default function ContactPage() {
         Say hello.
       </h1>
       <p className="font-sans font-medium text-[16px] leading-[1.65] text-cocoa/75 m-0 mb-10 max-w-[560px]">
-        Adopting, fostering, listing your animals, shop orders, a question
+        Adopting, fostering, listing your pets, shop orders, a question
         about the books — it all lands in the same inbox, and a person reads
         it. No forms here either.
       </p>
@@ -50,9 +50,9 @@ export default function ContactPage() {
 
       <p className="font-sans font-medium text-[14px] leading-[1.6] text-cocoa/60 m-0 mt-10 max-w-[560px]">
         Writing about a specific cat or dog? Use the email button on{" "}
-        <Link href="/adopt">their profile</Link> instead — it goes straight to
+        <Link href="/pets">their profile</Link> instead — it goes straight to
         their rescuer, not to us. And if you rescue in the UAE,{" "}
-        <Link href="/rescuers#join">here&rsquo;s how to list your animals</Link>.
+        <Link href="/rescuers#join">here&rsquo;s how to list your pets</Link>.
       </p>
     </div>
   );

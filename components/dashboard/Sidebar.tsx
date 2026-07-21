@@ -50,8 +50,8 @@ function PersonIcon() {
 }
 
 const items = [
-  { href: "/dashboard", label: "My animals", icon: CatHeadIcon },
-  { href: "/dashboard/new", label: "Add an animal", icon: PlusIcon },
+  { href: "/dashboard", label: "My Pets", icon: CatHeadIcon },
+  { href: "/dashboard/new", label: "Add a pet", icon: PlusIcon },
   { href: "/dashboard/profile", label: "My profile", icon: PersonIcon },
 ];
 

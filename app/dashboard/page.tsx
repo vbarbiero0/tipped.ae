@@ -15,7 +15,7 @@ import {
   TrashIcon,
 } from "@/components/dashboard/icons";
 
-// My animals — live against Supabase. Status is the 3-value enum
+// My Pets — live against Supabase. Status is the 3-value enum
 // (available | in_foster | adopted); approval_status is independent.
 
 interface Row {
@@ -81,7 +81,7 @@ export default function DashboardPage() {
   useEffect(() => {
     if (!rescuer) return;
     supabaseBrowser()
-      .from("animals")
+      .from("pets")
       .select("id,ref,name,species,sex,age,emirate,status,approval_status,approval_note,photos")
       .eq("rescuer_id", rescuer.id)
       .order("created_at", { ascending: true })
@@ -95,7 +95,7 @@ export default function DashboardPage() {
     const patch = { status: nextStatus[row.status] };
     setRows((prev) => prev.map((r) => (r.id === row.id ? { ...r, ...patch } : r)));
     const { error } = await supabaseBrowser()
-      .from("animals")
+      .from("pets")
       .update(patch)
       .eq("id", row.id);
     if (error) {
@@ -109,7 +109,7 @@ export default function DashboardPage() {
     const target = deleting;
     setDeleting(null);
     setRows((prev) => prev.filter((r) => r.id !== target.id));
-    const { error } = await supabaseBrowser().from("animals").delete().eq("id", target.id);
+    const { error } = await supabaseBrowser().from("pets").delete().eq("id", target.id);
     if (error) {
       setRows((prev) => [...prev, target]);
       setSaveError(`Couldn't delete ${target.name}. Try again.`);
@@ -134,7 +134,7 @@ export default function DashboardPage() {
             <div className="flex items-center justify-between mb-[22px] gap-4 flex-wrap">
               <div>
                 <h1 className="font-display font-extrabold text-[30px] text-cocoa m-0">
-                  My animals
+                  My Pets
                 </h1>
                 <div className="font-sans font-semibold text-[13.5px] text-cocoa/55 mt-[3px]">
                   {rows.length} listed · marking one adopted moves it to the
@@ -146,7 +146,7 @@ export default function DashboardPage() {
                 className="inline-flex items-center gap-[9px] bg-cocoa text-cream no-underline font-sans font-bold text-[15px] px-6 py-[14px] rounded-[12px] hover:bg-[#241A14]"
               >
                 <PlusIcon />
-                Add an animal
+                Add a pet
               </Link>
             </div>
 
@@ -160,18 +160,18 @@ export default function DashboardPage() {
               <div className="bg-paper border border-cocoa/[.08] rounded-[12px] px-10 py-[60px] flex flex-col items-center text-center">
                 <EmptyStateHead />
                 <div className="font-display font-extrabold text-[24px] text-cocoa mt-[18px] mb-2">
-                  No animals listed yet
+                  No pets yet — add your first rescue.
                 </div>
                 <div className="font-sans font-medium text-[15px] leading-[1.6] text-cocoa/65 max-w-[420px] mb-6">
-                  List your first rescue — a name, a photo and their story is all
-                  it takes. It goes live the moment you hit save.
+                  A name, a photo and their story is all it takes. It goes live
+                  the moment you hit save.
                 </div>
                 <Link
                   href="/dashboard/new"
                   className="inline-flex items-center gap-[9px] bg-cocoa text-cream no-underline font-sans font-bold text-[15px] px-[26px] py-[14px] rounded-[12px] hover:bg-[#241A14]"
                 >
                   <PlusIcon />
-                  Add your first animal
+                  Add your first pet
                 </Link>
               </div>
             ) : (

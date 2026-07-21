@@ -9,8 +9,8 @@ import { supabaseBrowser } from "@/lib/supabase-browser";
 import { UploadIcon, CheckIcon } from "@/components/dashboard/icons";
 import { EMIRATES } from "@/lib/emirates";
 
-// Add/edit an animal — live against Supabase. Photos go to the public
-// animal-photos bucket; the vet certificate goes to the PRIVATE
+// Add/edit a pet — live against Supabase. Photos go to the public
+// pet-photos bucket; the vet certificate goes to the PRIVATE
 // vet-certificates bucket under the signed-in user's folder.
 
 const MEDICAL_LABEL_TO_SLUG: Record<string, string> = {
@@ -102,7 +102,7 @@ function AddAnimalForm() {
   // Edit mode: prefill from the DB row
   useEffect(() => {
     if (!editId || !rescuer) return;
-    let query = supabaseBrowser().from("animals").select("*").eq("id", editId);
+    let query = supabaseBrowser().from("pets").select("*").eq("id", editId);
     if (rescuer.role !== "admin") query = query.eq("rescuer_id", rescuer.id);
     query
       .maybeSingle()
@@ -158,11 +158,11 @@ function AddAnimalForm() {
         else if (s) {
           const path = `${rescuer.id}/${crypto.randomUUID()}`;
           const { error: upErr } = await supabase.storage
-            .from("animal-photos")
+            .from("pet-photos")
             .upload(path, s, { contentType: s.type });
           if (upErr) throw upErr;
           photoUrls.push(
-            supabase.storage.from("animal-photos").getPublicUrl(path).data.publicUrl
+            supabase.storage.from("pet-photos").getPublicUrl(path).data.publicUrl
           );
         }
       }
@@ -186,7 +186,7 @@ function AddAnimalForm() {
         .map((c) => MEDICAL_LABEL_TO_SLUG[c]);
 
       const row = {
-        // Admins editing someone else's animal must not steal ownership
+        // Admins editing someone else's pet must not steal ownership
         ...(editId ? {} : { rescuer_id: rescuer.id }),
         name: name.trim(),
         species,
@@ -205,8 +205,8 @@ function AddAnimalForm() {
       };
 
       const { error: dbErr } = editId
-        ? await supabase.from("animals").update(row).eq("id", editId)
-        : await supabase.from("animals").insert(row);
+        ? await supabase.from("pets").update(row).eq("id", editId)
+        : await supabase.from("pets").insert(row);
       if (dbErr) throw dbErr;
       router.push("/dashboard");
     } catch {
@@ -225,7 +225,7 @@ function AddAnimalForm() {
   return (
     <main className="flex-1 px-[34px] pt-[30px] pb-[110px] relative min-w-0">
       <h1 className="font-display font-extrabold text-[30px] text-cocoa m-0 mb-1">
-        {editId ? `Edit ${name || "animal"}` : "Add an animal"}
+        {editId ? `Edit ${name || "pet"}` : "Add a pet"}
       </h1>
       <div className="font-sans font-semibold text-[13.5px] text-cocoa/55 mb-[26px]">
         Goes live the moment you save — you can edit anytime.
@@ -462,7 +462,7 @@ function AddAnimalForm() {
   );
 }
 
-export default function AddAnimalPage() {
+export default function AddPetPage() {
   return (
     <div className="flex min-h-screen font-sans">
       <Sidebar />

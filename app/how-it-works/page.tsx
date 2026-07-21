@@ -7,13 +7,13 @@ import ReceiptCard from "@/components/ReceiptCard";
 export const metadata: Metadata = {
   title: "How it works",
   description:
-    "Find your cat or dog, email the rescuer, adopt near or far. And when an animal needs care, the vet gets paid — not us.",
+    "Find your cat or dog, email the rescuer, adopt near or far. And when a pet needs care, the vet gets paid — not us.",
 };
 
 const steps = [
   {
     n: "1",
-    title: "Find your animal",
+    title: "Find your pet",
     body: "Every listing is written by the rescuer who actually feeds this cat or dog — the person who knows whether he yells for breakfast or hides from vacuum cleaners. No shelter-speak, no stock phrases.",
   },
   {
@@ -24,7 +24,7 @@ const steps = [
   {
     n: "3",
     title: "Adopt, near or far",
-    body: "UAE cats and dogs fly well, and rescuers here send animals to Europe, the UK and North America all the time. You and the rescuer arrange vetting, paperwork and travel together.",
+    body: "UAE cats and dogs fly well, and rescuers here send pets to Europe, the UK and North America all the time. You and the rescuer arrange vetting, paperwork and travel together.",
   },
 ];
 
@@ -80,7 +80,7 @@ export default async function HowItWorksPage() {
             </p>
             <p className="font-sans font-medium text-[15.5px] leading-[1.7] text-cocoa/78 m-0 max-w-[600px]">
               Dogs don&rsquo;t get ear-tipped — theirs is a microchip and a
-              collar tag. The promise is the same: every animal here is fixed,
+              collar tag. The promise is the same: every pet here is fixed,
               vaccinated and looked after.
             </p>
           </div>
@@ -112,7 +112,7 @@ export default async function HowItWorksPage() {
             },
             {
               tag: "tested −",
-              body: "Bloodwork done and negative — FIV/FeLV for cats, heartworm for dogs. If an animal wasn't tested, the tag simply isn't there; we don't claim what we don't know.",
+              body: "Bloodwork done and negative — FIV/FeLV for cats, heartworm for dogs. If a pet wasn't tested, the tag simply isn't there; we don't claim what we don't know.",
             },
             {
               tag: "FIV + / FeLV + / heartworm +",
@@ -140,7 +140,7 @@ export default async function HowItWorksPage() {
         <div className="max-w-[1160px] mx-auto px-6 md:px-8 py-16 md:py-20 grid md:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] gap-10 md:gap-16 items-center">
           <div>
             <h2 className="font-display font-extrabold text-[28px] md:text-[36px] leading-[1.15] text-cream m-0 mb-5">
-              And when an animal needs a vet?
+              And when a pet needs a vet?
             </h2>
             <p className="font-sans font-medium text-base leading-[1.7] text-cream/70 m-0 mb-[14px] max-w-[460px]">
               The rescuer posts the clinic&rsquo;s bill here. You pay the clinic
@@ -152,7 +152,7 @@ export default async function HowItWorksPage() {
               for everyone to see.
             </p>
             <p className="font-sans font-semibold text-sm text-cream/50 m-0">
-              Works for listed animals and for the ones still on the street.
+              Works for listed pets and for the ones still on the street.
             </p>
           </div>
           {openBill && (
@@ -169,7 +169,7 @@ export default async function HowItWorksPage() {
 
       <div className="max-w-[1160px] mx-auto px-6 md:px-8 py-16 text-center">
         <Link
-          href="/adopt"
+          href="/pets"
           className="inline-block bg-cocoa text-cream no-underline font-sans font-bold text-[15px] px-7 py-[15px] rounded-[12px] hover:bg-[#241A14]"
         >
           Browse the cats &amp; dogs

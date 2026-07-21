@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   robots: { index: false },
 };
 
-// The dashboard brings its own chrome (sidebar per page — the My-animals
+// The dashboard brings its own chrome (sidebar per page — the My-pets
 // screen shows the rescuer card, the others don't). The marketing Header and
 // Footer both return null on /dashboard* routes.
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {

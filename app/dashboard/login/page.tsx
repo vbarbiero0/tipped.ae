@@ -111,7 +111,7 @@ export default function RescuerLoginPage() {
         </h1>
         <p className="font-sans font-semibold text-[13.5px] text-cocoa/55 m-0 mb-[26px]">
           {mode === "signin"
-            ? "The dashboard for your animals and profile."
+            ? "The dashboard for your pets and profile."
             : mode === "forgot"
               ? "Tell us your username or email — we'll send a reset link."
               : "Check your email — the reset link is on its way."}
@@ -227,7 +227,7 @@ export default function RescuerLoginPage() {
         <p className="font-sans font-medium text-[12.5px] text-cocoa/55 text-center m-0 mt-5">
           New rescuer?{" "}
           <a
-            href={`mailto:${RESCUER_CONTACT_EMAIL}?subject=${encodeURIComponent("Listing my animals on tipped")}`}
+            href={`mailto:${RESCUER_CONTACT_EMAIL}?subject=${encodeURIComponent("Listing my pets on tipped")}`}
             className="font-bold"
           >
             Email us

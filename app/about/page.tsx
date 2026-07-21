@@ -22,22 +22,22 @@ export default function AboutPage() {
         <p className="font-sans font-medium text-[16px] leading-[1.7] text-cocoa/80 m-0">
           When a street cat is trapped, neutered and returned, the vet clips the
           tip of one ear. It&rsquo;s the universal sign that somebody stepped in
-          — this animal is fixed, vaccinated, looked after. That clipped ear is
+          — this pet is fixed, vaccinated, looked after. That clipped ear is
           where our name comes from, and it&rsquo;s the whole idea: the UAE is
-          full of animals somebody already saved. They just need somewhere to
+          full of pets somebody already saved. They just need somewhere to
           go next.
         </p>
         <p className="font-sans font-medium text-[16px] leading-[1.7] text-cocoa/80 m-0">
           The people doing the saving — the rescuers who feed a block every
           night, cover clinic runs, and know every cat and dog by name — mostly
           work out of Instagram DMs and WhatsApp groups. tipped gives their
-          animals a proper shop window: clean profiles that share anywhere,
+          pets a proper shop window: clean profiles that share anywhere,
           honest health tags, and a button that emails the rescuer directly.
         </p>
         <p className="font-sans font-medium text-[16px] leading-[1.7] text-cocoa/80 m-0">
           We built it on three refusals. No forms — you write to a person, not
           a system. No middlemen — the rescuer decides who adopts, the way they
-          always have. And no money through the platform — when an animal needs
+          always have. And no money through the platform — when a pet needs
           a vet, you pay the clinic directly, and the receipt goes up in
           public. The shop is the one place money changes hands, and 100% of
           its profit goes to vet bills, on the books,{" "}
@@ -45,7 +45,7 @@ export default function AboutPage() {
         </p>
         <p className="font-sans font-medium text-[16px] leading-[1.7] text-cocoa/80 m-0">
           tipped started in Dubai and covers all seven emirates. Adopters can
-          be anywhere — UAE animals fly well, and they&rsquo;ve been landing in
+          be anywhere — UAE pets fly well, and they&rsquo;ve been landing in
           London, Berlin and Toronto for years.
         </p>
       </div>
@@ -56,10 +56,10 @@ export default function AboutPage() {
 
       <div className="flex items-center gap-[14px] flex-wrap">
         <Link
-          href="/adopt"
+          href="/pets"
           className="bg-cocoa text-cream no-underline font-sans font-bold text-[15px] px-7 py-[15px] rounded-[12px] hover:bg-[#241A14]"
         >
-          Find your animal
+          Find your pet
         </Link>
         <Link
           href="/rescuers"

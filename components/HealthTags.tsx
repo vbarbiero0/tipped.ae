@@ -6,7 +6,7 @@ import {
   VACCINATED_DEFINITION,
   conditionNotesFor,
 } from "@/lib/health";
-import type { Animal } from "@/lib/types";
+import type { Pet } from "@/lib/types";
 
 // Tag styles: basics are quiet Cream pills, conditions are warm Sunset-tinted
 // pills. Deliberately no red, no alarm styling — an FIV+ cat is adoptable and
@@ -47,16 +47,16 @@ function PawBadge({ label }: { label: string }) {
 // The card slot: one identity badge (the ear-tip when true, else a paw
 // "sterilised") + condition tags only — those are the decision-relevant ones
 // before a click. The full row lives on the profile.
-export function CardBadges({ animal }: { animal: Animal }) {
-  const sterilised = animal.medical_checks.includes("spayed_neutered");
+export function CardBadges({ pet }: { pet: Pet }) {
+  const sterilised = pet.medical_checks.includes("spayed_neutered");
   return (
     <>
-      {animal.ear_tipped ? (
+      {pet.ear_tipped ? (
         <EarTippedBadge />
       ) : sterilised ? (
         <PawBadge label="sterilised" />
       ) : null}
-      {animal.conditions.map((slug) => (
+      {pet.conditions.map((slug) => (
         <ConditionTag key={slug} label={CONDITION_LABELS[slug]} />
       ))}
     </>
@@ -77,11 +77,11 @@ const CHECK_LABELS: Record<string, string> = {
   fit_to_fly: "fit to fly",
 };
 
-export function HealthTagRow({ animal }: { animal: Animal }) {
+export function HealthTagRow({ pet }: { pet: Pet }) {
   return (
     <div className="flex items-center flex-wrap gap-[6px]">
-      {animal.ear_tipped && <EarTippedBadge />}
-      {animal.medical_checks.map((c) =>
+      {pet.ear_tipped && <EarTippedBadge />}
+      {pet.medical_checks.map((c) =>
         c === "vaccinated" ? (
           <span key={c} title={VACCINATED_DEFINITION}>
             <BasicTag label={CHECK_LABELS[c] ?? c} />
@@ -90,11 +90,11 @@ export function HealthTagRow({ animal }: { animal: Animal }) {
           <BasicTag key={c} label={CHECK_LABELS[c] ?? c} />
         )
       )}
-      {animal.microchipped && <BasicTag label="microchipped" />}
-      {animal.tested.map((slug) => (
+      {pet.microchipped && <BasicTag label="microchipped" />}
+      {pet.tested.map((slug) => (
         <BasicTag key={slug} label={TESTED_LABELS[slug]} />
       ))}
-      {animal.conditions.map((slug) => (
+      {pet.conditions.map((slug) => (
         <ConditionTag key={slug} label={CONDITION_LABELS[slug]} />
       ))}
     </div>
@@ -103,8 +103,8 @@ export function HealthTagRow({ animal }: { animal: Animal }) {
 
 // Auto-added explainers (Vanessa's rule: an FIV+ cat's profile must say what
 // that means and how to care). Renders nothing when no known condition.
-export function ConditionNotes({ animal }: { animal: Animal }) {
-  const notes = conditionNotesFor(animal);
+export function ConditionNotes({ pet }: { pet: Pet }) {
+  const notes = conditionNotesFor(pet);
   if (notes.length === 0) return null;
   return (
     <div className="flex flex-col gap-3 mt-5">
@@ -114,7 +114,7 @@ export function ConditionNotes({ animal }: { animal: Animal }) {
             {n.title}
           </div>
           <p className="font-sans font-medium text-[13.5px] leading-[1.65] text-cocoa/78 m-0">
-            {n.body(animal.name)}
+            {n.body(pet.name)}
           </p>
         </div>
       ))}

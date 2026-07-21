@@ -1,4 +1,4 @@
-import type { Animal, BillPaid, Product, Rescuer, ShopLedgerRow } from "./types";
+import type { Pet, BillPaid, Product, Rescuer, ShopLedgerRow } from "./types";
 
 // Placeholder rescuers — real people appear only with their consent (Hard rule 5).
 // is_placeholder stays true until each rescuer confirms.
@@ -11,7 +11,7 @@ export const seedRescuers: Rescuer[] = [
       "Feeds the cafeteria block in Deira every night. Knows every cat by name and most by opinion.",
     email: "vbarbiero0@gmail.com",
     instagram: "straycatdubai",
-    cats_saved: 34,
+    pets_saved: 34,
     clinics: [{ name: "Modern Vet, Umm Suqeim" }],
     is_placeholder: true,
     trust_level: "trusted",
@@ -27,7 +27,7 @@ export const seedRescuers: Rescuer[] = [
       "TNR runs around the Al Quoz warehouses. If a cat is under a truck, Kwagga has already met it.",
     email: "vbarbiero0@gmail.com",
     instagram: "kevinofdxb",
-    cats_saved: 21,
+    pets_saved: 21,
     clinics: [{ name: "Modern Vet, Umm Suqeim" }],
     is_placeholder: true,
   },
@@ -39,7 +39,7 @@ export const seedRescuers: Rescuer[] = [
       "Runs Save Dubai Stray Cats out of Satwa. Specialises in the ones everyone else gave up on.",
     email: "vbarbiero0@gmail.com",
     instagram: null,
-    cats_saved: 47,
+    pets_saved: 47,
     clinics: [{ name: "Modern Vet, Umm Suqeim" }],
     is_placeholder: true,
   },
@@ -51,13 +51,13 @@ export const seedRescuers: Rescuer[] = [
       "Works the desert edge where the dogs are. Runs feeding rounds at dawn before the heat, and knows every saluki mix between Sharjah and Mirdif.",
     email: "vbarbiero0@gmail.com",
     instagram: null,
-    cats_saved: 18,
+    pets_saved: 18,
     clinics: [{ name: "Modern Vet, Umm Suqeim" }],
     is_placeholder: true,
   },
 ];
 
-export const seedAnimals: Animal[] = [
+export const seedPets: Pet[] = [
   {
     id: "a-karak",
     ref: "DUBAI-001",
@@ -218,7 +218,7 @@ export const seedBillsPaid: BillPaid[] = [
     id: "b-batata-dental",
     paid_on: "2026-07-10",
     context: "Batata — dental extraction",
-    animal_ref: "DUBAI-003",
+    pet_ref: "DUBAI-003",
     clinic: "Modern Vet · Umm Suqeim",
     amount_aed: 840,
     amount_covered_aed: 520,

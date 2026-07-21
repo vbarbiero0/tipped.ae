@@ -32,7 +32,7 @@ export default async function TransparencyPage() {
         Money for care never passes through tipped — clinics get paid directly,
         and 100% of the shop&rsquo;s profit goes to vet bills. What comes in and
         what gets paid lives here, receipt by receipt, updated weekly. Listed
-        animals and the ones still on the street alike.
+        pets and the ones still on the street alike.
       </p>
 
       {/* Totals + honesty line */}
@@ -142,8 +142,8 @@ export default async function TransparencyPage() {
                   >
                     <div className="flex justify-between items-baseline gap-3">
                       <span className="font-sans font-bold text-[14px] text-cocoa">
-                        {b.animal_ref ? (
-                          <Link href={`/adopt/${b.animal_ref}`} className="no-underline text-cocoa hover:text-link">
+                        {b.pet_ref ? (
+                          <Link href={`/pets/${b.pet_ref}`} className="no-underline text-cocoa hover:text-link">
                             {b.context}
                           </Link>
                         ) : (

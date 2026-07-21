@@ -7,7 +7,7 @@ import { EMIRATES } from "@/lib/emirates";
 import { inviteRescuer } from "@/app/admin/actions";
 
 // Rescuer management: trust level, active (deactivating unpublishes their
-// animals via RLS — deletes nothing), consent flag, inline profile edit,
+// pets via RLS — deletes nothing), consent flag, inline profile edit,
 // and the invite flow (account + emailable one-time login link).
 
 interface AdminRescuer {
@@ -45,9 +45,9 @@ export default function AdminRescuersPage() {
       .select("id,name,username,email,emirate,instagram,trust_level,role,active,is_placeholder,created_at")
       .order("created_at", { ascending: true });
     setRows((data as AdminRescuer[]) ?? []);
-    const { data: animals } = await supabase.from("animals").select("rescuer_id");
+    const { data: pets } = await supabase.from("pets").select("rescuer_id");
     const c: Record<string, number> = {};
-    for (const a of (animals as { rescuer_id: string }[]) ?? [])
+    for (const a of (pets as { rescuer_id: string }[]) ?? [])
       c[a.rescuer_id] = (c[a.rescuer_id] ?? 0) + 1;
     setCounts(c);
   }, []);

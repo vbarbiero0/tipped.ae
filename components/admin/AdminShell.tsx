@@ -13,7 +13,7 @@ import { supabaseBrowser } from "@/lib/supabase-browser";
 const nav = [
   { href: "/admin", label: "Approvals" },
   { href: "/admin/rescuers", label: "Rescuers" },
-  { href: "/admin/animals", label: "All animals" },
+  { href: "/admin/pets", label: "All pets" },
   { href: "/admin/ledger", label: "Ledger" },
   { href: "/admin/signups", label: "Signups" },
 ];
@@ -43,7 +43,7 @@ export default function AdminShell({
   useEffect(() => {
     if (!admin) return;
     supabaseBrowser()
-      .from("animals")
+      .from("pets")
       .select("id", { count: "exact", head: true })
       .eq("approval_status", "pending")
       .then(({ count }) => setPending(count ?? 0));
@@ -91,7 +91,7 @@ export default function AdminShell({
               href="/dashboard"
               className="font-sans font-bold text-[11.5px] text-cocoa/60 hover:text-cocoa no-underline"
             >
-              My animals
+              My Pets
             </Link>
             <button
               onClick={() => signOutRescuer(router)}

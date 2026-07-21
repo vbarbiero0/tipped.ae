@@ -7,7 +7,7 @@ import AdminShell, { useAdmin } from "@/components/admin/AdminShell";
 import { supabaseBrowser } from "@/lib/supabase-browser";
 import { EMIRATES } from "@/lib/emirates";
 
-// Every animal on the platform: search, filter, edit, unpublish, and the
+// Every pet on the platform: search, filter, edit, unpublish, and the
 // homepage-featured toggles (max 3).
 
 interface Row {
@@ -26,7 +26,7 @@ interface Row {
 
 const speciesEmoji: Record<string, string> = { cat: "🐈", dog: "🐕", other: "🦜" };
 
-export default function AdminAnimalsPage() {
+export default function AdminPetsPage() {
   const { admin, loading } = useAdmin();
   const [rows, setRows] = useState<Row[]>([]);
   const [q, setQ] = useState("");
@@ -38,7 +38,7 @@ export default function AdminAnimalsPage() {
 
   const load = useCallback(async () => {
     const { data } = await supabaseBrowser()
-      .from("animals")
+      .from("pets")
       .select("id,ref,name,species,emirate,status,approval_status,featured,photos,rescuer_id,rescuer:rescuers(name)")
       .order("created_at", { ascending: false });
     setRows((data as unknown as Row[]) ?? []);
@@ -66,7 +66,7 @@ export default function AdminAnimalsPage() {
   const featuredCount = rows.filter((r) => r.featured).length;
 
   const patch = async (id: string, fields: Partial<Row>, note?: string) => {
-    const { error } = await supabaseBrowser().from("animals").update(fields).eq("id", id);
+    const { error } = await supabaseBrowser().from("pets").update(fields).eq("id", id);
     if (error) {
       setMsg("Couldn't save. Try again.");
       return;
@@ -77,7 +77,7 @@ export default function AdminAnimalsPage() {
 
   const toggleFeatured = (r: Row) => {
     if (!r.featured && featuredCount >= 3) {
-      setMsg("Three animals are already featured — unfeature one first.");
+      setMsg("Three pets are already featured — unfeature one first.");
       return;
     }
     patch(r.id, { featured: !r.featured });
@@ -92,7 +92,7 @@ export default function AdminAnimalsPage() {
         <div className="font-sans font-semibold text-[14px] text-cocoa/50">Loading…</div>
       ) : (
         <>
-          <h1 className="font-display font-extrabold text-[30px] text-cocoa m-0">All animals</h1>
+          <h1 className="font-display font-extrabold text-[30px] text-cocoa m-0">All pets</h1>
           <div className="font-sans font-semibold text-[13.5px] text-cocoa/55 mt-[3px] mb-4">
             {rows.length} on the platform · {featuredCount}/3 featured on the homepage
           </div>

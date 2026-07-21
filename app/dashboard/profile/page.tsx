@@ -144,10 +144,10 @@ export default function RescuerProfilePage() {
       if (avatarFile) {
         const path = `avatars/${rescuer.id}-${Date.now()}`;
         const { error: upErr } = await supabase.storage
-          .from("animal-photos")
+          .from("pet-photos")
           .upload(path, avatarFile, { contentType: avatarFile.type });
         if (upErr) throw upErr;
-        avatar = supabase.storage.from("animal-photos").getPublicUrl(path).data.publicUrl;
+        avatar = supabase.storage.from("pet-photos").getPublicUrl(path).data.publicUrl;
       }
       const { error } = await supabase
         .from("rescuers")
@@ -187,7 +187,7 @@ export default function RescuerProfilePage() {
               My profile
             </h1>
             <div className="font-sans font-semibold text-[13.5px] text-cocoa/55 mb-[26px]">
-              What adopters see next to your animals.
+              What adopters see next to your pets.
             </div>
 
             <div className="grid md:grid-cols-2 gap-x-8 gap-y-7 max-w-[940px]">

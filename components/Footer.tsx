@@ -59,6 +59,7 @@ export default function Footer() {
               { href: "/about", label: "About tipped" },
               { href: "/contact", label: "Contact" },
               { href: "/transparency", label: "Open books" },
+              { href: "/adopted", label: "Already home" },
               { href: "/how-it-works", label: "How it works" },
             ].map((n) => (
               <Link
@@ -103,7 +104,7 @@ export default function Footer() {
             </Link>
           </div>
           <div className="font-sans font-semibold text-xs text-cream/35 mt-6">
-            United Arab Emirates · every animal here is sterilised, vaccinated and known by name
+            United Arab Emirates · every pet here is sterilised, vaccinated and known by name
           </div>
         </div>
       </div>

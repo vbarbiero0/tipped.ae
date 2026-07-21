@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-import { getAnimal } from "@/lib/data";
+import { getPet } from "@/lib/data";
 import { STATUS_LINE } from "@/lib/brand";
 
 export const size = { width: 1200, height: 630 };
@@ -7,17 +7,17 @@ export const contentType = "image/png";
 export const alt = "tipped — the UAE's street cats & dogs";
 
 // Brand fallback share card: species head + name + status on Cocoa.
-// When the animal has a photo, generateMetadata points og:image at the photo
+// When the pet has a photo, generateMetadata points og:image at the photo
 // instead; this route covers listings without one.
 export default async function OgImage({ params }: { params: Promise<{ ref: string }> }) {
   const { ref } = await params;
-  const animal = await getAnimal(ref);
-  const name = animal?.name ?? "tipped";
-  const statusLine = animal ? STATUS_LINE[animal.status] : "the UAE's street cats & dogs";
-  const meta = animal
-    ? [animal.sex?.toLowerCase(), animal.age, animal.emirate].filter(Boolean).join(" · ")
+  const pet = await getPet(ref);
+  const name = pet?.name ?? "tipped";
+  const statusLine = pet ? STATUS_LINE[pet.status] : "the UAE's street cats & dogs";
+  const meta = pet
+    ? [pet.sex?.toLowerCase(), pet.age, pet.emirate].filter(Boolean).join(" · ")
     : "";
-  const isDog = animal?.species === "dog";
+  const isDog = pet?.species === "dog";
 
   return new ImageResponse(
     (

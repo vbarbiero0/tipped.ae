@@ -6,7 +6,7 @@ import AdminShell, { useAdmin } from "@/components/admin/AdminShell";
 import { EmptyStateHead } from "@/components/dashboard/icons";
 import { supabaseBrowser } from "@/lib/supabase-browser";
 
-// Approval queue: pending animals newest-first with a full preview.
+// Approval queue: pending pets newest-first with a full preview.
 // Approve / Request changes (note the rescuer sees) / Reject — all RLS-gated
 // to admins, all audit-logged by DB triggers.
 
@@ -54,7 +54,7 @@ export default function ApprovalQueuePage() {
 
   const load = useCallback(async () => {
     const { data } = await supabaseBrowser()
-      .from("animals")
+      .from("pets")
       .select(
         "id,ref,name,species,sex,age,emirate,story,medical_other,medical_checks,ear_tipped,microchip_number,vet_certificate_url,photos,created_at,rescuer:rescuers(name)"
       )
@@ -91,7 +91,7 @@ export default function ApprovalQueuePage() {
     actNote?: string
   ) => {
     const { error: err } = await supabaseBrowser()
-      .from("animals")
+      .from("pets")
       .update({ approval_status: status, approval_note: actNote ?? null })
       .eq("id", id);
     if (err) {

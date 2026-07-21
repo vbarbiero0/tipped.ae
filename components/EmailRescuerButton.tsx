@@ -3,18 +3,18 @@
 import { useEffect, useRef, useState } from "react";
 import { adoptionMailto, fosterMailto } from "@/lib/mailto";
 import { supabaseBrowser } from "@/lib/supabase-browser";
-import type { Animal, Rescuer } from "@/lib/types";
+import type { Pet, Rescuer } from "@/lib/types";
 
 // Hard rule 2: direct email, pre-filled subject + template body. The popover
 // offers one mailto per intent the rescuer is open to (adopt / foster), plus
 // a copy-the-address fallback for desktop visitors with no default mail app.
 // Still no forms, nothing stored.
 export default function EmailRescuerButton({
-  animal,
+  pet,
   rescuer,
   size = "sm",
 }: {
-  animal: Animal;
+  pet: Pet;
   rescuer: Rescuer;
   size?: "sm" | "lg";
 }) {
@@ -23,11 +23,11 @@ export default function EmailRescuerButton({
   const wrapRef = useRef<HTMLSpanElement>(null);
 
   const firstName = rescuer.name.split(" ")[0];
-  const canAdopt = animal.for_adoption;
-  const canFoster = animal.for_foster;
+  const canAdopt = pet.for_adoption;
+  const canFoster = pet.for_foster;
   const fosterOnly = canFoster && !canAdopt;
   const both = canAdopt && canFoster;
-  const label = fosterOnly ? `Foster ${animal.name}` : `Email ${firstName}`;
+  const label = fosterOnly ? `Foster ${pet.name}` : `Email ${firstName}`;
 
   useEffect(() => {
     if (!open) return;
@@ -49,11 +49,11 @@ export default function EmailRescuerButton({
     if (!open) setCopied(false);
   }, [open]);
 
-  // Fire-and-forget tap counter (animal_stats.email_clicks)
+  // Fire-and-forget tap counter (pet_stats.email_clicks)
   const countEmailClick = () => {
     if (!process.env.NEXT_PUBLIC_SUPABASE_URL) return;
     supabaseBrowser()
-      .rpc("bump_animal_stat", { p_animal_id: animal.id, p_kind: "email" })
+      .rpc("bump_pet_stat", { p_pet_id: pet.id, p_kind: "email" })
       .then(() => undefined);
   };
 
@@ -90,7 +90,7 @@ export default function EmailRescuerButton({
           <div className="flex flex-col gap-2">
             {canAdopt && (
               <a
-                href={adoptionMailto(rescuer.email, animal.name, animal.ref)}
+                href={adoptionMailto(rescuer.email, pet.name, pet.ref)}
                 onClick={() => {
                   countEmailClick();
                   setOpen(false);
@@ -102,7 +102,7 @@ export default function EmailRescuerButton({
             )}
             {canFoster && (
               <a
-                href={fosterMailto(rescuer.email, animal.name, animal.ref)}
+                href={fosterMailto(rescuer.email, pet.name, pet.ref)}
                 onClick={() => {
                   countEmailClick();
                   setOpen(false);

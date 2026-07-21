@@ -4,7 +4,7 @@
 // read as a warning label. Detail lives in the medical text and the
 // condition notes below.
 
-import type { Animal } from "./types";
+import type { Pet } from "./types";
 
 // "Tested" is a claim of its own — "we didn't test" and "negative" are
 // different statements.
@@ -38,7 +38,7 @@ export const CONDITION_LABELS: Record<ConditionSlug, string> = {
 export const VACCINATED_DEFINITION =
   "Up to date on the UAE's required shots: rabies every year, plus the core combo — flu/enteritis (FVRCP) for cats, DHPPi/L for dogs. The same set the municipality checks at registration.";
 
-// Auto-explainers: when an animal carries one of these conditions, its
+// Auto-explainers: when a pet carries one of these conditions, its
 // profile grows a plain-language section — what it means, how to care.
 // special_needs and chronic deliberately have no generic note; the rescuer's
 // medical text carries the specifics.
@@ -67,8 +67,8 @@ export const CONDITION_NOTES: Partial<
   },
 };
 
-export function conditionNotesFor(animal: Animal) {
-  return animal.conditions
+export function conditionNotesFor(pet: Pet) {
+  return pet.conditions
     .map((slug) => CONDITION_NOTES[slug])
     .filter((n): n is NonNullable<typeof n> => Boolean(n));
 }

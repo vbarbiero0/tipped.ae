@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import TippedMonogram from "@/components/TippedMonogram";
 import { getRescuers } from "@/lib/data";
 import { RESCUER_CONTACT_EMAIL } from "@/lib/brand";
@@ -10,16 +11,16 @@ export const metadata: Metadata = {
 };
 
 const joinMailto = `mailto:${RESCUER_CONTACT_EMAIL}?subject=${encodeURIComponent(
-  "Listing my animals on tipped"
+  "Listing my pets on tipped"
 )}&body=${encodeURIComponent(
   [
-    "Hi — I rescue in the UAE and want to list my animals.",
+    "Hi — I rescue in the UAE and want to list my pets.",
     "",
     "My name:",
     "Group or independent:",
     "Emirate:",
     "Instagram (if any):",
-    "How many animals right now:",
+    "How many pets right now:",
     "",
     "We'll take it from there.",
   ].join("\n")
@@ -30,7 +31,7 @@ export default async function RescuersPage() {
   return (
     <>
       <div className="max-w-[1160px] mx-auto px-6 md:px-8 pt-8 md:pt-12 pb-16 md:pb-[84px]">
-        <div className="eyebrow mb-[14px]">THE PEOPLE BEHIND THE ANIMALS</div>
+        <div className="eyebrow mb-[14px]">THE PEOPLE BEHIND THE PETS</div>
         <h1 className="font-display font-extrabold text-[34px] md:text-[44px] text-cocoa m-0 mb-3">
           The rescuers
         </h1>
@@ -50,7 +51,7 @@ export default async function RescuersPage() {
                     {r.name}
                   </div>
                   <div className="font-sans font-semibold text-[12.5px] text-cocoa/55">
-                    {r.emirate} · {r.cats_saved} animals saved
+                    {r.emirate} · {r.pets_saved} pets saved
                   </div>
                 </div>
               </div>
@@ -65,6 +66,14 @@ export default async function RescuersPage() {
                 </p>
               )}
               <div className="flex flex-col gap-1 font-sans font-semibold text-[13px]">
+                {r.username && (
+                  <Link
+                    href={`/rescuers/${r.username}`}
+                    className="font-bold no-underline"
+                  >
+                    Their pets &amp; wishlist →
+                  </Link>
+                )}
                 <a href={`mailto:${r.email}`}>{r.email}</a>
                 {r.instagram && (
                   <a
@@ -111,7 +120,7 @@ export default async function RescuersPage() {
                 Reach past your followers
               </div>
               <p className="font-sans font-medium text-[14.5px] leading-[1.6] text-cocoa/75 m-0">
-                Every animal gets a clean profile that shares beautifully to
+                Every pet gets a clean profile that shares beautifully to
                 WhatsApp and Instagram — so an adopter in London sees your cat
                 the way you see her.
               </p>
@@ -142,10 +151,10 @@ export default async function RescuersPage() {
               href={joinMailto}
               className="bg-cocoa text-cream no-underline font-sans font-bold text-[15px] px-7 py-[15px] rounded-[12px] hover:bg-[#241A14]"
             >
-              List your animals
+              List your pets
             </a>
             <span className="font-sans font-semibold text-[13.5px] text-cocoa/55">
-              One email. Your first animal can be up the same day.
+              One email. Your first pet can be up the same day.
             </span>
           </div>
         </div>

@@ -11,7 +11,7 @@ export interface Rescuer {
   blurb: string | null;
   email: string;
   instagram: string | null; // handle without @
-  cats_saved: number; // total animals rehomed — column name kept for schema continuity
+  pets_saved: number; // total pets rehomed — column name kept for schema continuity
   clinics: { name: string; url?: string; ref?: string }[];
   is_placeholder: boolean;
   username?: string | null;
@@ -22,7 +22,7 @@ export interface Rescuer {
   active?: boolean;
 }
 
-export interface Animal {
+export interface Pet {
   id: string;
   ref: string; // 'DXB-001'
   rescuer_id: string;
@@ -59,7 +59,7 @@ export interface BillPaid {
   id: string;
   paid_on: string; // ISO date
   context: string | null;
-  animal_ref: string | null;
+  pet_ref: string | null;
   clinic: string | null;
   amount_aed: number;
   amount_covered_aed: number | null;
