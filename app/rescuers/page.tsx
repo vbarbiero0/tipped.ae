@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import TippedMonogram from "@/components/TippedMonogram";
+import JoinForm from "@/components/JoinForm";
 import { getRescuers } from "@/lib/data";
 import { RESCUER_CONTACT_EMAIL } from "@/lib/brand";
 
@@ -146,17 +147,17 @@ export default async function RescuersPage() {
             </div>
           </div>
 
-          <div className="flex items-center gap-5 flex-wrap">
-            <a
-              href={joinMailto}
-              className="bg-cocoa text-cream no-underline font-sans font-bold text-[15px] px-7 py-[15px] rounded-[12px] hover:bg-[#241A14]"
-            >
-              List your pets
-            </a>
-            <span className="font-sans font-semibold text-[13.5px] text-cocoa/55">
-              One email. Your first pet can be up the same day.
-            </span>
+          <div className="mb-4">
+            <JoinForm />
           </div>
+          <span className="font-sans font-semibold text-[13.5px] text-cocoa/55">
+            One message. Your first pet can be up the same day. Prefer plain
+            email?{" "}
+            <a href={joinMailto} className="font-bold">
+              Write to us directly
+            </a>
+            .
+          </span>
         </div>
       </section>
     </>

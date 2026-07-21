@@ -27,6 +27,16 @@ interface AdminRescuer {
 const inputCls =
   "w-full box-border font-sans font-semibold text-[14px] text-cocoa bg-white border-[1.5px] border-cocoa/[.15] rounded-[10px] px-3 py-[10px] outline-none focus:border-cocoa";
 
+interface RescuerApplication {
+  id: string;
+  name: string;
+  email: string;
+  emirate: string | null;
+  instagram: string | null;
+  note: string | null;
+  created_at: string;
+}
+
 export default function AdminRescuersPage() {
   const { admin, loading } = useAdmin();
   const [rows, setRows] = useState<AdminRescuer[]>([]);
@@ -37,6 +47,7 @@ export default function AdminRescuersPage() {
   const [invite, setInvite] = useState({ name: "", username: "", email: "", emirate: "Dubai" });
   const [inviteResult, setInviteResult] = useState<{ link?: string; error?: string } | null>(null);
   const [inviteBusy, setInviteBusy] = useState(false);
+  const [applications, setApplications] = useState<RescuerApplication[]>([]);
 
   const load = useCallback(async () => {
     const supabase = supabaseBrowser();
@@ -50,6 +61,12 @@ export default function AdminRescuersPage() {
     for (const a of (pets as { rescuer_id: string }[]) ?? [])
       c[a.rescuer_id] = (c[a.rescuer_id] ?? 0) + 1;
     setCounts(c);
+    const { data: apps } = await supabase
+      .from("rescuer_applications")
+      .select("id,name,email,emirate,instagram,note,created_at")
+      .is("handled_at", null)
+      .order("created_at", { ascending: true });
+    setApplications((apps as RescuerApplication[]) ?? []);
   }, []);
 
   useEffect(() => {
@@ -128,6 +145,59 @@ export default function AdminRescuersPage() {
               Invite a rescuer
             </button>
           </div>
+
+          {applications.length > 0 && (
+            <div className="bg-white rounded-[16px] shadow-card p-5 mb-5 max-w-[860px]">
+              <div className="font-sans font-bold text-[11px] tracking-[.08em] text-cocoa/45 mb-3">
+                APPLICATIONS · {applications.length}
+              </div>
+              {applications.map((a, i) => (
+                <div key={a.id}
+                  className={`flex items-start justify-between gap-4 py-3 ${
+                    i < applications.length - 1 ? "border-b border-cocoa/[.07]" : ""
+                  }`}>
+                  <div className="min-w-0">
+                    <div className="font-sans font-bold text-[14px] text-cocoa">
+                      {a.name}
+                      <span className="font-semibold text-[12px] text-cocoa/50 ml-2">
+                        {[a.emirate, a.instagram && `@${a.instagram}`].filter(Boolean).join(" · ")}
+                      </span>
+                    </div>
+                    <div className="font-sans font-semibold text-[12.5px] text-cocoa/60">{a.email}</div>
+                    {a.note && (
+                      <div className="font-sans font-medium text-[13px] text-cocoa/70 mt-1">&ldquo;{a.note}&rdquo;</div>
+                    )}
+                    <div className="font-mono text-[10.5px] text-cocoa/40 mt-1">{a.created_at.slice(0, 10)}</div>
+                  </div>
+                  <div className="flex gap-2 shrink-0">
+                    <button
+                      onClick={() => {
+                        setInvite({
+                          name: a.name,
+                          username: a.name.toLowerCase().replace(/[^a-z0-9]+/g, ""),
+                          email: a.email,
+                          emirate: a.emirate ?? "Dubai",
+                        });
+                        setInviteOpen(true);
+                        setInviteResult(null);
+                      }}
+                      className="font-sans font-bold text-[12px] text-cocoa border-[1.5px] border-cocoa/20 px-3 py-[6px] rounded-[8px] cursor-pointer bg-transparent hover:bg-cocoa/[.05]">
+                      Invite →
+                    </button>
+                    <button
+                      onClick={async () => {
+                        await supabaseBrowser().from("rescuer_applications")
+                          .update({ handled_at: new Date().toISOString() }).eq("id", a.id);
+                        setApplications((prev) => prev.filter((x) => x.id !== a.id));
+                      }}
+                      className="font-sans font-bold text-[12px] text-cocoa/55 border-[1.5px] border-cocoa/15 px-3 py-[6px] rounded-[8px] cursor-pointer bg-transparent hover:border-cocoa/40">
+                      Dismiss
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
 
           {inviteOpen && (
             <div className="bg-white rounded-[16px] shadow-card p-5 mb-6 max-w-[560px]">
