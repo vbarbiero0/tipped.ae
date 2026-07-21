@@ -102,11 +102,9 @@ function AddAnimalForm() {
   // Edit mode: prefill from the DB row
   useEffect(() => {
     if (!editId || !rescuer) return;
-    supabaseBrowser()
-      .from("animals")
-      .select("*")
-      .eq("id", editId)
-      .eq("rescuer_id", rescuer.id)
+    let query = supabaseBrowser().from("animals").select("*").eq("id", editId);
+    if (rescuer.role !== "admin") query = query.eq("rescuer_id", rescuer.id);
+    query
       .maybeSingle()
       .then(({ data }) => {
         if (!data) return;
@@ -188,7 +186,8 @@ function AddAnimalForm() {
         .map((c) => MEDICAL_LABEL_TO_SLUG[c]);
 
       const row = {
-        rescuer_id: rescuer.id,
+        // Admins editing someone else's animal must not steal ownership
+        ...(editId ? {} : { rescuer_id: rescuer.id }),
         name: name.trim(),
         species,
         sex: sex === "male" ? "Male" : "Female",

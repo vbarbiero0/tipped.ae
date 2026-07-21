@@ -24,7 +24,7 @@ const rescuerCredits = [
 
 export default function Footer() {
   const pathname = usePathname();
-  if (pathname?.startsWith("/dashboard")) return null;
+  if (pathname?.startsWith("/dashboard") || pathname?.startsWith("/admin")) return null;
   return (
     <footer className="bg-cocoa">
       <div className="max-w-[1160px] mx-auto px-6 md:px-8 pt-16 pb-12 grid md:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] gap-14">

@@ -93,7 +93,7 @@ export default function Header() {
   const [showTop, setShowTop] = useState(false);
   const wrapRef = useRef<HTMLDivElement>(null);
   // The rescuer dashboard has its own sidebar chrome
-  const inDashboard = pathname?.startsWith("/dashboard");
+  const inDashboard = pathname?.startsWith("/dashboard") || pathname?.startsWith("/admin");
 
   // Hide the bar while scrolling down, bring it back on any scroll up.
   // The back-to-top tile appears once the visitor is deep in the page.

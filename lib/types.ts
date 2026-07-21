@@ -50,6 +50,7 @@ export interface Animal {
   // Independent of status ("in_foster" says where she sleeps tonight).
   for_adoption: boolean;
   for_foster: boolean;
+  featured?: boolean;
   photos: string[];
   rescuer?: Rescuer;
 }
@@ -65,6 +66,7 @@ export interface BillPaid {
   receipt_url: string | null;
   source: "shop" | "supporter";
   note: string | null;
+  featured?: boolean;
 }
 
 export interface ShopLedgerRow {

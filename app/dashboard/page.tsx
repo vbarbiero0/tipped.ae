@@ -28,6 +28,7 @@ interface Row {
   emirate: string | null;
   status: "available" | "in_foster" | "adopted";
   approval_status: string;
+  approval_note: string | null;
   photos: string[];
 }
 
@@ -81,7 +82,7 @@ export default function DashboardPage() {
     if (!rescuer) return;
     supabaseBrowser()
       .from("animals")
-      .select("id,ref,name,species,sex,age,emirate,status,approval_status,photos")
+      .select("id,ref,name,species,sex,age,emirate,status,approval_status,approval_note,photos")
       .eq("rescuer_id", rescuer.id)
       .order("created_at", { ascending: true })
       .then(({ data }) => {
@@ -210,13 +211,20 @@ export default function DashboardPage() {
                           {meta}
                         </div>
                         {a.approval_status !== "approved" && (
-                          <div className="inline-flex mt-1 font-sans font-bold text-[10px] tracking-[.06em] text-cocoa/45 bg-cream rounded-[6px] px-[7px] py-[2px]">
-                            {a.approval_status === "pending"
-                              ? "AWAITING REVIEW"
-                              : a.approval_status === "changes_requested"
-                                ? "CHANGES REQUESTED"
-                                : "NOT APPROVED"}
-                          </div>
+                          <>
+                            <div className="inline-flex mt-1 font-sans font-bold text-[10px] tracking-[.06em] text-cocoa/45 bg-cream rounded-[6px] px-[7px] py-[2px]">
+                              {a.approval_status === "pending"
+                                ? "AWAITING REVIEW"
+                                : a.approval_status === "changes_requested"
+                                  ? "CHANGES REQUESTED"
+                                  : "NOT APPROVED"}
+                            </div>
+                            {a.approval_note && (
+                              <div className="font-sans font-medium text-[11.5px] text-cocoa/60 mt-1 max-w-[260px]">
+                                &ldquo;{a.approval_note}&rdquo;
+                              </div>
+                            )}
+                          </>
                         )}
                       </div>
                       <span className="font-sans font-semibold text-[13.5px] text-cocoa/75">

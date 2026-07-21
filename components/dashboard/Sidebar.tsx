@@ -60,6 +60,7 @@ export interface SidebarRescuer {
   username: string | null;
   emirate: string | null;
   trust_level?: "trusted" | "review";
+  role?: "rescuer" | "admin";
 }
 
 export default function Sidebar({
@@ -110,6 +111,14 @@ export default function Sidebar({
               ? "Posts go live immediately — no review step."
               : "New posts are reviewed before going live."}
           </div>
+          {rescuer.role === "admin" && (
+            <Link
+              href="/admin"
+              className="block font-sans font-bold text-[11.5px] text-link no-underline mt-2"
+            >
+              Admin console →
+            </Link>
+          )}
           {onSignOut && (
             <button
               onClick={onSignOut}

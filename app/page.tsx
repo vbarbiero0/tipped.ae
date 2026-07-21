@@ -12,20 +12,23 @@ const SHOW_SHOP = true;
 
 export default async function HomePage() {
   const [animals, bills] = await Promise.all([getAnimals(), getBillsPaid()]);
-  // Featured mix: two cats + one dog so both species show above the fold.
+  // Admin-featured animals lead; the species mix fills any empty slots.
   const available = animals.filter((a) => a.status !== "adopted");
-  const featured = [
-    ...available.filter((a) => a.species === "cat").slice(0, 2),
-    ...available.filter((a) => a.species === "dog").slice(0, 1),
-  ];
-  while (featured.length < 3 && featured.length < available.length) {
-    const next = available.find((a) => !featured.includes(a));
-    if (!next) break;
-    featured.push(next);
+  const featured = available.filter((a) => a.featured).slice(0, 3);
+  for (const pick of [
+    ...available.filter((a) => a.species === "cat"),
+    ...available.filter((a) => a.species === "dog"),
+    ...available,
+  ]) {
+    if (featured.length >= 3) break;
+    if (!featured.includes(pick)) featured.push(pick);
   }
-  const openBill = bills.find(
-    (b) => b.amount_covered_aed !== null && b.amount_covered_aed! < b.amount_aed
-  );
+  // The admin-starred bill fronts the receipt module; else the first open one.
+  const openBill =
+    bills.find((b) => b.featured) ??
+    bills.find(
+      (b) => b.amount_covered_aed !== null && b.amount_covered_aed! < b.amount_aed
+    );
   // Hero prints show real listings: first two animals with photos.
   const [printPortrait, printSquare] = animals.filter((a) => a.photos.length > 0);
 
