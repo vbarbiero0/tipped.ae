@@ -2,7 +2,7 @@ import type { AnimalStatus } from "@/lib/types";
 
 const styles: Record<AnimalStatus, { className: string; label: string }> = {
   available: { className: "bg-sunset text-cocoa", label: "LOOKING FOR A HOME" },
-  pending: { className: "bg-tip-pink text-cocoa", label: "ADOPTION PENDING" },
+  in_foster: { className: "bg-cream border border-cocoa/[.15] text-cocoa/75", label: "IN FOSTER" },
   adopted: { className: "bg-cocoa text-cream", label: "ADOPTED" },
 };
 

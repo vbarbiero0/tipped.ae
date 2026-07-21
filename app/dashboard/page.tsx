@@ -15,9 +15,8 @@ import {
   TrashIcon,
 } from "@/components/dashboard/icons";
 
-// My animals — live against Supabase. The 3-way dashboard status maps onto
-// the public model: available = (status available, in_foster false),
-// in foster = (status available, in_foster true), adopted = status adopted.
+// My animals — live against Supabase. Status is the 3-value enum
+// (available | in_foster | adopted); approval_status is independent.
 
 interface Row {
   id: string;
@@ -27,22 +26,18 @@ interface Row {
   sex: string | null;
   age: string | null;
   emirate: string | null;
-  status: string;
-  in_foster: boolean;
+  status: "available" | "in_foster" | "adopted";
+  approval_status: string;
   photos: string[];
 }
 
-type DashStatus = "available" | "in foster" | "adopted";
+type DashStatus = Row["status"];
 
-const dashStatus = (r: Row): DashStatus =>
-  r.status === "adopted" ? "adopted" : r.in_foster ? "in foster" : "available";
-
-const nextPatch = (s: DashStatus) =>
-  s === "available"
-    ? { status: "available", in_foster: true }
-    : s === "in foster"
-      ? { status: "adopted", in_foster: false }
-      : { status: "available", in_foster: false };
+const nextStatus: Record<DashStatus, DashStatus> = {
+  available: "in_foster",
+  in_foster: "adopted",
+  adopted: "available",
+};
 
 const speciesEmoji: Record<string, string> = { cat: "🐈", dog: "🐕", other: "🦜" };
 
@@ -53,7 +48,7 @@ function StatusChip({ status }: { status: DashStatus }) {
         available
       </span>
     );
-  if (status === "in foster")
+  if (status === "in_foster")
     return (
       <span className="bg-cream border border-cocoa/[.15] text-cocoa/75 font-sans font-bold text-[12px] px-3 py-1 rounded-[8px]">
         in foster
@@ -86,7 +81,7 @@ export default function DashboardPage() {
     if (!rescuer) return;
     supabaseBrowser()
       .from("animals")
-      .select("id,ref,name,species,sex,age,emirate,status,in_foster,photos")
+      .select("id,ref,name,species,sex,age,emirate,status,approval_status,photos")
       .eq("rescuer_id", rescuer.id)
       .order("created_at", { ascending: true })
       .then(({ data }) => {
@@ -96,7 +91,7 @@ export default function DashboardPage() {
   }, [rescuer]);
 
   const cycleStatus = async (row: Row) => {
-    const patch = nextPatch(dashStatus(row));
+    const patch = { status: nextStatus[row.status] };
     setRows((prev) => prev.map((r) => (r.id === row.id ? { ...r, ...patch } : r)));
     const { error } = await supabaseBrowser()
       .from("animals")
@@ -189,7 +184,7 @@ export default function DashboardPage() {
                 </div>
 
                 {rows.map((a, i) => {
-                  const s = dashStatus(a);
+                  const s = a.status;
                   const meta = [a.sex?.toLowerCase(), a.age, a.emirate]
                     .filter(Boolean)
                     .join(" · ");
@@ -214,6 +209,15 @@ export default function DashboardPage() {
                         <div className="font-sans font-semibold text-[12px] text-cocoa/50">
                           {meta}
                         </div>
+                        {a.approval_status !== "approved" && (
+                          <div className="inline-flex mt-1 font-sans font-bold text-[10px] tracking-[.06em] text-cocoa/45 bg-cream rounded-[6px] px-[7px] py-[2px]">
+                            {a.approval_status === "pending"
+                              ? "AWAITING REVIEW"
+                              : a.approval_status === "changes_requested"
+                                ? "CHANGES REQUESTED"
+                                : "NOT APPROVED"}
+                          </div>
+                        )}
                       </div>
                       <span className="font-sans font-semibold text-[13.5px] text-cocoa/75">
                         {a.species}

@@ -12,7 +12,7 @@ import { EMIRATES } from "@/lib/emirates";
 // Rescuer profile — live against Supabase. Clinics and wishlists are jsonb
 // lists edited inline and saved together with the rest.
 
-type LinkItem = { name: string; url?: string };
+type LinkItem = { label: string; url?: string };
 
 const inputCls =
   "w-full box-border font-sans font-semibold text-[15px] text-cocoa bg-white border-[1.5px] border-cocoa/[.15] rounded-[11px] px-[15px] py-[13px] outline-none focus:border-cocoa";
@@ -33,7 +33,7 @@ function LinkList({
 
   const add = () => {
     if (!name.trim()) return;
-    onChange([...items, { name: name.trim(), url: url.trim() || undefined }]);
+    onChange([...items, { label: name.trim(), url: url.trim() || undefined }]);
     setName("");
     setUrl("");
     setAdding(false);
@@ -43,11 +43,11 @@ function LinkList({
     <div className="flex flex-col gap-[10px]">
       {items.map((it, i) => (
         <div
-          key={`${it.name}-${i}`}
+          key={`${it.label}-${i}`}
           className="bg-white border-[1.5px] border-cocoa/[.12] rounded-[12px] px-4 py-[13px] flex items-center justify-between gap-3"
         >
           <div className="min-w-0">
-            <div className="font-sans font-bold text-[14px] text-cocoa">{it.name}</div>
+            <div className="font-sans font-bold text-[14px] text-cocoa">{it.label}</div>
             {it.url && (
               <div className="font-mono text-[11.5px] text-cocoa/50 mt-[2px] truncate">
                 {it.url}
@@ -56,7 +56,7 @@ function LinkList({
           </div>
           <button
             onClick={() => onChange(items.filter((_, j) => j !== i))}
-            aria-label={`Remove ${it.name}`}
+            aria-label={`Remove ${it.label}`}
             className="font-sans font-bold text-[13px] text-cocoa/40 hover:text-[#C4525C] cursor-pointer bg-transparent border-0"
           >
             ✕
@@ -130,8 +130,8 @@ export default function RescuerProfilePage() {
     setEmail(rescuer.email);
     setInstagram(rescuer.instagram ? `@${rescuer.instagram}` : "");
     setAvatarUrl(rescuer.avatar_url);
-    setClinics(rescuer.clinics ?? []);
-    setWishlists(rescuer.wishlists ?? []);
+    setClinics((rescuer.clinics ?? []).map((c) => ({ label: c.name, url: c.url })));
+    setWishlists(rescuer.wishlist_links ?? []);
   }, [rescuer]);
 
   const save = async () => {
@@ -158,8 +158,8 @@ export default function RescuerProfilePage() {
           email: email.trim(),
           instagram: instagram.trim().replace(/^@/, "") || null,
           avatar_url: avatar,
-          clinics,
-          wishlists,
+          clinics: clinics.map((c) => ({ name: c.label, url: c.url })),
+          wishlist_links: wishlists,
         })
         .eq("id", rescuer.id);
       if (error) throw error;

@@ -44,14 +44,18 @@ function PawBadge({ label }: { label: string }) {
   );
 }
 
-// The card slot: one identity badge (the ear-tip for cats, a paw "sterilised"
-// for dogs) + condition tags only — those are the decision-relevant ones
+// The card slot: one identity badge (the ear-tip when true, else a paw
+// "sterilised") + condition tags only — those are the decision-relevant ones
 // before a click. The full row lives on the profile.
 export function CardBadges({ animal }: { animal: Animal }) {
+  const sterilised = animal.medical_checks.includes("spayed_neutered");
   return (
     <>
-      {animal.sterilised &&
-        (animal.species === "cat" ? <EarTippedBadge /> : <PawBadge label="sterilised" />)}
+      {animal.ear_tipped ? (
+        <EarTippedBadge />
+      ) : sterilised ? (
+        <PawBadge label="sterilised" />
+      ) : null}
       {animal.conditions.map((slug) => (
         <ConditionTag key={slug} label={CONDITION_LABELS[slug]} />
       ))}
@@ -60,15 +64,31 @@ export function CardBadges({ animal }: { animal: Animal }) {
 }
 
 // The profile slot: every claim, spelled out.
+const CHECK_LABELS: Record<string, string> = {
+  spayed_neutered: "sterilised",
+  vaccinated: "vaccinated",
+  dewormed: "dewormed",
+  flea_treated: "flea-treated",
+  fiv_tested: "FIV tested",
+  felv_tested: "FeLV tested",
+  blood_panel: "blood panel done",
+  dental_done: "dental done",
+  passport_ready: "passport ready",
+  fit_to_fly: "fit to fly",
+};
+
 export function HealthTagRow({ animal }: { animal: Animal }) {
   return (
     <div className="flex items-center flex-wrap gap-[6px]">
-      {animal.species === "cat" && animal.sterilised && <EarTippedBadge />}
-      {animal.sterilised && <BasicTag label="sterilised" />}
-      {animal.vaccinated && (
-        <span title={VACCINATED_DEFINITION}>
-          <BasicTag label="vaccinated" />
-        </span>
+      {animal.ear_tipped && <EarTippedBadge />}
+      {animal.medical_checks.map((c) =>
+        c === "vaccinated" ? (
+          <span key={c} title={VACCINATED_DEFINITION}>
+            <BasicTag label={CHECK_LABELS[c] ?? c} />
+          </span>
+        ) : (
+          <BasicTag key={c} label={CHECK_LABELS[c] ?? c} />
+        )
       )}
       {animal.microchipped && <BasicTag label="microchipped" />}
       {animal.tested.map((slug) => (

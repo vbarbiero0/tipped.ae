@@ -13,7 +13,7 @@ const SHOW_SHOP = true;
 export default async function HomePage() {
   const [animals, bills] = await Promise.all([getAnimals(), getBillsPaid()]);
   // Featured mix: two cats + one dog so both species show above the fold.
-  const available = animals.filter((a) => a.status === "available");
+  const available = animals.filter((a) => a.status !== "adopted");
   const featured = [
     ...available.filter((a) => a.species === "cat").slice(0, 2),
     ...available.filter((a) => a.species === "dog").slice(0, 1),

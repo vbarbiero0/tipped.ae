@@ -14,21 +14,28 @@ import { EMIRATES } from "@/lib/emirates";
 // vet-certificates bucket under the signed-in user's folder.
 
 const MEDICAL_LABEL_TO_SLUG: Record<string, string> = {
+  "spayed / neutered": "spayed_neutered",
+  vaccinated: "vaccinated",
   dewormed: "dewormed",
   "flea-treated": "flea_treated",
   "FIV tested": "fiv_tested",
   "FeLV tested": "felv_tested",
-  "blood panel done": "blood_panel_done",
+  "blood panel done": "blood_panel",
   "dental done": "dental_done",
-  "ear-tipped": "ear_tipped",
   "passport ready": "passport_ready",
   "fit to fly": "fit_to_fly",
 };
-// First two checklist items map to the site's precise booleans instead.
-const BOOL_CHECKS = ["spayed / neutered", "vaccinated"] as const;
-const MEDICAL_OPTIONS = [...BOOL_CHECKS, ...Object.keys(MEDICAL_LABEL_TO_SLUG)];
+// ear-tipped is its own boolean column (drives the brand badge), so it sits
+// in the checklist UI but maps to `ear_tipped`, not medical_checks.
+const EAR_TIPPED_LABEL = "ear-tipped";
+const MEDICAL_OPTIONS = [...Object.keys(MEDICAL_LABEL_TO_SLUG), EAR_TIPPED_LABEL];
 
-type DashStatus = "available" | "in foster" | "adopted";
+type DashStatus = "available" | "in_foster" | "adopted";
+const STATUS_UI: Record<DashStatus, string> = {
+  available: "available",
+  in_foster: "in foster",
+  adopted: "adopted",
+};
 
 const inputCls =
   "w-full box-border font-sans font-semibold text-[15px] text-cocoa bg-white border-[1.5px] border-cocoa/[.15] rounded-[11px] px-[15px] py-[13px] outline-none focus:border-cocoa";
@@ -109,17 +116,14 @@ function AddAnimalForm() {
         setAge(data.age ?? "");
         setEmirate(data.emirate ?? "Dubai");
         setStory(data.story ?? "");
-        setStatus(
-          data.status === "adopted" ? "adopted" : data.in_foster ? "in foster" : "available"
-        );
-        setOtherMedical(data.medical ?? "");
+        setStatus(data.status ?? "available");
+        setOtherMedical(data.medical_other ?? "");
         setChip(data.microchip_number ?? "");
         setExistingCert(data.vet_certificate_url ?? null);
         const next = new Set<string>();
-        if (data.sterilised) next.add("spayed / neutered");
-        if (data.vaccinated) next.add("vaccinated");
         for (const [label, slug] of Object.entries(MEDICAL_LABEL_TO_SLUG))
           if ((data.medical_checks ?? []).includes(slug)) next.add(label);
+        if (data.ear_tipped) next.add(EAR_TIPPED_LABEL);
         setChecks(next);
         const photos: (string | File | null)[] = [null, null, null, null];
         (data.photos ?? []).slice(0, 4).forEach((p: string, i: number) => (photos[i] = p));
@@ -191,11 +195,9 @@ function AddAnimalForm() {
         age: age.trim() || null,
         emirate,
         story: story.trim() || null,
-        medical: otherMedical.trim() || null,
-        status: status === "adopted" ? "adopted" : "available",
-        in_foster: status === "in foster",
-        sterilised: checks.has("spayed / neutered"),
-        vaccinated: checks.has("vaccinated"),
+        medical_other: otherMedical.trim() || null,
+        status,
+        ear_tipped: checks.has(EAR_TIPPED_LABEL),
         microchipped: true,
         microchip_number: chip.trim(),
         vet_certificate_url: certUrl,
@@ -301,12 +303,22 @@ function AddAnimalForm() {
 
           <div>
             <label className={labelCls}>Status</label>
-            <Segments
-              options={["available", "in foster", "adopted"] as const}
-              value={status}
-              onChange={setStatus}
-              activeCls="bg-sunset/[.16] border-[1.5px] border-sunset text-link"
-            />
+            <div className="flex gap-2">
+              {(["available", "in_foster", "adopted"] as const).map((o) => (
+                <button
+                  key={o}
+                  type="button"
+                  onClick={() => setStatus(o)}
+                  className={`flex-1 text-center font-sans font-bold text-[14px] py-3 rounded-[11px] cursor-pointer transition-colors ${
+                    status === o
+                      ? "bg-sunset/[.16] border-[1.5px] border-sunset text-link"
+                      : "bg-white border-[1.5px] border-cocoa/[.15] text-cocoa/70 hover:border-cocoa/40"
+                  }`}
+                >
+                  {STATUS_UI[o]}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
 

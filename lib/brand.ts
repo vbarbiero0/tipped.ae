@@ -18,6 +18,6 @@ export const INSTAGRAM_URL = `https://instagram.com/${INSTAGRAM_HANDLE}`;
 
 export const STATUS_LINE: Record<string, string> = {
   available: "looking for a home",
-  pending: "adoption pending",
+  in_foster: "in foster",
   adopted: "adopted",
 };

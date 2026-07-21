@@ -1,8 +1,8 @@
 import type { Emirate } from "./emirates";
 import type { ConditionSlug, TestedSlug } from "./health";
 
-export type AnimalStatus = "available" | "pending" | "adopted";
-export type Species = "cat" | "dog";
+export type AnimalStatus = "available" | "in_foster" | "adopted";
+export type Species = "cat" | "dog" | "other";
 
 export interface Rescuer {
   id: string;
@@ -14,10 +14,12 @@ export interface Rescuer {
   cats_saved: number; // total animals rehomed — column name kept for schema continuity
   clinics: { name: string; url?: string; ref?: string }[];
   is_placeholder: boolean;
-  // Dashboard-era fields (optional until wired):
   username?: string | null;
   avatar_url?: string | null;
-  wishlists?: { name: string; url?: string }[];
+  wishlist_links?: { label: string; url?: string }[];
+  trust_level?: "trusted" | "review";
+  role?: "rescuer" | "admin";
+  active?: boolean;
 }
 
 export interface Animal {
@@ -30,26 +32,24 @@ export interface Animal {
   age: string | null;
   emirate: Emirate | null;
   story: string | null;
-  medical: string | null;
-  // Health basics — precise claims, not vibes. "Vaccinated" = up to date on
-  // the UAE's required shots (see VACCINATED_DEFINITION in lib/health.ts).
-  sterilised: boolean;
-  vaccinated: boolean;
+  medical_other: string | null;
+  // Health: controlled checklist (see lib/health.ts) + precise tag sources.
+  // "vaccinated" = up to date on the UAE's required shots.
+  medical_checks: string[];
+  ear_tipped: boolean;
   microchipped: boolean;
+  microchip_number?: string | null;
+  vet_certificate_url?: string | null;
   tested: TestedSlug[];
   conditions: ConditionSlug[];
   status: AnimalStatus;
-  // Dashboard-era fields (optional until wired):
-  medical_checks?: string[];
-  microchip_number?: string | null;
-  vet_certificate_url?: string | null;
+  approval_status?: "pending" | "approved" | "changes_requested" | "rejected";
+  approval_note?: string | null;
   adopted_at?: string | null;
   // What the rescuer is open to — any combination. Foster-to-adopt is normal.
+  // Independent of status ("in_foster" says where she sleeps tonight).
   for_adoption: boolean;
   for_foster: boolean;
-  // Orthogonal to status: a fostered animal is usually still looking for a
-  // forever home. This is "where is she sleeping tonight", not the outcome.
-  in_foster: boolean;
   photos: string[];
   rescuer?: Rescuer;
 }

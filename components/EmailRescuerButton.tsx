@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { adoptionMailto, fosterMailto } from "@/lib/mailto";
+import { supabaseBrowser } from "@/lib/supabase-browser";
 import type { Animal, Rescuer } from "@/lib/types";
 
 // Hard rule 2: direct email, pre-filled subject + template body. The popover
@@ -48,6 +49,14 @@ export default function EmailRescuerButton({
     if (!open) setCopied(false);
   }, [open]);
 
+  // Fire-and-forget tap counter (animal_stats.email_clicks)
+  const countEmailClick = () => {
+    if (!process.env.NEXT_PUBLIC_SUPABASE_URL) return;
+    supabaseBrowser()
+      .rpc("bump_animal_stat", { p_animal_id: animal.id, p_kind: "email" })
+      .then(() => undefined);
+  };
+
   const copyAddress = async () => {
     try {
       await navigator.clipboard.writeText(rescuer.email);
@@ -82,7 +91,10 @@ export default function EmailRescuerButton({
             {canAdopt && (
               <a
                 href={adoptionMailto(rescuer.email, animal.name, animal.ref)}
-                onClick={() => setOpen(false)}
+                onClick={() => {
+                  countEmailClick();
+                  setOpen(false);
+                }}
                 className={pillClass}
               >
                 {both ? "Ask about adopting" : "Open your email app"}
@@ -91,7 +103,10 @@ export default function EmailRescuerButton({
             {canFoster && (
               <a
                 href={fosterMailto(rescuer.email, animal.name, animal.ref)}
-                onClick={() => setOpen(false)}
+                onClick={() => {
+                  countEmailClick();
+                  setOpen(false);
+                }}
                 className={pillClass}
               >
                 {both ? "Ask about fostering" : "Open your email app"}

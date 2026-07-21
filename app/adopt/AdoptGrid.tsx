@@ -14,8 +14,8 @@ const speciesFilters: { value: Species | "all"; label: string }[] = [
 const statusFilters: { value: AnimalStatus | "all"; label: string }[] = [
   { value: "all", label: "Any status" },
   { value: "available", label: "Looking for a home" },
-  { value: "pending", label: "Pending" },
-  { value: "adopted", label: "Homed" },
+  { value: "in_foster", label: "In foster" },
+  { value: "adopted", label: "Adopted" },
 ];
 
 export type Intent = "all" | "adopt" | "foster";

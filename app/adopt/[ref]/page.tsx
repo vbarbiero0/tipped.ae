@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import AnimalPhoto from "@/components/AnimalPhoto";
+import StatPing from "@/components/StatPing";
 import FosterPill from "@/components/FosterPill";
 import { CardBadges, ConditionNotes, HealthTagRow } from "@/components/HealthTags";
 import EmailRescuerButton from "@/components/EmailRescuerButton";
@@ -52,6 +53,7 @@ export default async function AnimalPage({ params }: Props) {
 
   return (
     <div className="max-w-[1160px] mx-auto px-6 md:px-8 pt-8 md:pt-12 pb-16 md:pb-[84px]">
+      <StatPing animalId={animal.id} />
       <Link href="/adopt" className="font-sans font-bold text-sm no-underline">
         ← All cats &amp; dogs
       </Link>
@@ -81,9 +83,9 @@ export default async function AnimalPage({ params }: Props) {
           <div className="mb-7">
             <div className="eyebrow mb-3">HEALTH</div>
             <HealthTagRow animal={animal} />
-            {animal.medical && (
+            {animal.medical_other && (
               <p className="font-sans font-medium text-[14.5px] leading-[1.6] text-cocoa/75 m-0 mt-3 max-w-[520px]">
-                {animal.medical}
+                {animal.medical_other}
               </p>
             )}
             <ConditionNotes animal={animal} />

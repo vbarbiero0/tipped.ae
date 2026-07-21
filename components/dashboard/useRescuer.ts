@@ -14,7 +14,10 @@ export interface DashRescuer {
   instagram: string | null;
   avatar_url: string | null;
   clinics: { name: string; url?: string }[];
-  wishlists: { name: string; url?: string }[];
+  wishlist_links: { label: string; url?: string }[];
+  trust_level: "trusted" | "review";
+  role: "rescuer" | "admin";
+  active: boolean;
 }
 
 // Auth guard + "who am I": redirects to /dashboard/login without a session,
@@ -38,7 +41,7 @@ export function useRescuer() {
       const { data, error } = await supabase
         .from("rescuers")
         .select(
-          "id,username,name,emirate,blurb,email,instagram,avatar_url,clinics,wishlists,auth_user_id"
+          "id,username,name,emirate,blurb,email,instagram,avatar_url,clinics,wishlist_links,trust_level,role,active,auth_user_id"
         )
         .eq("auth_user_id", session.user.id)
         .maybeSingle();

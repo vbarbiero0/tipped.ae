@@ -59,6 +59,7 @@ export interface SidebarRescuer {
   name: string;
   username: string | null;
   emirate: string | null;
+  trust_level?: "trusted" | "review";
 }
 
 export default function Sidebar({
@@ -105,7 +106,9 @@ export default function Sidebar({
             {rescuer.emirate}
           </div>
           <div className="font-sans font-semibold text-[11px] text-cocoa/40 mt-2">
-            Posts go live immediately — no review step.
+            {rescuer.trust_level === "trusted"
+              ? "Posts go live immediately — no review step."
+              : "New posts are reviewed before going live."}
           </div>
           {onSignOut && (
             <button
