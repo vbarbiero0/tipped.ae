@@ -2,7 +2,7 @@
 -- site shipped with. Idempotent: safe to re-run (upserts by fixed uuid/ref).
 -- Placeholder rescuers stay is_placeholder = true until each person consents.
 
-insert into rescuers (id, username, name, emirate, blurb, email, instagram, cats_saved, clinics, is_placeholder, trust_level, role)
+insert into rescuers (id, username, name, emirate, blurb, email, instagram, pets_saved, clinics, is_placeholder, trust_level, role)
 values
   ('00000000-0000-4000-8000-000000000001', 'straycatdubai', 'Silvana', 'Dubai',
    'Feeds the cafeteria block in Deira every night. Knows every cat by name and most by opinion.',
@@ -20,9 +20,9 @@ on conflict (id) do update set
   username = excluded.username, name = excluded.name, emirate = excluded.emirate,
   trust_level = excluded.trust_level, role = excluded.role,
   blurb = excluded.blurb, email = excluded.email, instagram = excluded.instagram,
-  cats_saved = excluded.cats_saved, clinics = excluded.clinics;
+  pets_saved = excluded.pets_saved, clinics = excluded.clinics;
 
-insert into animals (id, ref, rescuer_id, species, name, sex, age, emirate, story, medical_other,
+insert into pets (id, ref, rescuer_id, species, name, sex, age, emirate, story, medical_other,
                      microchipped, microchip_number, vet_certificate_url, ear_tipped,
                      tested, conditions, medical_checks, status, approval_status,
                      for_adoption, for_foster, photos)
@@ -81,12 +81,12 @@ on conflict (id) do update set
   for_adoption = excluded.for_adoption, for_foster = excluded.for_foster,
   photos = excluded.photos;
 
-insert into bills_paid (id, paid_on, context, animal_ref, clinic, amount_aed, amount_covered_aed, receipt_url, source, note)
+insert into bills_paid (id, paid_on, context, pet_ref, clinic, amount_aed, amount_covered_aed, receipt_url, source, note)
 values
   ('00000000-0000-4000-a000-000000000001', '2026-07-10', 'Batata — dental extraction',
    'DUBAI-003', 'Modern Vet · Umm Suqeim', 840, 520, null, 'shop', 'Bill #04211')
 on conflict (id) do update set
-  paid_on = excluded.paid_on, context = excluded.context, animal_ref = excluded.animal_ref,
+  paid_on = excluded.paid_on, context = excluded.context, pet_ref = excluded.pet_ref,
   clinic = excluded.clinic, amount_aed = excluded.amount_aed,
   amount_covered_aed = excluded.amount_covered_aed, source = excluded.source, note = excluded.note;
 
