@@ -91,7 +91,7 @@ Supabase SQL editor, or hand the next session a fresh `sbp_` token.
 
 ## Follow-ups
 
-- Apply `0006_ear_tipped_default.sql` (see above).
+- ~~Apply `0006_ear_tipped_default.sql`~~ Done same day with a fresh token.
 - The Netlify deploy picks these routes up automatically on push; `/admin` is
   noindexed via metadata in `app/admin/layout.tsx`.
 
@@ -124,3 +124,11 @@ session-5 setup. Issued her a one-time recovery link (redirects to the
 production `/dashboard/reset`, 24h expiry) so she sets her own, and deleted
 the stored copy from `.env.local` — the agent no longer holds her password;
 future session-establishment uses admin recovery links, as today.
+
+**0006 applied (same day).** Vanessa supplied a fresh token; `ear_tipped`'s
+default is verified `false` in information_schema. Plot twist worth
+remembering: the earlier "revoked token" 403 was actually **Cloudflare error
+1010** blocking Python urllib's client signature on api.supabase.com — the
+same request succeeds via curl. The old token was separately confirmed
+revoked (real 401 via curl). Future sessions: curl for the Management API,
+and always read a 403's body before blaming the token.

@@ -6,8 +6,6 @@
 -- field (imports, scripts, future API paths) would silently claim a tipped
 -- ear. That's a TNR mark: a factual claim about the animal. Default off.
 --
--- NOT YET APPLIED — the management-API token was revoked (good) before this
--- was written. Paste into the Supabase SQL editor, or hand the session a
--- fresh token.
+-- Applied 2026-07-21 via the Management API.
 
 alter table animals alter column ear_tipped set default false;
