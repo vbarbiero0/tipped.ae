@@ -94,3 +94,26 @@ Supabase SQL editor, or hand the next session a fresh `sbp_` token.
 - Apply `0006_ear_tipped_default.sql` (see above).
 - The Netlify deploy picks these routes up automatically on push; `/admin` is
   noindexed via metadata in `app/admin/layout.tsx`.
+
+## Addendum — admin identity rebuild (same day, on Vanessa's request)
+
+Mid-session message: delete auth UID `2d8c4655…`; the admin should be
+vbarbiero0@gmail.com with username Vanessa. That UID turned out to be her one
+and only login — the account behind the Silvana/@straycatdubai admin row — so
+a blind delete would have stranded the platform. Executed as a rebuild instead:
+unlink the admin row (plain FK on `rescuers.auth_user_id` would have blocked
+the delete anyway) → delete `2d8c4655` → create a fresh confirmed auth user
+for vbarbiero0@gmail.com with the same password (`TIPPED_LOGIN_PASSWORD`,
+API-only as always) → relink and rebrand the row: **name Vanessa, username
+`vanessa`, `is_placeholder=false`** (she's real; the consent chip clears).
+
+Stored the username lowercase because `get_rescuer_email` lowercases the
+*input* and compares verbatim — a stored "Vanessa" would never match. She can
+type Vanessa, vanessa, or the email; all three verified working, including a
+password sign-in and reading her own row as `authenticated`.
+
+Knock-ons, deliberate: Karak (DUBAI-001) is now publicly "with Vanessa" (it
+was Silvana's seed animal — rename the row, inherit the credit). Audit rows
+keep the old actor UUID (`actor_id` has no FK — an audit log should remember
+history verbatim). The seed files still contain the Silvana persona; noted in
+CLAUDE.md not to re-seed rescuers against the live DB without reconciling.
