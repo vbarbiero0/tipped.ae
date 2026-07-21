@@ -135,13 +135,13 @@ export default function AdminPetsPage() {
           )}
 
           <div className="bg-white rounded-[16px] shadow-card overflow-hidden max-w-[980px]">
-            <div className="grid grid-cols-[52px_1.3fr_.7fr_.9fr_.9fr_auto] gap-3 items-center px-5 py-3 border-b border-cocoa/[.07] font-sans font-bold text-[11px] tracking-[.08em] text-cocoa/45">
+            <div className="hidden md:grid grid-cols-[52px_1.3fr_.7fr_.9fr_.9fr_auto] gap-3 items-center px-5 py-3 border-b border-cocoa/[.07] font-sans font-bold text-[11px] tracking-[.08em] text-cocoa/45">
               <span /><span>ANIMAL</span><span>RESCUER</span><span>STATUS</span><span>VISIBILITY</span>
               <span className="text-right">ACTIONS</span>
             </div>
             {filtered.map((r, i) => (
               <div key={r.id}
-                className={`grid grid-cols-[52px_1.3fr_.7fr_.9fr_.9fr_auto] gap-3 items-center px-5 py-[10px] ${
+                className={`flex flex-wrap md:grid md:grid-cols-[52px_1.3fr_.7fr_.9fr_.9fr_auto] gap-3 items-center px-4 md:px-5 py-[10px] ${
                   i < filtered.length - 1 ? "border-b border-cocoa/[.07]" : ""
                 }`}>
                 <div className="w-11 h-11 bg-cream rounded-[9px] overflow-hidden flex items-center justify-center text-[18px]">
@@ -151,7 +151,7 @@ export default function AdminPetsPage() {
                     <span aria-hidden>{speciesEmoji[r.species] ?? "🐾"}</span>
                   )}
                 </div>
-                <div className="min-w-0">
+                <div className="min-w-0 flex-1 md:flex-none">
                   <div className="font-sans font-bold text-[14px] text-cocoa truncate">
                     {r.name}
                     {r.featured && (
@@ -160,10 +160,10 @@ export default function AdminPetsPage() {
                   </div>
                   <div className="font-mono text-[11px] text-cocoa/50">{r.ref} · {r.emirate}</div>
                 </div>
-                <span className="font-sans font-semibold text-[12.5px] text-cocoa/70 truncate">
+                <span className="hidden md:inline font-sans font-semibold text-[12.5px] text-cocoa/70 truncate">
                   {r.rescuer?.name ?? "—"}
                 </span>
-                <span className="font-sans font-semibold text-[12.5px] text-cocoa/70">
+                <span className="hidden md:inline font-sans font-semibold text-[12.5px] text-cocoa/70">
                   {r.status === "in_foster" ? "in foster" : r.status}
                 </span>
                 <span className={`font-sans font-bold text-[11.5px] ${
@@ -171,7 +171,7 @@ export default function AdminPetsPage() {
                   }`}>
                   {r.approval_status === "approved" ? "public" : r.approval_status.replace("_", " ")}
                 </span>
-                <div className="flex gap-2 justify-end">
+                <div className="flex flex-wrap gap-2 w-full md:w-auto justify-end">
                   <button onClick={() => toggleFeatured(r)}
                     className={`font-sans font-bold text-[12px] px-3 py-[6px] rounded-[8px] cursor-pointer transition-colors ${
                       r.featured

@@ -239,7 +239,7 @@ function AddAnimalForm() {
     );
 
   return (
-    <main className="flex-1 px-[34px] pt-[30px] pb-[110px] relative min-w-0">
+    <main className="flex-1 px-4 pt-5 md:px-[34px] md:pt-[30px] pb-[110px] relative min-w-0">
       <h1 className="font-display font-extrabold text-[30px] text-cocoa m-0 mb-1">
         {editId ? `Edit ${name || "pet"}` : "Add a pet"}
       </h1>
@@ -480,7 +480,7 @@ function AddAnimalForm() {
 
 export default function AddPetPage() {
   return (
-    <div className="flex min-h-screen font-sans">
+    <div className="flex flex-col md:flex-row min-h-screen font-sans">
       <Sidebar />
       <Suspense
         fallback={

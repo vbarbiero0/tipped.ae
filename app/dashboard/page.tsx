@@ -119,14 +119,14 @@ export default function DashboardPage() {
   const pronoun = (r: Row) => (r.sex === "Male" ? ["him", "he"] : ["her", "she"]);
 
   return (
-    <div className="flex min-h-screen font-sans">
+    <div className="flex flex-col md:flex-row min-h-screen font-sans">
       <Sidebar
         showRescuerCard
         rescuer={rescuer}
         onSignOut={() => signOutRescuer(router)}
       />
 
-      <main className="flex-1 px-[34px] py-[30px] relative min-w-0">
+      <main className="flex-1 px-4 py-5 md:px-[34px] md:py-[30px] relative min-w-0">
         {loading || rowsLoading ? (
           <div className="font-sans font-semibold text-[14px] text-cocoa/50">Loading…</div>
         ) : (
@@ -176,9 +176,9 @@ export default function DashboardPage() {
               </div>
             ) : (
               <div className="bg-white rounded-[16px] shadow-card overflow-hidden">
-                <div className="grid grid-cols-[64px_1.2fr_.6fr_.8fr_auto] gap-4 items-center px-5 py-3 border-b border-cocoa/[.07] font-sans font-bold text-[11.5px] tracking-[.08em] text-cocoa/45">
+                <div className="hidden md:grid grid-cols-[64px_1.2fr_.6fr_.8fr_auto] gap-4 items-center px-5 py-3 border-b border-cocoa/[.07] font-sans font-bold text-[11.5px] tracking-[.08em] text-cocoa/45">
                   <span />
-                  <span>ANIMAL</span>
+                  <span>PET</span>
                   <span>SPECIES</span>
                   <span>STATUS</span>
                   <span className="w-[150px] text-right">ACTIONS</span>
@@ -192,7 +192,7 @@ export default function DashboardPage() {
                   return (
                     <div
                       key={a.id}
-                      className={`grid grid-cols-[64px_1.2fr_.6fr_.8fr_auto] gap-4 items-center px-5 py-3 ${
+                      className={`flex flex-wrap md:grid md:grid-cols-[64px_1.2fr_.6fr_.8fr_auto] gap-3 md:gap-4 items-center px-4 md:px-5 py-3 ${
                         i < rows.length - 1 ? "border-b border-cocoa/[.07]" : ""
                       } ${s === "adopted" ? "bg-cocoa/[.025]" : ""}`}
                     >
@@ -203,7 +203,7 @@ export default function DashboardPage() {
                           <span aria-hidden>{speciesEmoji[a.species] ?? "🐾"}</span>
                         )}
                       </div>
-                      <div>
+                      <div className="flex-1 min-w-0 md:flex-none">
                         <div className="font-display font-extrabold text-[16.5px] text-cocoa">
                           {a.name}
                         </div>
@@ -227,13 +227,13 @@ export default function DashboardPage() {
                           </>
                         )}
                       </div>
-                      <span className="font-sans font-semibold text-[13.5px] text-cocoa/75">
+                      <span className="hidden md:inline font-sans font-semibold text-[13.5px] text-cocoa/75">
                         {a.species}
                       </span>
                       <span>
                         <StatusChip status={s} />
                       </span>
-                      <div className="flex gap-[6px] w-[150px] justify-end">
+                      <div className="flex gap-[6px] w-full md:w-[150px] justify-end">
                         <Link
                           href={`/dashboard/new?edit=${a.id}`}
                           aria-label={`Edit ${a.name}`}

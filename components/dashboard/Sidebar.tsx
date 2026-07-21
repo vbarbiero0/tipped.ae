@@ -74,7 +74,43 @@ export default function Sidebar({
 }) {
   const pathname = usePathname();
   return (
-    <aside className="w-[230px] shrink-0 bg-white border-r border-cocoa/[.08] flex flex-col px-[14px] pt-[22px] pb-[18px] min-h-screen">
+    <>
+    {/* Phone chrome: top bar + nav pills; the aside is desktop-only */}
+    <div className="md:hidden sticky top-0 z-20 bg-white border-b border-cocoa/[.08]">
+      <div className="flex items-center justify-between px-4 pt-3 pb-2">
+        <Link href="/" className="no-underline" aria-label="tipped — home">
+          <TippedLogo size={22} />
+        </Link>
+        <div className="flex items-center gap-4">
+          {rescuer?.role === "admin" && (
+            <Link href="/admin" className="font-sans font-bold text-[12px] text-link no-underline">
+              Admin →
+            </Link>
+          )}
+          {onSignOut && (
+            <button onClick={onSignOut}
+              className="font-sans font-bold text-[12px] text-cocoa/60 bg-transparent border-0 p-0 cursor-pointer">
+              Sign out
+            </button>
+          )}
+        </div>
+      </div>
+      <nav className="flex gap-2 px-4 pb-3 overflow-x-auto [-webkit-overflow-scrolling:touch] [scrollbar-width:none]">
+        {items.map((it) => {
+          const active = pathname === it.href;
+          return (
+            <Link key={it.href} href={it.href}
+              className={`shrink-0 px-3 py-[7px] rounded-[9px] no-underline font-sans text-[13px] ${
+                active ? "bg-cream font-bold text-cocoa" : "font-semibold text-cocoa/60"
+              }`}>
+              {it.label}
+            </Link>
+          );
+        })}
+      </nav>
+    </div>
+
+    <aside className="hidden md:flex w-[230px] shrink-0 bg-white border-r border-cocoa/[.08] flex-col px-[14px] pt-[22px] pb-[18px] min-h-screen">
       <Link href="/" className="no-underline px-[10px] pb-[22px]" aria-label="tipped — home">
         <TippedLogo size={24} />
       </Link>
@@ -130,5 +166,6 @@ export default function Sidebar({
         </div>
       )}
     </aside>
+    </>
   );
 }

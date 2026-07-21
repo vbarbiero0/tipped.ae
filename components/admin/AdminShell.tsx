@@ -50,8 +50,48 @@ export default function AdminShell({
   }, [admin, onQueueChange]);
 
   return (
-    <div className="flex min-h-screen font-sans bg-paper">
-      <aside className="w-[230px] shrink-0 bg-white border-r border-cocoa/[.08] flex flex-col px-[14px] pt-[22px] pb-[18px] min-h-screen">
+    <div className="flex flex-col md:flex-row min-h-screen font-sans bg-paper">
+      {/* Phone chrome: compact top bar + scrollable nav pills */}
+      <div className="md:hidden sticky top-0 z-20 bg-white border-b border-cocoa/[.08]">
+        <div className="flex items-center justify-between px-4 pt-3 pb-2">
+          <Link href="/" className="no-underline flex items-center gap-2" aria-label="tipped — home">
+            <TippedLogo size={22} />
+            <span className="font-sans font-bold text-[10px] tracking-[.14em] text-cocoa/40 mt-[2px]">ADMIN</span>
+          </Link>
+          <button
+            onClick={() => signOutRescuer(router)}
+            className="font-sans font-bold text-[12px] text-cocoa/60 bg-transparent border-0 p-0 cursor-pointer"
+          >
+            Sign out
+          </button>
+        </div>
+        <nav className="flex gap-2 px-4 pb-3 overflow-x-auto [-webkit-overflow-scrolling:touch] [scrollbar-width:none]">
+          {nav.map((it) => {
+            const active = pathname === it.href;
+            return (
+              <Link
+                key={it.href}
+                href={it.href}
+                className={`shrink-0 inline-flex items-center gap-[6px] px-3 py-[7px] rounded-[9px] no-underline font-sans text-[13px] ${
+                  active ? "bg-cream font-bold text-cocoa" : "font-semibold text-cocoa/60"
+                }`}
+              >
+                {it.label}
+                {it.href === "/admin" && pending !== null && pending > 0 && (
+                  <span className="bg-sunset text-cocoa font-sans font-bold text-[10.5px] min-w-[18px] h-[18px] px-[5px] rounded-[6px] inline-flex items-center justify-center">
+                    {pending}
+                  </span>
+                )}
+              </Link>
+            );
+          })}
+          <Link href="/dashboard" className="shrink-0 inline-flex items-center px-3 py-[7px] rounded-[9px] no-underline font-sans font-semibold text-[13px] text-cocoa/60">
+            My pets
+          </Link>
+        </nav>
+      </div>
+
+      <aside className="hidden md:flex w-[230px] shrink-0 bg-white border-r border-cocoa/[.08] flex-col px-[14px] pt-[22px] pb-[18px] min-h-screen">
         <Link href="/" className="no-underline px-[10px] pb-1" aria-label="tipped — home">
           <TippedLogo size={24} />
         </Link>
@@ -102,7 +142,7 @@ export default function AdminShell({
           </div>
         </div>
       </aside>
-      <main className="flex-1 px-[34px] py-[30px] min-w-0">{children}</main>
+      <main className="flex-1 px-4 py-5 md:px-[34px] md:py-[30px] min-w-0">{children}</main>
     </div>
   );
 }

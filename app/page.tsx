@@ -64,8 +64,10 @@ export default async function HomePage() {
         {/* Static print collage — neutral #FFFDF8 mats, color comes from the
             photos and the sticker. Fixed 528×540 composition, scaled on
             small screens. */}
-        <div className="relative h-[380px] sm:h-[540px]">
-          <div className="absolute top-0 left-0 w-[528px] h-[540px] scale-[.68] sm:scale-100 origin-top-left">
+        {/* overflow-x-clip: the scaled 528px composition can poke a few px
+            past 375px viewports and wiggle the whole page sideways */}
+        <div className="relative h-[350px] sm:h-[540px] overflow-x-clip">
+          <div className="absolute top-0 left-0 w-[528px] h-[540px] scale-[.62] sm:scale-100 origin-top-left">
             {/* Portrait print — polaroid caption, links to the profile,
                 lifts forward on hover */}
             {printPortrait && (

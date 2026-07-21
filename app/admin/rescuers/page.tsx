@@ -243,15 +243,15 @@ export default function AdminRescuersPage() {
           )}
 
           <div className="bg-white rounded-[16px] shadow-card overflow-hidden max-w-[900px]">
-            <div className="grid grid-cols-[1.4fr_1fr_.9fr_.6fr_.8fr_auto] gap-3 items-center px-5 py-3 border-b border-cocoa/[.07] font-sans font-bold text-[11px] tracking-[.08em] text-cocoa/45">
-              <span>RESCUER</span><span>EMIRATE</span><span>TRUST</span><span>ANIMALS</span><span>JOINED</span><span className="text-right">ACTIONS</span>
+            <div className="hidden md:grid grid-cols-[1.4fr_1fr_.9fr_.6fr_.8fr_auto] gap-3 items-center px-5 py-3 border-b border-cocoa/[.07] font-sans font-bold text-[11px] tracking-[.08em] text-cocoa/45">
+              <span>RESCUER</span><span>EMIRATE</span><span>TRUST</span><span>PETS</span><span>JOINED</span><span className="text-right">ACTIONS</span>
             </div>
             {rows.map((r, i) => (
               <div key={r.id}
-                className={`grid grid-cols-[1.4fr_1fr_.9fr_.6fr_.8fr_auto] gap-3 items-center px-5 py-3 ${
+                className={`flex flex-wrap md:grid md:grid-cols-[1.4fr_1fr_.9fr_.6fr_.8fr_auto] gap-3 items-center px-4 md:px-5 py-3 ${
                   i < rows.length - 1 ? "border-b border-cocoa/[.07]" : ""
                 } ${!r.active ? "opacity-60" : ""}`}>
-                <div className="min-w-0">
+                <div className="min-w-0 flex-1 md:flex-none">
                   <div className="font-sans font-bold text-[14px] text-cocoa truncate">
                     {r.name}
                     {r.role === "admin" && (
@@ -266,7 +266,7 @@ export default function AdminRescuersPage() {
                     {!r.active && chip("deactivated", true)}
                   </div>
                 </div>
-                <span className="font-sans font-semibold text-[13px] text-cocoa/75">{r.emirate}</span>
+                <span className="hidden md:inline font-sans font-semibold text-[13px] text-cocoa/75">{r.emirate}</span>
                 <button onClick={() => patch(r.id, { trust_level: r.trust_level === "trusted" ? "review" : "trusted" })}
                   disabled={busyId === r.id}
                   className={`font-sans font-bold text-[12px] px-3 py-[6px] rounded-[8px] cursor-pointer transition-colors justify-self-start ${
@@ -277,9 +277,9 @@ export default function AdminRescuersPage() {
                   title="Toggle trust level">
                   {r.trust_level}
                 </button>
-                <span className="font-sans font-semibold text-[13px] text-cocoa/75">{counts[r.id] ?? 0}</span>
-                <span className="font-mono text-[11.5px] text-cocoa/50">{r.created_at.slice(0, 10)}</span>
-                <div className="flex gap-2 justify-end">
+                <span className="hidden md:inline font-sans font-semibold text-[13px] text-cocoa/75">{counts[r.id] ?? 0}</span>
+                <span className="hidden md:inline font-mono text-[11.5px] text-cocoa/50">{r.created_at.slice(0, 10)}</span>
+                <div className="flex flex-wrap gap-2 w-full md:w-auto justify-end">
                   <button onClick={() => setEditing({ ...r })}
                     className="font-sans font-bold text-[12px] text-cocoa border-[1.5px] border-cocoa/20 px-3 py-[6px] rounded-[8px] cursor-pointer bg-transparent hover:bg-cocoa/[.05]">
                     Edit

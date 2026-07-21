@@ -175,10 +175,10 @@ export default function RescuerProfilePage() {
   const avatarPreview = avatarFile ? URL.createObjectURL(avatarFile) : avatarUrl;
 
   return (
-    <div className="flex min-h-screen font-sans">
+    <div className="flex flex-col md:flex-row min-h-screen font-sans">
       <Sidebar />
 
-      <main className="flex-1 px-[34px] pt-[30px] pb-[110px] relative min-w-0">
+      <main className="flex-1 px-4 pt-5 md:px-[34px] md:pt-[30px] pb-[110px] relative min-w-0">
         {loading ? (
           <div className="font-sans font-semibold text-[14px] text-cocoa/50">Loading…</div>
         ) : (
