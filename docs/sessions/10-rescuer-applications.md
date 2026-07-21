@@ -43,3 +43,17 @@ the Telegram message stays as proof.
 Also clarified for Vanessa: the bot token is one-time server config — she
 never needs tokens for notifications to arrive; `sbp_` tokens are only for
 agent DDL and unrelated.
+
+## Bug found by Vanessa: the un-awaited alert (fixed, `b7ce702`)
+
+The first live test wrote the DB row but her phone stayed silent. Cause:
+`applyAsRescuer` fired `void sendAlert(...)` and returned — **Netlify
+freezes the serverless function the instant the response goes out**, so the
+un-awaited Telegram fetch died in flight, every time. Fix: `await sendAlert`
+(it never throws, so the never-block rule holds) + `AbortSignal.timeout(4000)`
+on the Telegram fetch so a hanging API caps the submit at 4s. Re-verified on
+production: second test application delivered the 🙋 to her chat.
+
+**Rule for this codebase: never `void` a side effect in a server action or
+route handler — always await it.** The runtime kills background work on
+response. (The pet alert was already safe: its action awaits the send.)
