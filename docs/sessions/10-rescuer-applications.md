@@ -57,3 +57,17 @@ production: second test application delivered the 🙋 to her chat.
 **Rule for this codebase: never `void` a side effect in a server action or
 route handler — always await it.** The runtime kills background work on
 response. (The pet alert was already safe: its action awaits the send.)
+
+## Same-day extension: the contact page joins the pattern
+
+Vanessa: "instead of sending me an email, we can just have a form + Telegram?"
+Yes — with one deliberate boundary: **adoption inquiries stay direct email**
+(the "no forms, no middlemen, inquiries land in the rescuer's own inbox"
+promise is the product's soul, and real rescuers won't have her Telegram).
+
+/contact gained a message box → `contact_messages` (migration 0009, applied;
+same closed-surface pattern) → 📨 Telegram with the full message inline
+(reply = email them back; no admin screen needed, the table is the safety
+net). Email + Instagram cards kept below as "prefer email?". The "No forms
+here either" line rewritten — the sentiment was anti-bureaucracy, and "it
+lands straight on Vanessa's phone" honours it better.
