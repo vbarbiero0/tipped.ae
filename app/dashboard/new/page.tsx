@@ -6,6 +6,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import Sidebar from "@/components/dashboard/Sidebar";
 import { useRescuer } from "@/components/dashboard/useRescuer";
 import { supabaseBrowser } from "@/lib/supabase-browser";
+import { alertPendingSubmission } from "./actions";
 import { UploadIcon, CheckIcon } from "@/components/dashboard/icons";
 import { EMIRATES } from "@/lib/emirates";
 
@@ -204,10 +205,25 @@ function AddAnimalForm() {
         photos: photoUrls,
       };
 
-      const { error: dbErr } = editId
-        ? await supabase.from("pets").update(row).eq("id", editId)
-        : await supabase.from("pets").insert(row);
-      if (dbErr) throw dbErr;
+      if (editId) {
+        const { error: dbErr } = await supabase.from("pets").update(row).eq("id", editId);
+        if (dbErr) throw dbErr;
+      } else {
+        const { data: created, error: dbErr } = await supabase
+          .from("pets")
+          .insert(row)
+          .select("id,approval_status")
+          .single();
+        if (dbErr) throw dbErr;
+        // Telegram ping for the admin queue — capped at 1.5s and swallowed:
+        // a notification failure must never block or fail the submission.
+        if (created?.approval_status === "pending") {
+          await Promise.race([
+            alertPendingSubmission(created.id).catch(() => {}),
+            new Promise((r) => setTimeout(r, 1500)),
+          ]);
+        }
+      }
       router.push("/dashboard");
     } catch {
       setError("Couldn't save. Check your connection and try again.");

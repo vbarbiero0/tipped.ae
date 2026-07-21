@@ -55,3 +55,7 @@ you add new interim wiring anywhere.
 - [ ] Revoke any outstanding Supabase access tokens and the Netlify CLI
       authorization if no longer wanted (Netlify → User settings →
       Applications).
+
+- [ ] **Rotate the Telegram bot token** before launch — the current one
+  transited chat with the agent (2026-07-21). BotFather → `/revoke` →
+  update `TELEGRAM_BOT_TOKEN` in `.env.local` + Netlify env.
