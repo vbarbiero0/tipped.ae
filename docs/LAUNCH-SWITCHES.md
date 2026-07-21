@@ -48,8 +48,10 @@ you add new interim wiring anywhere.
       supabase.io address. Before onboarding real rescuers, configure custom
       SMTP (Supabase → Auth → SMTP) with a tipped.ae sender.
 
-- [ ] Vanessa: change the test login password (`TIPPED_LOGIN_PASSWORD` in
-      `.env.local`) in Supabase → Authentication.
+- [x] ~~Vanessa: change the test login password~~ Resolved 2026-07-21:
+  the agent-held copy (`TIPPED_LOGIN_PASSWORD`) is deleted from `.env.local`;
+  Vanessa sets her own via the reset link (session 7). If the link expires
+  before she uses it, mint a new one or use Forgot password on the login page.
 - [ ] Revoke any outstanding Supabase access tokens and the Netlify CLI
       authorization if no longer wanted (Netlify → User settings →
       Applications).

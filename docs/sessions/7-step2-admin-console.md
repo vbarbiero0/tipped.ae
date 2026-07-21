@@ -117,3 +117,10 @@ was Silvana's seed animal — rename the row, inherit the credit). Audit rows
 keep the old actor UUID (`actor_id` has no FK — an audit log should remember
 history verbatim). The seed files still contain the Silvana persona; noted in
 CLAUDE.md not to re-seed rescuers against the live DB without reconciling.
+
+**Password follow-up:** Vanessa never created a password — the one on the
+rebuilt account was the machine-generated `TIPPED_LOGIN_PASSWORD` from the
+session-5 setup. Issued her a one-time recovery link (redirects to the
+production `/dashboard/reset`, 24h expiry) so she sets her own, and deleted
+the stored copy from `.env.local` — the agent no longer holds her password;
+future session-establishment uses admin recovery links, as today.
