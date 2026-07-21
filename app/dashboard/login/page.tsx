@@ -81,7 +81,11 @@ export default function RescuerLoginPage() {
       { redirectTo: `${window.location.origin}/dashboard/reset` }
     );
     if (resetError) {
-      setError("Couldn't send the reset email. Try again in a minute.");
+      setError(
+        resetError.status === 429
+          ? "Too many reset emails in the last hour — the mail service is rate-limited. Wait a while and try again."
+          : "Couldn't send the reset email. Try again in a minute."
+      );
       setBusy(false);
       return;
     }
