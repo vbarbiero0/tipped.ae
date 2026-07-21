@@ -22,6 +22,7 @@ export async function sendAlert(text: string, photoUrl?: string | null): Promise
   try {
     const res = await fetch(`https://api.telegram.org/bot${token}/${method}`, {
       method: "POST",
+      signal: AbortSignal.timeout(4000),
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
     });

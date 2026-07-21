@@ -43,7 +43,7 @@ export async function applyAsRescuer(form: {
       return { ok: false };
     }
 
-    void sendAlert(
+    await sendAlert(
       [
         `\u{1F64B} New rescuer application`,
         `${row.name}${row.emirate ? ` — ${row.emirate}` : ""}`,
