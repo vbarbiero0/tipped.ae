@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import SocialLinks from "@/components/SocialLinks";
 import TippedMonogram from "@/components/TippedMonogram";
+import InstagramGrid from "@/components/InstagramGrid";
 import JoinForm from "@/components/JoinForm";
 import { getRescuers } from "@/lib/data";
 import { RESCUER_CONTACT_EMAIL } from "@/lib/brand";
@@ -97,6 +98,8 @@ export default async function RescuersPage() {
           ))}
         </div>
       </div>
+
+      <InstagramGrid />
 
       {/* Join — the recruiting pitch, full-width above the footer */}
       <section id="join" className="bg-cream">

@@ -65,3 +65,15 @@ getBlogPosts…), covers moved `public/advice/` → `public/blog/` — required,
 not cosmetic: the new /advice/:slug redirect would have swallowed the static
 covers (redirects beat filesystem — the /cats landmine, third appearance).
 SVG + OG footers now read "tipped · blog".
+
+## Second addendum: Instagram grid on /rescuers
+
+Vanessa: last 9 IG posts on the rescuers page, auto-updating. Built on the
+official Instagram API (Instagram Login) — the only ToS-clean way, and it
+needs her one-time OAuth (agent can't and shouldn't do her Meta login).
+Token in `app_settings` (0012, applied) so it self-refreshes on fetch (>24h
+old → refresh + save back; 60-day expiry never reached). Graph calls cached
+hourly via next.revalidate. Fallback: a warm follow card until connected.
+Alternative if the Meta developer flow frustrates her: Behold.so's free tier
+(she connects IG there, we fetch their JSON) — noted, not chosen, to keep
+zero third-party dependencies.
