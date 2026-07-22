@@ -77,3 +77,13 @@ hourly via next.revalidate. Fallback: a warm follow card until connected.
 Alternative if the Meta developer flow frustrates her: Behold.so's free tier
 (she connects IG there, we fetch their JSON) — noted, not chosen, to keep
 zero third-party dependencies.
+
+**Instagram connected (same day).** Vanessa walked Meta's developer maze
+(wrong building once, a second stray app once, an Instagram-Tester invite —
+the "Insufficient developer role" fix) and produced a long-lived token.
+Verified: username tipped.ae, BUSINESS account. Stored in app_settings;
+self-refresh live. Plot twist: the account has **zero posts** — the grid's
+follow-card fallback carries the section until her first post, then the
+feed appears automatically within the hour. Token-rotation entry added to
+LAUNCH-SWITCHES. The stray second app ("Tipped.ae", Facebook-Login use
+case) can be deleted in the developer console at her leisure.

@@ -59,3 +59,9 @@ you add new interim wiring anywhere.
 - [ ] **Rotate the Telegram bot token** before launch — the current one
   transited chat with the agent (2026-07-21). BotFather → `/revoke` →
   update `TELEGRAM_BOT_TOKEN` in `.env.local` + Netlify env.
+
+- [ ] **Rotate the Instagram access token** before launch — the current one
+  transited chat with the agent (2026-07-22). Developer dashboard → Instagram
+  use case → Generate token again, paste to the agent; it replaces the
+  app_settings row. (Tokens also self-refresh every ~24h of site traffic, so
+  the stored value drifts from the pasted one naturally.)
