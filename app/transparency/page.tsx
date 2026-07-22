@@ -30,7 +30,8 @@ export default async function TransparencyPage() {
       </h1>
       <p className="font-sans font-medium text-[16px] leading-[1.65] text-cocoa/75 m-0 mb-8 max-w-[600px]">
         Money for care never passes through tipped — clinics get paid directly,
-        and 100% of the shop&rsquo;s profit goes to vet bills. What comes in and
+        and 100% of the shop&rsquo;s profit goes to vet bills for rescued
+        animals. What comes in and
         what gets paid lives here, receipt by receipt, updated weekly. Listed
         pets and the ones still on the street alike.
       </p>
@@ -76,7 +77,7 @@ export default async function TransparencyPage() {
             Money in
           </h2>
           <p className="font-sans font-medium text-[13.5px] text-cocoa/60 m-0 mb-5">
-            What the shop sold. Updated weekly, sale by sale.
+            What the shop sold — recorded weekly, sale by sale.
           </p>
           {ledger.length === 0 ? (
             <p className="font-sans font-medium text-[14px] text-cocoa/60">

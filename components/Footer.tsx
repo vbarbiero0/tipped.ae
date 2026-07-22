@@ -33,8 +33,8 @@ export default function Footer() {
             <TippedLogo size={30} inverted />
           </div>
           <p className="font-sans font-medium text-sm leading-relaxed text-cream/60 m-0 mb-[18px] max-w-[340px]">
-            For the cats and dogs of the UAE&rsquo;s streets. Rescuers list, you
-            adopt, clinics get paid.
+            A home for the UAE&rsquo;s rescued street pets and the people who
+            save them. Every tipped ear is an animal someone saved.
           </p>
           <div className="flex items-center gap-4">
             <a
@@ -104,7 +104,7 @@ export default function Footer() {
             </Link>
           </div>
           <div className="font-sans font-semibold text-xs text-cream/35 mt-6">
-            United Arab Emirates · every pet here is sterilised, vaccinated and known by name
+            United Arab Emirates · every pet here is cared for by the rescuer who knows them best
           </div>
         </div>
       </div>

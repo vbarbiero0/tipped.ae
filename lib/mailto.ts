@@ -9,7 +9,7 @@ export function adoptionMailto(rescuerEmail: string, animalName: string, petRef:
     "Other pets:",
     "Experience with cats/dogs:",
     "",
-    "Anything you want to know about me, ask away.",
+    "Please ask me anything you'd like to know — happy to share more.",
   ].join("\n");
   return `mailto:${rescuerEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
@@ -25,7 +25,7 @@ export function fosterMailto(rescuerEmail: string, animalName: string, petRef: s
     "My home setup (apartment/villa, other pets):",
     "I can do vet runs (yes/no):",
     "",
-    "Anything you want to know about me, ask away.",
+    "Please ask me anything you'd like to know — happy to share more.",
   ].join("\n");
   return `mailto:${rescuerEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }

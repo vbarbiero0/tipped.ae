@@ -151,7 +151,7 @@ export default function AdminLedgerPage() {
         <>
           <h1 className="font-display font-extrabold text-[30px] text-cocoa m-0">Ledger</h1>
           <div className="font-sans font-semibold text-[13.5px] text-cocoa/55 mt-[3px] mb-4">
-            What lands here shows on the public Open books page. Weekly, remember.
+            Everything added here appears on the public Open books page — updated weekly.
           </div>
 
           <div className="flex gap-2 mb-5">

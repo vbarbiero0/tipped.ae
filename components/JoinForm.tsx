@@ -42,10 +42,10 @@ export default function JoinForm() {
     return (
       <div className="bg-white rounded-[18px] shadow-card p-6 max-w-[520px]">
         <div className="font-display font-extrabold text-[20px] text-cocoa mb-1">
-          Got it. 🎉
+          Thank you. 🧡
         </div>
         <p className="font-sans font-medium text-[14.5px] leading-[1.6] text-cocoa/70 m-0">
-          Vanessa reads every application herself — you&rsquo;ll hear back at{" "}
+          Every application is read personally — you&rsquo;ll hear back at{" "}
           <span className="font-bold">{email.trim()}</span>, usually the same
           day. Your first pet can be live right after.
         </p>
@@ -124,7 +124,7 @@ export default function JoinForm() {
       />
       {state === "error" && (
         <div className="font-sans font-semibold text-[13px] text-badge-text mb-3">
-          Couldn&rsquo;t send — check the email address and try again.
+          We couldn&rsquo;t send that — please check the email address and try again.
         </div>
       )}
       <button

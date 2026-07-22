@@ -6,7 +6,7 @@ import { getPets } from "@/lib/data";
 export const metadata: Metadata = {
   title: "Already home",
   description:
-    "Every pet on this page slept on the street once. Proof the model works.",
+    "Every pet on this page was once on the street. Thanks to rescuers and adopters, they're home now.",
 };
 
 // The celebration page — approved pets whose status is adopted. No email
@@ -18,12 +18,14 @@ export default async function AdoptedPage() {
     <div className="max-w-[1160px] mx-auto px-6 md:px-8 pt-10 md:pt-16 pb-16 md:pb-[84px]">
       <div className="eyebrow mb-[14px]">ALREADY HOME</div>
       <h1 className="font-display font-extrabold text-[34px] md:text-[44px] text-cocoa m-0 mb-3">
-        The ones who made it.
+        Already home.
       </h1>
       <p className="font-sans font-medium text-[16px] leading-[1.65] text-cocoa/70 m-0 mb-10 max-w-[560px]">
         {pets.length > 0
-          ? `${pets.length} ${pets.length === 1 ? "pet" : "pets"} on this page slept on the street once. Now they yell for breakfast indoors — proof the model works.`
-          : "The first adoption gets celebrated here, photo and all."}
+          ? pets.length === 1
+            ? "This pet once lived on the street. Thanks to their rescuer and adopter, they're home now — and there's room here for many more."
+            : `Every one of these ${pets.length} pets once lived on the street. Thanks to their rescuers and adopters, they're home now — and there's room here for many more.`
+          : "When the first pet is adopted, we'll celebrate them here, photo and all."}
       </p>
 
       {pets.length > 0 ? (
@@ -51,7 +53,7 @@ export default async function AdoptedPage() {
       ) : (
         <div className="bg-paper border border-cocoa/[.08] rounded-[20px] px-10 py-[70px] text-center">
           <p className="font-sans font-medium text-[15px] text-cocoa/60 m-0">
-            Meanwhile, someone&rsquo;s waiting —{" "}
+            In the meantime, someone is still waiting —{" "}
             <Link href="/pets" className="font-bold">
               meet the pets looking for a home
             </Link>
@@ -62,7 +64,7 @@ export default async function AdoptedPage() {
 
       {pets.length > 0 && (
         <p className="font-sans font-medium text-[15px] text-cocoa/60 mt-10 m-0">
-          Want to be the reason the next one lands here?{" "}
+          Would you like to give the next one their home?{" "}
           <Link href="/pets" className="font-bold">
             Meet the pets still waiting →
           </Link>

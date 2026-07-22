@@ -37,21 +37,21 @@ export default async function HomePage() {
       {/* Hero */}
       <section className="max-w-[1160px] mx-auto px-6 md:px-8 pt-10 md:pt-14 pb-16 md:pb-[84px] grid md:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] gap-10 md:gap-16 items-center">
         <div>
-          <div className="eyebrow mb-[18px]">THE UAE&rsquo;S STREET CATS &amp; DOGS</div>
+          <div className="eyebrow mb-[18px]">RESCUED ACROSS THE UAE</div>
           <h1 className="font-display font-extrabold text-[40px] md:text-[54px] leading-[1.08] text-cocoa m-0 mb-[22px] [text-wrap:pretty]">
             {TAGLINE}
           </h1>
           <p className="font-sans font-medium text-[17px] leading-[1.65] text-cocoa/75 m-0 mb-8 max-w-[480px]">
-            Rescuers across the UAE list their street cats and dogs here. Browse
-            from anywhere in the world, email the rescuer directly, and adopt.
-            When a pet needs care, the vet gets paid — not us.
+            tipped brings together rescuers across the Emirates and the
+            animals in their care. Browse the pets, meet the people who saved
+            them, and adopt or foster — from anywhere in the world.
           </p>
           <div className="flex gap-[14px] items-center flex-wrap">
             <Link
               href="/pets"
               className="bg-cocoa text-cream no-underline font-sans font-bold text-[15px] px-7 py-[15px] rounded-[12px] hover:bg-[#241A14]"
             >
-              Browse the cats &amp; dogs
+              Meet the pets
             </Link>
             <Link
               href="/how-it-works"
@@ -121,10 +121,10 @@ export default async function HomePage() {
       <section className="max-w-[1160px] mx-auto px-6 md:px-8 pb-16 md:pb-[84px]">
         <div className="flex items-baseline justify-between mb-[26px]">
           <h2 className="font-display font-extrabold text-[28px] md:text-[34px] text-cocoa m-0">
-            Ready to leave the street
+            Waiting for a home
           </h2>
           <Link href="/pets" className="font-sans font-bold text-sm whitespace-nowrap">
-            All cats &amp; dogs →
+            See all pets →
           </Link>
         </div>
         <div className="grid md:grid-cols-3 gap-6">
@@ -133,9 +133,10 @@ export default async function HomePage() {
           ))}
         </div>
         <p className="font-sans font-medium text-[15px] text-cocoa/70 text-center m-0 mt-9">
-          Can&rsquo;t adopt? Foster. Two weeks of your sofa changes everything.{" "}
+          If you can&rsquo;t adopt right now, fostering helps just as much —
+          you give a rescued animal a safe place to rest while they wait.{" "}
           <Link href="/pets?intent=foster" className="font-bold">
-            See who needs a foster →
+            Meet the pets who need a foster →
           </Link>
         </p>
       </section>
@@ -144,24 +145,24 @@ export default async function HomePage() {
       <section className="bg-cream">
         <div className="max-w-[1160px] mx-auto px-6 md:px-8 py-16 md:py-[72px]">
           <h2 className="font-display font-extrabold text-[28px] md:text-[34px] text-cocoa m-0 mb-10">
-            Adopting, plainly
+            How adoption works
           </h2>
           <div className="grid md:grid-cols-3 gap-8 md:gap-10">
             {[
               {
                 n: "1",
-                title: "Find your pet",
-                body: "Every listing is written by the rescuer who actually feeds this cat or dog. No shelter-speak.",
+                title: "Find your companion",
+                body: "Every pet is listed by the rescuer who cares for them, with their story, health record and microchip.",
               },
               {
                 n: "2",
                 title: "Email the rescuer",
-                body: "Straight to their inbox — no forms, no gatekeeping. Ask the awkward questions.",
+                body: "Your message goes straight to the person who knows this animal best, and they'll guide you from there.",
               },
               {
                 n: "3",
-                title: "Adopt, near or far",
-                body: "UAE cats and dogs fly well. You and the rescuer arrange vetting, paperwork and travel together.",
+                title: "Adopt or foster, near or far",
+                body: "UAE pets travel well. You and the rescuer arrange the health checks, paperwork and travel together.",
               },
             ].map((s) => (
               <div key={s.n}>
@@ -185,15 +186,17 @@ export default async function HomePage() {
         <div className="max-w-[1160px] mx-auto px-6 md:px-8 py-16 md:py-20 grid md:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] gap-10 md:gap-16 items-center">
           <div>
             <h2 className="font-display font-extrabold text-[30px] md:text-[38px] leading-[1.15] text-cream m-0 mb-5 [text-wrap:pretty]">
-              Vet bills get paid to the vet.
+              Every contribution helps rescuers do more.
             </h2>
             <p className="font-sans font-medium text-base leading-[1.7] text-cream/70 m-0 mb-[14px] max-w-[460px]">
-              When a cat or dog needs treatment, the rescuer posts the
-              clinic&rsquo;s bill here. You pay the clinic directly — we never
-              hold the money, and the receipt goes up for everyone to see.
+              When a rescued animal needs treatment, the clinic&rsquo;s bill is
+              posted here. Payments go straight to the clinic caring for the
+              animal — tipped never handles the money — and every receipt is
+              published for all to see. Every contribution, no matter how
+              small, helps rescuers do more.
             </p>
             <p className="font-sans font-semibold text-sm text-cream/50 m-0">
-              Works for listed pets and for the ones still on the street.
+              This helps listed pets and animals still waiting on the street alike.
             </p>
           </div>
           {openBill ? (
@@ -206,9 +209,9 @@ export default async function HomePage() {
             />
           ) : (
             <div className="bg-receipt rounded-[18px] px-7 py-[26px] shadow-receipt -rotate-1 font-sans font-medium text-[14.5px] leading-[1.6] text-cocoa/70">
-              No open bills right now. When a pet needs treatment, the
-              clinic&rsquo;s bill goes up here — and comes down when it&rsquo;s
-              paid.
+              There are no open bills right now. When a rescued animal needs
+              treatment, the clinic&rsquo;s bill will appear here until
+              it&rsquo;s covered — thank you for checking in.
             </div>
           )}
         </div>
@@ -219,15 +222,16 @@ export default async function HomePage() {
         <section className="max-w-[1160px] mx-auto px-6 md:px-8 py-16 md:py-[84px]">
           <div className="flex items-baseline justify-between mb-2">
             <h2 className="font-display font-extrabold text-[28px] md:text-[34px] text-cocoa m-0">
-              The shop pays bills too
+              The shop gives back
             </h2>
             <Link href="/shop" className="font-sans font-bold text-sm whitespace-nowrap">
               Visit the shop →
             </Link>
           </div>
           <p className="font-sans font-medium text-[15px] text-cocoa/65 m-0 mb-7">
-            100% of the shop&rsquo;s profit pays vet bills — tracked dirham by
-            dirham, updated weekly on the transparency page.
+            100% of the shop&rsquo;s profit goes to vet bills for rescued
+            animals — recorded dirham by dirham and published every week on
+            the Open books page.
           </p>
           <div className="grid md:grid-cols-3 gap-6">
             {products.map((p) => (

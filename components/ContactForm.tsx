@@ -31,8 +31,9 @@ export default function ContactForm() {
           Sent. 📨
         </div>
         <p className="font-sans font-medium text-[14.5px] leading-[1.6] text-cocoa/70 m-0">
-          It&rsquo;s already on Vanessa&rsquo;s phone — you&rsquo;ll hear back
-          at <span className="font-bold">{email.trim()}</span>.
+          Thank you for writing — your message has reached us, and
+          you&rsquo;ll hear back at{" "}
+          <span className="font-bold">{email.trim()}</span>.
         </p>
       </div>
     );
@@ -46,7 +47,7 @@ export default function ContactForm() {
       <textarea
         value={message}
         onChange={(e) => setMessage(e.target.value)}
-        placeholder="What's on your mind — adopting, fostering, the shop, the books…"
+        placeholder="How can we help — adopting, fostering, the shop, anything at all…"
         rows={4}
         className={`${field} resize-none mb-3`}
       />
@@ -61,7 +62,7 @@ export default function ContactForm() {
       />
       {state === "error" && (
         <div className="font-sans font-semibold text-[13px] text-badge-text mb-3">
-          Couldn&rsquo;t send — check the email address and try again.
+          We couldn&rsquo;t send that — please check the email address and try again.
         </div>
       )}
       <button

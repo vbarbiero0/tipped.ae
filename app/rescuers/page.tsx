@@ -38,9 +38,10 @@ export default async function RescuersPage() {
           The rescuers
         </h1>
         <p className="font-sans font-medium text-[16px] leading-[1.65] text-cocoa/75 m-0 mb-10 max-w-[560px]">
-          They feed the block, trap-neuter-return, cover clinic runs, and know
-          every cat and dog by name. When you email about one, it goes straight
-          to them.
+          Across the Emirates, rescuers feed, sterilise and care for street
+          animals — often out of their own pockets. Every pet on tipped is
+          listed by one of them, and when you email about a pet, your message
+          goes straight to the person who knows them best.
         </p>
 
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
@@ -102,32 +103,32 @@ export default async function RescuersPage() {
         <div className="max-w-[1160px] mx-auto px-6 md:px-8 py-16 md:py-[84px]">
           <div className="eyebrow mb-[14px]">FOR RESCUERS</div>
           <h2 className="font-display font-extrabold text-[30px] md:text-[40px] leading-[1.12] text-cocoa m-0 mb-4 max-w-[640px] [text-wrap:pretty]">
-            You feed them. Let&rsquo;s home them.
+            You save them. We&rsquo;ll help them find home.
           </h2>
           <p className="font-sans font-medium text-[16px] leading-[1.65] text-cocoa/75 m-0 mb-10 max-w-[560px]">
-            tipped is free for rescuers, always. You write the listing in your
-            own words, and you decide who adopts. We just make sure the right
-            people see it.
+            tipped is free for rescuers, always. You write each listing in
+            your own words, and you decide who adopts. We simply help the
+            right people find your pets.
           </p>
 
           <div className="grid md:grid-cols-3 gap-8 md:gap-10 mb-12">
             <div>
               <div className="font-display font-extrabold text-[19px] text-cocoa mb-2">
-                Reach past your followers
+                Reach more adopters
               </div>
               <p className="font-sans font-medium text-[14.5px] leading-[1.6] text-cocoa/75 m-0">
-                Every pet gets a clean profile that shares beautifully to
-                WhatsApp and Instagram — so an adopter in London sees your cat
-                the way you see her.
+                Every pet gets a lovely profile that shares beautifully to
+                WhatsApp and Instagram — so adopters anywhere in the world can
+                meet your pets the way you know them.
               </p>
             </div>
             <div>
               <div className="font-display font-extrabold text-[19px] text-cocoa mb-2">
-                Your inbox, your call
+                Your inbox, your decision
               </div>
               <p className="font-sans font-medium text-[14.5px] leading-[1.6] text-cocoa/75 m-0">
-                No forms, no middlemen, no committee. Inquiries land in your own
-                email, and you vet adopters exactly the way you do now.
+                Adoption inquiries land directly in your own email, and you
+                choose the right home for every pet, exactly as you do now.
               </p>
             </div>
             <div>
@@ -135,9 +136,10 @@ export default async function RescuersPage() {
                 Help with the bills
               </div>
               <p className="font-sans font-medium text-[14.5px] leading-[1.6] text-cocoa/75 m-0">
-                Post a vet bill and supporters pay your clinic directly — we
-                never touch the money. And 100% of the shop&rsquo;s profit goes
-                at the open bills, updated weekly in public.
+                Post a vet bill and supporters pay your clinic directly —
+                tipped never handles the money. 100% of the shop&rsquo;s profit
+                also goes toward open bills, published weekly for everyone to
+                see.
               </p>
             </div>
           </div>

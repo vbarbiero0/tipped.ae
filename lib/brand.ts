@@ -5,8 +5,8 @@ export const EAR_PINK = "#F58B93";
 export const COCOA = "#3A2A22";
 export const CREAM = "#FFF3E4";
 
-export const TAGLINE = "The streets raised them. You take it from here.";
-export const MARK_TAGLINE = "Every tipped ear is a cat someone saved.";
+export const TAGLINE = "Help a rescued animal find their home.";
+export const MARK_TAGLINE = "Every tipped ear is an animal someone saved.";
 // Domain decision (2026-07-19): tipped.ae. Instagram handle @tipped.ae (secured).
 // INTERIM (2026-07-20): every contact point routes to Vanessa's personal email
 // until the hello@tipped.ae mailbox exists. The full switch-back list lives in

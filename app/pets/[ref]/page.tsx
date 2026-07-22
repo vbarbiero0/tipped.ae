@@ -56,7 +56,7 @@ export default async function PetPage({ params }: Props) {
     <div className="max-w-[1160px] mx-auto px-6 md:px-8 pt-8 md:pt-12 pb-16 md:pb-[84px]">
       <StatPing petId={pet.id} />
       <Link href="/pets" className="font-sans font-bold text-sm no-underline">
-        ← All cats &amp; dogs
+        ← All pets
       </Link>
       <div className="grid md:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] gap-10 md:gap-16 mt-6 items-start">
         <div className="w-full h-[340px] md:h-[480px] overflow-hidden rounded-[20px]">
@@ -125,8 +125,9 @@ export default async function PetPage({ params }: Props) {
                 <EmailRescuerButton pet={pet} rescuer={rescuer} size="lg" />
               </div>
               <div className="font-sans font-semibold text-[11.5px] text-cocoa/45 mt-[10px]">
-                Straight to {rescuer.name.split(" ")[0]}&rsquo;s inbox — no forms, no
-                gatekeeping.
+                Your message goes straight to{" "}
+                {rescuer.name.split(" ")[0]} — the person who knows{" "}
+                {pet.name} best.
               </div>
             </div>
           )}

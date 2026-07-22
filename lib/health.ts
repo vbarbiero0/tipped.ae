@@ -46,24 +46,24 @@ export const CONDITION_NOTES: Partial<
   Record<ConditionSlug, { title: string; body: (name: string) => string }>
 > = {
   fiv: {
-    title: "FIV, plainly.",
+    title: "About FIV",
     body: (name) =>
-      `Feline immunodeficiency virus. It can't pass to humans or dogs, and between cats it takes a deep bite — not shared bowls, not grooming. ${name} can live a full, normal-length life: indoors, regular vet checks, and any small illness taken seriously early. Plenty of FIV-positive cats share homes with negative cats and never pass it on.`,
+      `Feline immunodeficiency virus. It cannot pass to humans or dogs, and between cats it spreads only through deep bites — not shared bowls or grooming. With an indoor life, regular vet checks, and small illnesses seen to early, ${name} can live a full, happy, normal-length life. Many FIV-positive cats share homes with negative cats and never pass it on.`,
   },
   felv: {
-    title: "FeLV, plainly.",
+    title: "About FeLV",
     body: (name) =>
-      `Feline leukaemia virus — more serious than FIV, and it does spread through close cat-to-cat contact. ${name} needs to be an only cat, or live with other FeLV-positive cats, strictly indoors. Expect more vet visits than average and possibly fewer years — and absolutely full ones within them.`,
+      `Feline leukaemia virus — more serious than FIV, and it does spread through close cat-to-cat contact. ${name} would do best as an only cat, or with other FeLV-positive cats, living indoors. They may need more vet visits than average, and their years may be fewer — but with loving care, every one of them can be full and happy.`,
   },
   heartworm: {
-    title: "Heartworm, plainly.",
+    title: "About heartworm",
     body: (name) =>
-      `A mosquito-borne parasite, common in the Gulf. It's treatable — treatment takes a few months and a lot of enforced rest, which ${name} will think is unreasonable. After that: a monthly preventative and a completely normal dog life.`,
+      `A mosquito-borne parasite, common in the Gulf. It is treatable — treatment takes a few months and plenty of quiet rest. After that, a monthly preventative keeps ${name} protected, and they can enjoy a completely normal dog life.`,
   },
   heartworm_treatment: {
-    title: "Heartworm, plainly.",
+    title: "About heartworm",
     body: (name) =>
-      `A mosquito-borne parasite, common in the Gulf. ${name} is already in treatment — a few months of medication and enforced rest, then a monthly preventative and a completely normal dog life. The vet bill for this is the kind that shows up on our transparency page.`,
+      `A mosquito-borne parasite, common in the Gulf. ${name} is already in treatment — a few months of medication and quiet rest, then a monthly preventative and a completely normal dog life. Treatment bills like this one are the kind our Open books page helps cover.`,
   },
 };
 

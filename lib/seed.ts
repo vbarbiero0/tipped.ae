@@ -8,7 +8,7 @@ export const seedRescuers: Rescuer[] = [
     name: "Silvana",
     emirate: "Dubai",
     blurb:
-      "Feeds the cafeteria block in Deira every night. Knows every cat by name and most by opinion.",
+      "Silvana feeds the cats of Deira every evening and knows each one by name. She has been rescuing for years, one cat at a time.",
     email: "vbarbiero0@gmail.com",
     socials: [{ platform: "instagram", handle: "straycatdubai" }],
     pets_saved: 34,
@@ -24,7 +24,7 @@ export const seedRescuers: Rescuer[] = [
     name: "Kwagga",
     emirate: "Dubai",
     blurb:
-      "TNR runs around the Al Quoz warehouses. If a cat is under a truck, Kwagga has already met it.",
+      "Kwagga runs trap-neuter-return rounds around the Al Quoz warehouses, making sure every cat there is sterilised, vaccinated and fed.",
     email: "vbarbiero0@gmail.com",
     socials: [{ platform: "instagram", handle: "kevinofdxb" }],
     pets_saved: 21,
@@ -36,7 +36,7 @@ export const seedRescuers: Rescuer[] = [
     name: "Fawaz",
     emirate: "Dubai",
     blurb:
-      "Runs Save Dubai Stray Cats out of Satwa. Specialises in the ones everyone else gave up on.",
+      "Fawaz runs Save Dubai Stray Cats from Satwa, giving special care to the animals others have given up on.",
     email: "vbarbiero0@gmail.com",
     socials: [],
     pets_saved: 47,
@@ -48,7 +48,7 @@ export const seedRescuers: Rescuer[] = [
     name: "Noor",
     emirate: "Sharjah",
     blurb:
-      "Works the desert edge where the dogs are. Runs feeding rounds at dawn before the heat, and knows every saluki mix between Sharjah and Mirdif.",
+      "Noor cares for the desert dogs on the edge of Sharjah, running feeding rounds at dawn before the heat and finding homes for saluki mixes across the Emirates.",
     email: "vbarbiero0@gmail.com",
     socials: [],
     pets_saved: 18,
@@ -68,7 +68,7 @@ export const seedPets: Pet[] = [
     age: "~2 yrs",
     emirate: "Dubai",
     story:
-      "Lived behind a cafeteria in Deira. Knows his name and yells it back. Fine with kids, firm about breakfast.",
+      "Karak was rescued from behind a cafeteria in Deira, where staff had been feeding him for months. He's affectionate and talkative, comes when called, and is gentle with children. Neutered, vaccinated and ready for a family of his own.",
     medical_other: "Clean bill of health. Microchip booked for his next clinic visit.",
     microchipped: false,
     microchip_number: "PENDING-DUBAI-001",
@@ -93,7 +93,7 @@ export const seedPets: Pet[] = [
     age: "~3 yrs",
     emirate: "Dubai",
     story:
-      "Raised three kittens under a parked truck. The kittens are homed. It's her turn now, and she knows it.",
+      "Mango raised three kittens under a parked truck before she was rescued. All three have found homes, and now it's her turn. She's calm, sweet-natured, and settles quickly — she'd suit a quiet home where she can finally rest.",
     medical_other:
       "Slight notch in the left ear from street life — purely cosmetic.",
     microchipped: true,
@@ -119,7 +119,7 @@ export const seedPets: Pet[] = [
     age: "~4 yrs",
     emirate: "Dubai",
     story:
-      "Bin-diver, reformed. Lost half a tail out there and none of the appetite. Wants a warm lap and a routine.",
+      "Batata spent years surviving on the streets of Satwa and lost part of his tail along the way. It never dimmed his spirit — he's cheerful, food-motivated, and loves company. He's looking for a warm lap and a steady routine.",
     medical_other: "Dental extraction underway at Modern Vet — recovering well.",
     microchipped: true,
     microchip_number: "PENDING-DUBAI-003",
@@ -144,7 +144,7 @@ export const seedPets: Pet[] = [
     age: "~5 yrs",
     emirate: "Ajman",
     story:
-      "Ran the parking garage behind an Ajman bakery — staff paid rent in leftovers. FIV positive, entirely unbothered. Wants sunbeams and a slow morning.",
+      "Loomi was found living in a parking garage behind an Ajman bakery, where the staff kept a kind eye on her. She is FIV positive, which simply means an indoor life and regular check-ups — it doesn't slow her down. She loves sunny spots and quiet company.",
     medical_other:
       "FIV positive — see below for what that actually means. Otherwise healthy, with the bloodwork to prove it.",
     microchipped: true,
@@ -170,7 +170,7 @@ export const seedPets: Pet[] = [
     age: "~1.5 yrs",
     emirate: "Dubai",
     story:
-      "Desert-born saluki mix. Runs like a rumour, sleeps like a rock. Learned 'sit' in one evening and hasn't stopped showing it off.",
+      "Chapati is a desert-born saluki mix, quick and clever and eager to please — he learned to sit in a single evening. He would love an active family with room for him to run.",
     medical_other: "Nothing to report. The vet called him boring, approvingly.",
     microchipped: true,
     microchip_number: "PENDING-DUBAI-004",
@@ -195,7 +195,7 @@ export const seedPets: Pet[] = [
     age: "~3 yrs",
     emirate: "Sharjah",
     story:
-      "Kept a whole construction crew company through two summers. The site closed; she didn't get the memo. Gentle with everyone, patient beyond reason.",
+      "Simsim kept a construction crew company through two long summers, and when the site closed she was left behind. She is gentle with everyone and endlessly patient, and she is waiting for a family of her own.",
     medical_other:
       "A healed fracture in one hind leg — she doesn't mention it.",
     microchipped: true,

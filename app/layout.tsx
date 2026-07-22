@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     default: "tipped — the UAE's street cats & dogs",
     template: "%s · tipped",
   },
-  description: `${TAGLINE} Rescuers across the UAE list their street cats and dogs; you browse from anywhere, email the rescuer directly, and adopt. Vet bills get paid to the vet.`,
+  description: `${TAGLINE} tipped brings together rescuers across the Emirates and the animals in their care. Browse the pets, email the rescuer directly, and adopt or foster from anywhere in the world.`,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

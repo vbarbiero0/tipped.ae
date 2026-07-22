@@ -20,33 +20,35 @@ export default function AboutPage() {
 
       <div className="max-w-[640px] flex flex-col gap-5">
         <p className="font-sans font-medium text-[16px] leading-[1.7] text-cocoa/80 m-0">
-          When a street cat is trapped, neutered and returned, the vet clips the
-          tip of one ear. It&rsquo;s the universal sign that somebody stepped in
-          — this pet is fixed, vaccinated, looked after. That clipped ear is
-          where our name comes from, and it&rsquo;s the whole idea: the UAE is
-          full of pets somebody already saved. They just need somewhere to
-          go next.
+          When a street cat is trapped, neutered and returned, the vet gently
+          clips the tip of one ear. It&rsquo;s the universal sign that someone
+          stepped in — this animal is sterilised, vaccinated and looked after.
+          That clipped ear is where our name comes from, and it carries the
+          whole idea: the UAE is full of animals somebody already saved. They
+          just need a home to go to next.
         </p>
         <p className="font-sans font-medium text-[16px] leading-[1.7] text-cocoa/80 m-0">
-          The people doing the saving — the rescuers who feed a block every
-          night, cover clinic runs, and know every cat and dog by name — mostly
-          work out of Instagram DMs and WhatsApp groups. tipped gives their
-          pets a proper shop window: clean profiles that share anywhere,
-          honest health tags, and a button that emails the rescuer directly.
+          The people doing the saving — rescuers who feed street animals every
+          night, cover clinic visits, and know every cat and dog by name —
+          mostly work out of Instagram messages and WhatsApp groups. tipped
+          brings their pets together in one caring place: lovely profiles that
+          share anywhere, honest health tags, and a button that emails the
+          rescuer directly.
         </p>
         <p className="font-sans font-medium text-[16px] leading-[1.7] text-cocoa/80 m-0">
-          We built it on three refusals. No forms — you write to a person, not
-          a system. No middlemen — the rescuer decides who adopts, the way they
-          always have. And no money through the platform — when a pet needs
-          a vet, you pay the clinic directly, and the receipt goes up in
-          public. The shop is the one place money changes hands, and 100% of
-          its profit goes to vet bills, on the books,{" "}
-          <Link href="/transparency">updated weekly</Link>.
+          Three simple promises shape everything here. Adoption inquiries go
+          to a person, not a system — you write directly to the rescuer. The
+          rescuer decides who adopts, the way they always have. And money
+          never passes through tipped — when a pet needs a vet, you pay the
+          clinic directly, and the receipt is published for everyone. The
+          shop is the one place money changes hands, and 100% of its profit
+          goes to vet bills,{" "}
+          <Link href="/transparency">published weekly</Link>.
         </p>
         <p className="font-sans font-medium text-[16px] leading-[1.7] text-cocoa/80 m-0">
           tipped started in Dubai and covers all seven emirates. Adopters can
-          be anywhere — UAE pets fly well, and they&rsquo;ve been landing in
-          London, Berlin and Toronto for years.
+          be anywhere in the world — UAE pets travel well, and for years they
+          have been welcomed into homes in London, Berlin, Toronto and beyond.
         </p>
       </div>
 

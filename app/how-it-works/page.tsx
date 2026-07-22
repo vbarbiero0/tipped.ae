@@ -13,18 +13,18 @@ export const metadata: Metadata = {
 const steps = [
   {
     n: "1",
-    title: "Find your pet",
-    body: "Every listing is written by the rescuer who actually feeds this cat or dog — the person who knows whether he yells for breakfast or hides from vacuum cleaners. No shelter-speak, no stock phrases.",
+    title: "Find your companion",
+    body: "Every pet is listed by the rescuer who cares for them, with their story, health record and microchip — written by the person who knows them best.",
   },
   {
     n: "2",
     title: "Email the rescuer",
-    body: "The button on every listing opens your own email app, addressed straight to the rescuer's inbox. No forms, no accounts, no gatekeeping. Ask the awkward questions — they'd rather you did.",
+    body: "The button on every listing opens your own email app, addressed straight to the rescuer. Your message goes to the person who knows this animal best, and they'll guide you from there — please ask anything you're unsure about.",
   },
   {
     n: "3",
-    title: "Adopt, near or far",
-    body: "UAE cats and dogs fly well, and rescuers here send pets to Europe, the UK and North America all the time. You and the rescuer arrange vetting, paperwork and travel together.",
+    title: "Adopt or foster, near or far",
+    body: "UAE pets travel well, and rescuers here regularly send animals to new homes in Europe, the UK and North America. You and the rescuer arrange the health checks, paperwork and travel together.",
   },
 ];
 
@@ -39,7 +39,7 @@ export default async function HowItWorksPage() {
       <div className="max-w-[1160px] mx-auto px-6 md:px-8 pt-8 md:pt-12 pb-16">
         <div className="eyebrow mb-[14px]">ADOPTING, PLAINLY</div>
         <h1 className="font-display font-extrabold text-[34px] md:text-[44px] text-cocoa m-0 mb-10 max-w-[640px]">
-          How it works
+          How adoption works
         </h1>
         <div className="grid md:grid-cols-3 gap-8 md:gap-10">
           {steps.map((s) => (
@@ -75,7 +75,7 @@ export default async function HowItWorksPage() {
               fixed, vaccinated and is being looked after.
             </p>
             <p className="font-sans font-medium text-[15.5px] leading-[1.7] text-cocoa/78 m-0 mb-3 max-w-[600px]">
-              That&rsquo;s where the name comes from. Every tipped ear is a cat
+              That&rsquo;s where the name comes from. Every tipped ear is an animal
               someone saved, and every cat on this site carries one.
             </p>
             <p className="font-sans font-medium text-[15.5px] leading-[1.7] text-cocoa/78 m-0 max-w-[600px]">
@@ -93,8 +93,8 @@ export default async function HowItWorksPage() {
           What the tags mean
         </h2>
         <p className="font-sans font-medium text-[15px] leading-[1.65] text-cocoa/70 m-0 mb-8 max-w-[620px]">
-          Every profile carries health tags. They&rsquo;re precise claims, not
-          vibes — here&rsquo;s exactly what each one commits to.
+          Every profile carries health tags, so you know exactly what care
+          each pet has received. Here is what each one means.
         </p>
         <div className="grid md:grid-cols-2 gap-x-12 gap-y-6 max-w-[900px]">
           {[
@@ -112,11 +112,11 @@ export default async function HowItWorksPage() {
             },
             {
               tag: "tested −",
-              body: "Bloodwork done and negative — FIV/FeLV for cats, heartworm for dogs. If a pet wasn't tested, the tag simply isn't there; we don't claim what we don't know.",
+              body: "Bloodwork done and negative — FIV/FeLV for cats, heartworm for dogs. If a pet hasn't been tested yet, the tag simply isn't there — we only show what has truly been done.",
             },
             {
               tag: "FIV + / FeLV + / heartworm +",
-              body: "A positive result is stated plainly, never hidden — and the profile automatically explains what it means and what care looks like.",
+              body: "A positive result is shared openly, never hidden — and the profile gently explains what it means and what caring for them looks like.",
             },
             {
               tag: "special needs · chronic condition",
@@ -143,7 +143,7 @@ export default async function HowItWorksPage() {
               And when a pet needs a vet?
             </h2>
             <p className="font-sans font-medium text-base leading-[1.7] text-cream/70 m-0 mb-[14px] max-w-[460px]">
-              The rescuer posts the clinic&rsquo;s bill here. You pay the clinic
+              The clinic&rsquo;s bill is posted here, and you pay the clinic
               directly, into the clinic&rsquo;s own account — tipped never holds
               the money. The receipt goes up on the{" "}
               <Link href="/transparency" className="text-cream underline">
@@ -152,7 +152,7 @@ export default async function HowItWorksPage() {
               for everyone to see.
             </p>
             <p className="font-sans font-semibold text-sm text-cream/50 m-0">
-              Works for listed pets and for the ones still on the street.
+              This helps listed pets and animals still on the street alike.
             </p>
           </div>
           {openBill && (
@@ -172,7 +172,7 @@ export default async function HowItWorksPage() {
           href="/pets"
           className="inline-block bg-cocoa text-cream no-underline font-sans font-bold text-[15px] px-7 py-[15px] rounded-[12px] hover:bg-[#241A14]"
         >
-          Browse the cats &amp; dogs
+          Meet the pets
         </Link>
       </div>
     </>

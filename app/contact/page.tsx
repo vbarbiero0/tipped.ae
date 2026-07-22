@@ -17,9 +17,9 @@ export default function ContactPage() {
         Say hello.
       </h1>
       <p className="font-sans font-medium text-[16px] leading-[1.65] text-cocoa/75 m-0 mb-10 max-w-[560px]">
-        Adopting, fostering, listing your pets, shop orders, a question
-        about the books — write it below and it lands straight on
-        Vanessa&rsquo;s phone. A person reads it, usually within the hour.
+        Whether it&rsquo;s about adopting, fostering, listing your pets, the
+        shop, or anything else — write to us below and your message reaches us
+        right away. A person reads every note, usually within the hour.
       </p>
 
       <div className="mb-6">

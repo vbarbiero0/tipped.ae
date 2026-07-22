@@ -59,20 +59,20 @@ function BookIcon() {
 const rows = [
   {
     href: "/pets",
-    title: "Browse pets",
-    desc: "Every listing written by the rescuer",
+    title: "Meet the pets",
+    desc: "Rescued animals looking for a home",
     icon: <HeadIcon />,
   },
   {
     href: "/how-it-works",
-    title: "How it works",
-    desc: "Adopting or fostering, in plain steps",
+    title: "How adoption works",
+    desc: "Adopting or fostering, step by step",
     icon: <ListIcon />,
   },
   {
     href: "/transparency",
-    title: "Vet bills & receipts",
-    desc: "Paid to the clinic — receipts public",
+    title: "Open books",
+    desc: "Every bill and receipt, published",
     icon: <BookIcon />,
   },
 ];

@@ -21,14 +21,15 @@ export default function ShopPage() {
 
   return (
     <div className="max-w-[1160px] mx-auto px-6 md:px-8 pt-8 md:pt-12 pb-16 md:pb-[84px]">
-      <div className="eyebrow mb-[14px]">THE SHOP PAYS BILLS</div>
+      <div className="eyebrow mb-[14px]">THE SHOP GIVES BACK</div>
       <h1 className="font-display font-extrabold text-[34px] md:text-[44px] text-cocoa m-0 mb-3">
-        Buy a thing, feed a street.
+        Every purchase helps a rescued animal.
       </h1>
       <p className="font-sans font-medium text-[16px] leading-[1.65] text-cocoa/75 m-0 mb-10 max-w-[560px]">
-        100% of the shop&rsquo;s profit pays vet bills. Every sale in, every
-        bill out — public and updated weekly on the{" "}
-        <Link href="/transparency">transparency page</Link>.
+        100% of the shop&rsquo;s profit goes to vet bills for rescued
+        animals. Every sale in and every bill out is published weekly on the{" "}
+        <Link href="/transparency">Open books page</Link> — thank you for
+        being part of it.
       </p>
 
       <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 mb-14">
@@ -56,13 +57,14 @@ export default function ShopPage() {
       {/* How buying works */}
       <div className="bg-cream rounded-[24px] px-6 md:px-10 py-8 md:py-10 mb-12">
         <h2 className="font-display font-extrabold text-[24px] text-cocoa m-0 mb-3">
-          How buying works, for now
+          How ordering works, for now
         </h2>
         <p className="font-sans font-medium text-[14.5px] leading-[1.65] text-cocoa/75 m-0 mb-6 max-w-[620px]">
-          No cart yet — orders are personal while we&rsquo;re small. Message us
-          on Instagram or email what you want; we invoice by payment link or
-          bank transfer and ship anywhere in the UAE. Every sale lands in the
-          public ledger.
+          There&rsquo;s no cart just yet — while we&rsquo;re small, every
+          order is personal. Message us on Instagram or by email with what
+          you&rsquo;d like; we&rsquo;ll invoice by payment link or bank
+          transfer and ship anywhere in the UAE. Every sale is recorded in
+          the public ledger.
         </p>
         <div className="flex gap-[14px] items-center flex-wrap">
           <a
@@ -84,11 +86,11 @@ export default function ShopPage() {
 
       <div className="max-w-[560px]">
         <h2 className="font-display font-extrabold text-[20px] text-cocoa m-0 mb-2">
-          New things, when there are new things
+          Hear about new arrivals
         </h2>
         <p className="font-sans font-medium text-[13.5px] leading-[1.6] text-cocoa/65 m-0 mb-4">
-          Leave your email and we&rsquo;ll tell you when the next batch lands.
-          Nothing else, ever.
+          Leave your email and we&rsquo;ll let you know when something new
+          arrives. Nothing else, we promise.
         </p>
         <ShopSignup />
       </div>
