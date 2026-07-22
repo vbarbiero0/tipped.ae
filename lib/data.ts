@@ -21,7 +21,7 @@ export async function getRescuers(): Promise<Rescuer[]> {
   if (!hasSupabase) return seedRescuers;
   const { data, error } = await client()
     .from("rescuers")
-    .select("id,name,username,emirate,blurb,email,socials,pets_saved,clinics,wishlist_links,is_placeholder")
+    .select("id,name,username,emirate,blurb,email,socials,pets_saved,clinics,wishlist_links,avatar_url,is_placeholder")
     .order("pets_saved", { ascending: false });
   if (error || !data) return seedRescuers;
   return data as Rescuer[];
