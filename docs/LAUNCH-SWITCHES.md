@@ -65,3 +65,10 @@ you add new interim wiring anywhere.
   use case → Generate token again, paste to the agent; it replaces the
   app_settings row. (Tokens also self-refresh every ~24h of site traffic, so
   the stored value drifts from the pasted one naturally.)
+
+- [ ] **Replace example-profile portraits** as real rescuers consent — the
+  three placeholder rescuers (Fawaz/Kwagga/Noor) wear self-hosted stock
+  portraits from the design mock (`public/people/`), acceptable while the
+  EXAMPLE PROFILE chip disclaims them (Vanessa's call, 2026-07-22). Real
+  humans (Vanessa, Jack) never get stock faces — they upload their own in
+  the dashboard.

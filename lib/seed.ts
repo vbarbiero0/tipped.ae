@@ -22,6 +22,7 @@ export const seedRescuers: Rescuer[] = [
   {
     id: "r-kwagga",
     name: "Kwagga",
+    avatar_url: "/people/kwagga.jpg",
     emirate: "Dubai",
     blurb:
       "Kwagga runs trap-neuter-return rounds around the Al Quoz warehouses, making sure every cat there is sterilised, vaccinated and fed.",
@@ -34,6 +35,7 @@ export const seedRescuers: Rescuer[] = [
   {
     id: "r-fawaz",
     name: "Fawaz",
+    avatar_url: "/people/fawaz.jpg",
     emirate: "Dubai",
     blurb:
       "Fawaz runs Save Dubai Stray Cats from Satwa, giving special care to the animals others have given up on.",
@@ -46,6 +48,7 @@ export const seedRescuers: Rescuer[] = [
   {
     id: "r-noor",
     name: "Noor",
+    avatar_url: "/people/noor.jpg",
     emirate: "Sharjah",
     blurb:
       "Noor cares for the desert dogs on the edge of Sharjah, running feeding rounds at dawn before the heat and finding homes for saluki mixes across the Emirates.",
