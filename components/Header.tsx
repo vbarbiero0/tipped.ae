@@ -56,6 +56,19 @@ function BookIcon() {
   );
 }
 
+function HeartIcon() {
+  // Soft heart in the brand pair — Sunset body, Tip-pink accent
+  return (
+    <svg width="18" viewBox="0 0 20 18" aria-hidden>
+      <path
+        d="M10,16 C4,12 1.5,8.5 1.5,5.6 C1.5,3.3 3.3,1.5 5.6,1.5 C7.3,1.5 9,2.6 10,4.2 C11,2.6 12.7,1.5 14.4,1.5 C16.7,1.5 18.5,3.3 18.5,5.6 C18.5,8.5 16,12 10,16 Z"
+        fill="#F0955B"
+      />
+      <path d="M14.4,1.5 C16.7,1.5 18.5,3.3 18.5,5.6 C18.5,7 17.9,8.6 16.5,10.3 C15,8 14,5.5 14.4,1.5 Z" fill="#F58B93" />
+    </svg>
+  );
+}
+
 const rows = [
   {
     href: "/pets",
@@ -74,6 +87,12 @@ const rows = [
     title: "Open books",
     desc: "Every bill and receipt, published",
     icon: <BookIcon />,
+  },
+  {
+    href: "/advice",
+    title: "Tips & advice",
+    desc: "Caring for pets in UAE weather",
+    icon: <HeartIcon />,
   },
 ];
 
@@ -217,6 +236,9 @@ export default function Header() {
           </Link>
           <Link href="/rescuers" className={`${navItem} hidden md:inline`}>
             Rescuers
+          </Link>
+          <Link href="/advice" className={`${navItem} hidden lg:inline`}>
+            Advice
           </Link>
         </div>
 

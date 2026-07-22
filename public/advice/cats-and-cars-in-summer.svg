@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#FBF7F0"/>
+  <rect x="36" y="36" width="1128" height="558" rx="40" fill="#FFF3E4"/>
+  <g transform="translate(96,96) scale(1.4)">
+      <g transform="rotate(-12 18 44)"><path d="M8,44 L18,12 L28,44 Z" fill="#F0955B" stroke="#F0955B" stroke-width="9" stroke-linejoin="round"/></g>
+      <g transform="translate(40,0) rotate(12 18 44)"><path d="M8,44 L12,24 L24,20 L28,44 Z" fill="#F58B93" stroke="#F58B93" stroke-width="9" stroke-linejoin="round"/></g>
+    </g>
+  <g transform="translate(1020,210)" fill="#F0955B">
+      <rect x="-52" y="-6" width="104" height="30" rx="12"/>
+      <rect x="-30" y="-28" width="60" height="30" rx="12"/>
+      <rect x="-36" y="18" width="20" height="20" rx="8" fill="#3A2A22"/><rect x="16" y="18" width="20" height="20" rx="8" fill="#3A2A22"/>
+    </g>
+  <text x="84" y="230" font-family="Nunito, Quicksand, ui-rounded, -apple-system, system-ui, sans-serif" font-weight="700" font-size="26" letter-spacing="4" fill="#B5643A">CATS</text>
+  <text x="84" y="300" font-family="Nunito, Quicksand, ui-rounded, -apple-system, system-ui, sans-serif" font-weight="800" font-size="62" fill="#3A2A22">Cars and street cats:</text><text x="84" y="374" font-family="Nunito, Quicksand, ui-rounded, -apple-system, system-ui, sans-serif" font-weight="800" font-size="62" fill="#3A2A22">check before</text><text x="84" y="448" font-family="Nunito, Quicksand, ui-rounded, -apple-system, system-ui, sans-serif" font-weight="800" font-size="62" fill="#3A2A22">you drive</text>
+  <text x="84" y="546" font-family="Nunito, Quicksand, ui-rounded, -apple-system, system-ui, sans-serif" font-weight="800" font-size="30" fill="#3A2A22">tipped</text>
+  <text x="196" y="546" font-family="Nunito, Quicksand, ui-rounded, -apple-system, system-ui, sans-serif" font-weight="700" font-size="24" fill="#3A2A22" opacity="0.5">· advice</text>
+</svg>

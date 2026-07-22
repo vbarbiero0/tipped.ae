@@ -61,6 +61,7 @@ export default function Footer() {
               { href: "/transparency", label: "Open books" },
               { href: "/adopted", label: "Already home" },
               { href: "/how-it-works", label: "How it works" },
+              { href: "/advice", label: "Tips & advice" },
             ].map((n) => (
               <Link
                 key={n.href}
