@@ -3,16 +3,16 @@
 /* eslint-disable @next/next/no-img-element */
 import { useState } from "react";
 import Link from "next/link";
-import type { AdvicePost } from "@/lib/advice";
+import type { BlogPost } from "@/lib/blog";
 
 // Client-side category filter over the (small) post list. Only categories
 // that actually have posts render as buttons, so nothing filters to empty.
 
-export default function AdviceGrid({
+export default function BlogGrid({
   posts,
   dates,
 }: {
-  posts: Omit<AdvicePost, "body">[];
+  posts: Omit<BlogPost, "body">[];
   dates: Record<string, string>; // slug -> formatted date (server-formatted)
 }) {
   const [category, setCategory] = useState("All");
@@ -40,7 +40,7 @@ export default function AdviceGrid({
         {shown.map((p) => (
           <Link
             key={p.slug}
-            href={`/advice/${p.slug}`}
+            href={`/blog/${p.slug}`}
             className="block bg-white rounded-[20px] shadow-card no-underline group"
           >
             <div className="h-[200px] rounded-t-[20px] overflow-hidden bg-cream">

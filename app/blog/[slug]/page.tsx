@@ -3,23 +3,23 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import {
-  formatAdviceDate,
-  getAdvicePost,
-  getAdvicePosts,
+  formatBlogDate,
+  getBlogPost,
+  getBlogPosts,
   getRelatedPosts,
-} from "@/lib/advice";
+} from "@/lib/blog";
 
 /* eslint-disable @next/next/no-img-element */
 
 type Props = { params: Promise<{ slug: string }> };
 
 export function generateStaticParams() {
-  return getAdvicePosts().map((p) => ({ slug: p.slug }));
+  return getBlogPosts().map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const post = getAdvicePost(slug);
+  const post = getBlogPost(slug);
   if (!post) return { title: "Not found" };
   const title = `${post.title} · tipped`;
   return {
@@ -79,15 +79,15 @@ const mdxComponents = {
   ),
 };
 
-export default async function AdvicePostPage({ params }: Props) {
+export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params;
-  const post = getAdvicePost(slug);
+  const post = getBlogPost(slug);
   if (!post) notFound();
   const related = getRelatedPosts(post);
 
   return (
     <div className="max-w-[1160px] mx-auto px-6 md:px-8 pt-8 md:pt-12 pb-16 md:pb-[84px]">
-      <Link href="/advice" className="font-sans font-bold text-sm no-underline">
+      <Link href="/blog" className="font-sans font-bold text-sm no-underline">
         ← All advice
       </Link>
 
@@ -104,7 +104,7 @@ export default async function AdvicePostPage({ params }: Props) {
           {post.title}
         </h1>
         <div className="font-sans font-semibold text-[13px] text-cocoa/50 mb-9">
-          {formatAdviceDate(post.date)} · by {post.author}
+          {formatBlogDate(post.date)} · by {post.author}
         </div>
 
         <MDXRemote source={post.body} components={mdxComponents} />
@@ -119,7 +119,7 @@ export default async function AdvicePostPage({ params }: Props) {
             {related.map((p) => (
               <Link
                 key={p.slug}
-                href={`/advice/${p.slug}`}
+                href={`/blog/${p.slug}`}
                 className="block bg-white rounded-[18px] shadow-card p-5 no-underline group"
               >
                 <span className="inline-flex font-sans font-bold text-[10px] tracking-[.08em] text-badge-text bg-tip-pink/[.16] rounded-[7px] px-2 py-[3px] mb-2">
@@ -129,7 +129,7 @@ export default async function AdvicePostPage({ params }: Props) {
                   {p.title}
                 </div>
                 <span className="font-sans font-semibold text-[12px] text-cocoa/45 mt-2 inline-block">
-                  {formatAdviceDate(p.date)}
+                  {formatBlogDate(p.date)}
                 </span>
               </Link>
             ))}

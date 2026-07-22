@@ -2,22 +2,22 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 
-// Tips & Advice posts: .mdx files in content/advice/, no database. The slug
+// Tips & Advice posts: .mdx files in content/blog/, no database. The slug
 // is the filename. Frontmatter: title, category, summary, cover, date,
 // author ("tipped").
 
-export const ADVICE_CATEGORIES = [
+export const BLOG_CATEGORIES = [
   "Cats",
   "Dogs",
   "Community care",
   "Adopting & travel",
 ] as const;
-export type AdviceCategory = (typeof ADVICE_CATEGORIES)[number];
+export type BlogCategory = (typeof BLOG_CATEGORIES)[number];
 
-export interface AdvicePost {
+export interface BlogPost {
   slug: string;
   title: string;
-  category: AdviceCategory;
+  category: BlogCategory;
   summary: string;
   cover: string | null;
   date: string; // ISO yyyy-mm-dd
@@ -25,9 +25,9 @@ export interface AdvicePost {
   body: string;
 }
 
-const DIR = path.join(process.cwd(), "content", "advice");
+const DIR = path.join(process.cwd(), "content", "blog");
 
-export function getAdvicePosts(): AdvicePost[] {
+export function getBlogPosts(): BlogPost[] {
   if (!fs.existsSync(DIR)) return [];
   return fs
     .readdirSync(DIR)
@@ -37,9 +37,9 @@ export function getAdvicePosts(): AdvicePost[] {
       return {
         slug: f.replace(/\.mdx$/, ""),
         title: String(data.title ?? ""),
-        category: (ADVICE_CATEGORIES.includes(data.category)
+        category: (BLOG_CATEGORIES.includes(data.category)
           ? data.category
-          : "Community care") as AdviceCategory,
+          : "Community care") as BlogCategory,
         summary: String(data.summary ?? ""),
         cover: data.cover ? String(data.cover) : null,
         date: String(data.date ?? ""),
@@ -50,17 +50,17 @@ export function getAdvicePosts(): AdvicePost[] {
     .sort((a, b) => (a.date < b.date ? 1 : -1));
 }
 
-export function getAdvicePost(slug: string): AdvicePost | null {
-  return getAdvicePosts().find((p) => p.slug === slug) ?? null;
+export function getBlogPost(slug: string): BlogPost | null {
+  return getBlogPosts().find((p) => p.slug === slug) ?? null;
 }
 
-export function getRelatedPosts(post: AdvicePost, limit = 3): AdvicePost[] {
-  const pool = getAdvicePosts().filter((p) => p.slug !== post.slug);
+export function getRelatedPosts(post: BlogPost, limit = 3): BlogPost[] {
+  const pool = getBlogPosts().filter((p) => p.slug !== post.slug);
   const same = pool.filter((p) => p.category === post.category);
   return [...same, ...pool.filter((p) => p.category !== post.category)].slice(0, limit);
 }
 
-export function formatAdviceDate(iso: string): string {
+export function formatBlogDate(iso: string): string {
   const d = new Date(iso + "T12:00:00Z");
   const MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
   return `${MONTHS[d.getUTCMonth()]} ${d.getUTCDate()}, ${d.getUTCFullYear()}`;

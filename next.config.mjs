@@ -7,6 +7,8 @@ const nextConfig = {
       { source: "/cats/:ref", destination: "/pets/:ref", permanent: true },
       { source: "/adopt", destination: "/pets", permanent: true },
       { source: "/adopt/:ref", destination: "/pets/:ref", permanent: true },
+      { source: "/advice", destination: "/blog", permanent: true },
+      { source: "/advice/:slug", destination: "/blog/:slug", permanent: true },
     ];
   },
 };

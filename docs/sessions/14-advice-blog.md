@@ -55,3 +55,13 @@ protocols. Each closes with an italic line carrying one gentle action.
 - Route-shadow landmine checked explicitly: `/advice/why-clipped-ear-tnr.svg`
   serves as image/svg+xml while `/advice/why-clipped-ear-tnr` serves the
   page — no redirects touch `/advice`, filesystem wins.
+
+## Same-day rename: /advice → /blog
+
+Vanessa: "Can we change the name to blog." Full rename: routes (`/blog`,
+`/blog/[slug]`, 301s from both `/advice` paths), labels (nav/dropdown/footer
+now "Blog", eyebrow "THE BLOG"), internals (lib/blog.ts, BlogGrid,
+getBlogPosts…), covers moved `public/advice/` → `public/blog/` — required,
+not cosmetic: the new /advice/:slug redirect would have swallowed the static
+covers (redirects beat filesystem — the /cats landmine, third appearance).
+SVG + OG footers now read "tipped · blog".

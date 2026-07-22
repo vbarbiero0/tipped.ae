@@ -89,8 +89,8 @@ const rows = [
     icon: <BookIcon />,
   },
   {
-    href: "/advice",
-    title: "Tips & advice",
+    href: "/blog",
+    title: "Blog",
     desc: "Caring for pets in UAE weather",
     icon: <HeartIcon />,
   },
@@ -237,7 +237,7 @@ export default function Header() {
           <Link href="/rescuers" className={`${navItem} hidden md:inline`}>
             Rescuers
           </Link>
-          <Link href="/advice" className={`${navItem} hidden lg:inline`}>
+          <Link href="/blog" className={`${navItem} hidden lg:inline`}>
             Advice
           </Link>
         </div>

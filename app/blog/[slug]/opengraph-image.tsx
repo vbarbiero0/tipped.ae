@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-import { getAdvicePost } from "@/lib/advice";
+import { getBlogPost } from "@/lib/blog";
 
 // Branded OG card for every advice post. Always a PNG — WhatsApp and most
 // chat apps won't render SVG og:images, so the SVG covers stay on-page only.
@@ -9,8 +9,8 @@ export const contentType = "image/png";
 
 export default async function OgImage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const post = getAdvicePost(slug);
-  const title = post?.title ?? "Tips & advice";
+  const post = getBlogPost(slug);
+  const title = post?.title ?? "Blog";
   const category = post?.category?.toUpperCase() ?? "ADVICE";
 
   return new ImageResponse(
@@ -88,7 +88,7 @@ export default async function OgImage({ params }: { params: Promise<{ slug: stri
           <div style={{ display: "flex", alignItems: "baseline", gap: 14 }}>
             <div style={{ fontSize: 34, fontWeight: 800, color: "#3A2A22" }}>tipped</div>
             <div style={{ fontSize: 26, fontWeight: 700, color: "#3A2A22", opacity: 0.5 }}>
-              · advice
+              · blog
             </div>
           </div>
         </div>
